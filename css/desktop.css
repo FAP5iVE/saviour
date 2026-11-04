@@ -1,0 +1,392 @@
+/* Desktop layout. Loaded only from 1024px up (see the media attribute in index.html).
+   Lane F owns this file. Keep one commented block per section. */
+
+/* === SECTION: smooth scroll (the rules Lenis needs; it adds these classes to <html>) === */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: clip;
+}
+
+/* === SECTION: header === */
+/* Solid paper by default (what you see without JavaScript). js/desktop/header-scroll.js adds
+   data-over-hero while the hero is behind the bar, and data-hidden when scrolling down. */
+.sv-header {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: var(--z-header);
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  height: var(--header-h);
+  padding: 0 var(--gutter);
+  background: var(--bg);
+  color: var(--text);
+  border-bottom: 1px solid var(--rule);
+  transition:
+    transform var(--t-fade) var(--ease-out),
+    background-color var(--t-fade) var(--ease-out),
+    color var(--t-fade) var(--ease-out),
+    border-color var(--t-fade) var(--ease-out);
+}
+
+.sv-header[data-over-hero] {
+  background: transparent;
+  color: var(--white);
+  border-bottom-color: transparent;
+}
+
+.sv-header[data-hidden] {
+  transform: translateY(-100%);
+  transition-duration: var(--t-fade-out), var(--t-fade), var(--t-fade), var(--t-fade);
+}
+
+/* A keyboard user tabbing into the bar always sees it. */
+.sv-header:focus-within {
+  transform: none;
+}
+
+.sv-header__brand {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  margin-right: auto;
+  color: inherit;
+}
+
+.sv-menu-btn {
+  display: none;
+}
+
+.sv-nav__list {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.sv-nav__list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  color: inherit;
+  text-decoration: none;
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.35em;
+}
+
+.sv-nav__list a:hover,
+.sv-nav__list a[aria-current='location'] {
+  text-decoration: underline;
+}
+
+/* === SECTION: hero === */
+.sv-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  min-height: 100svh;
+  padding: calc(var(--header-h) + var(--space-5)) var(--gutter) var(--space-5);
+  overflow: clip;
+}
+
+.sv-hero__title {
+  max-width: 15ch;
+}
+
+.sv-hero__cue {
+  position: absolute;
+  right: var(--gutter);
+  bottom: var(--space-5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: var(--tap);
+  color: inherit;
+  font-size: var(--text-small);
+  text-decoration: none;
+}
+
+.sv-hero__cue-line {
+  position: relative;
+  width: 2px;
+  height: var(--space-5);
+  overflow: hidden;
+  background: var(--rule-on-dark);
+}
+
+.sv-hero__cue-line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+  animation: sv-cue 1.8s var(--ease-out) infinite;
+}
+
+@keyframes sv-cue {
+  0% {
+    transform: translateY(-100%);
+  }
+
+  60%,
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+/* === SECTION: about (phase 3) === */
+/* Title on the left, statement and facts on the right. The solid background lets the next
+   fold (Hero to About) slide over the hero later without showing it through. */
+.sv-about {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--space-3);
+  background: var(--bg);
+}
+
+.sv-about__head {
+  grid-column: 1 / span 4;
+}
+
+.sv-about__body {
+  display: grid;
+  grid-column: 5 / -1;
+  gap: var(--space-6);
+}
+
+.sv-stats {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.sv-about__who {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-2);
+  max-width: var(--measure);
+}
+
+/* === SECTION: services (phase 3) === */
+.sv-services {
+  --svc-num: 3.5rem;
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--space-3);
+  align-items: start;
+}
+
+/* The title and intro stay in view while the nine rows scroll past. */
+.sv-services__intro {
+  position: sticky;
+  top: calc(var(--header-h) + var(--space-4));
+  display: grid;
+  grid-column: 1 / span 4;
+  justify-items: start;
+  gap: var(--space-3);
+}
+
+.sv-svc-list {
+  grid-column: 6 / -1;
+}
+
+.sv-svc__head {
+  padding: var(--space-4) 0;
+}
+
+/* === SECTION: packages (phase 3) === */
+.sv-packages {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.sv-packages__intro {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--space-3);
+  align-items: end;
+}
+
+.sv-packages__intro .sv-section__title {
+  grid-column: 1 / span 5;
+}
+
+.sv-packages__lead {
+  grid-column: 7 / -1;
+}
+
+.sv-pkg-list {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-3);
+  align-items: stretch;
+}
+
+.sv-pkg {
+  padding: calc(var(--space-4) + var(--rule-thick)) var(--space-4) var(--space-4);
+  gap: var(--space-3);
+  transition: transform var(--t-micro) var(--ease-out);
+}
+
+.sv-pkg__flag {
+  top: calc(var(--rule-thick) + var(--space-3));
+  right: var(--space-4);
+}
+
+/* Cards lift 4px for mouse users only. GSAP clears its own transform after the entrance,
+   so this rule can take over (see js/desktop/packages-rise.js). */
+@media (hover: hover) and (pointer: fine) {
+  .sv-pkg:hover {
+    transform: translateY(calc(var(--lift) * -1));
+  }
+}
+
+.sv-packages__foot {
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--space-3);
+}
+
+.sv-packages__pay {
+  grid-column: 1 / span 5;
+}
+
+.sv-packages__note {
+  grid-column: 7 / -1;
+}
+
+/* === SECTION: section rail (built by js/desktop/section-rail.js) === */
+.sv-rail {
+  position: fixed;
+  top: 50%;
+  right: var(--space-3);
+  z-index: var(--z-rail);
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: stretch;
+  gap: var(--space-2);
+  color: var(--ink);
+  pointer-events: none;
+  transform: translateY(-50%);
+  transition: color var(--t-fade) var(--ease-out);
+}
+
+.sv-rail[data-tone='dark'] {
+  color: var(--white);
+}
+
+.sv-rail__track {
+  position: relative;
+  width: 2px;
+}
+
+.sv-rail__track::before,
+.sv-rail__fill {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: currentColor;
+}
+
+.sv-rail__track::before {
+  opacity: 0.25;
+}
+
+.sv-rail__fill {
+  transform: scaleY(0);
+  transform-origin: top;
+}
+
+.sv-rail__list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--space-2);
+}
+
+.sv-rail__item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-1);
+  font-size: var(--text-small);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.sv-rail__num {
+  opacity: 0;
+  transform: translateX(0.5rem);
+  transition:
+    opacity var(--t-fade) var(--ease-out),
+    transform var(--t-fade) var(--ease-out);
+}
+
+.sv-rail__tick {
+  width: var(--space-2);
+  height: 2px;
+  background: currentColor;
+  opacity: 0.5;
+  transform-origin: right;
+  transition:
+    opacity var(--t-fade) var(--ease-out),
+    transform var(--t-fade) var(--ease-out);
+}
+
+.sv-rail__item[data-active] .sv-rail__num {
+  opacity: 1;
+  transform: none;
+}
+
+.sv-rail__item[data-active] .sv-rail__tick {
+  opacity: 1;
+  transform: scaleX(1.8);
+}
+
+/* === SECTION: action bar (phones only) === */
+.sv-action {
+  display: none;
+}
+
+/* === SECTION: generic === */
+/* Extra room on the right keeps text clear of the section rail (js/desktop/section-rail.js). */
+.sv-section {
+  padding: var(--space-6) calc(var(--gutter) + var(--space-4)) var(--space-6) var(--gutter);
+  border-top: 1px solid var(--rule);
+}
+
+.sv-section--dark {
+  border-top: 0;
+}
+
+/* === SECTION: footer === */
+.sv-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--space-4) var(--gutter);
+  border-top: 1px solid var(--rule);
+}
+
+.sv-footer__links {
+  display: flex;
+  gap: var(--space-4);
+}
+
+.sv-footer__links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+}

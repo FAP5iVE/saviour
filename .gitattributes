@@ -1,0 +1,21 @@
+# Normalise line endings so Windows and Mac/Linux contributors don't fight over them
+* text=auto eol=lf
+
+*.sh text eol=lf
+*.mjs text eol=lf
+
+# Binary files: never touch or diff as text
+*.woff2 binary
+*.woff binary
+*.avif binary
+*.webp binary
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.ico binary
+*.mp4 binary
+*.webm binary
+*.zip binary
+
+# Generated or third-party code: hide from language stats and diffs
+assets/vendor/vendor.js linguist-generated=true

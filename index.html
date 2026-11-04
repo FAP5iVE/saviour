@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>
+      Saviour Digital Solutions | Web solutions for small businesses in Blantyre, Malawi
+    </title>
+    <meta
+      name="description"
+      content="Saviour Digital Solutions build digital footprint for small businesses and new entrepreneurs in Blantyre, Malawi."
+    />
+    <meta name="theme-color" content="#FAF9F6" />
+
+    <!-- The script below adds the "js" class. It is the ONLY inline script on the site.
+         Its hash is in _headers. If you edit it, run: npm run csp:check -->
+    <!-- prettier-ignore -->
+    <script>document.documentElement.classList.add('js');</script>
+
+    <link
+      rel="preload"
+      href="assets/fonts/clash-display-600.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+    <link
+      rel="preload"
+      href="assets/fonts/inter-latin-var.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
+
+    <link rel="stylesheet" href="css/tokens.css" />
+    <link rel="stylesheet" href="css/base.css" />
+    <link rel="stylesheet" href="css/mobile.css" media="(max-width: 1023.98px)" />
+    <link rel="stylesheet" href="css/desktop.css" media="(min-width: 1024px)" />
+
+    <script type="module" src="js/boot.js"></script>
+  </head>
+  <body>
+    <a class="sv-skip" href="#main">Skip to content</a>
+
+    <header class="sv-header" data-header>
+      <a class="sv-header__brand" href="#home">Saviour Digital Solutions</a>
+
+      <button
+        class="sv-menu-btn"
+        type="button"
+        aria-expanded="false"
+        aria-controls="site-nav"
+        aria-label="Open menu"
+        data-menu-button
+      >
+        <svg class="sv-icon sv-menu-btn__open" aria-hidden="true">
+          <use href="assets/icons/sprite.svg#menu"></use>
+        </svg>
+        <svg class="sv-icon sv-menu-btn__close" aria-hidden="true">
+          <use href="assets/icons/sprite.svg#close"></use>
+        </svg>
+      </button>
+
+      <nav class="sv-nav" id="site-nav" aria-label="Main" data-nav>
+        <ul class="sv-nav__list">
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#showcase">Showcase</a></li>
+          <li><a href="#why">Why us</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <a
+        class="sv-header__cta sv-btn sv-btn--slim"
+        href="https://wa.me/265[TBC]?text=Hello%20Saviour%20Digital%20Solutions%2C%20I%27d%20like%20a%20quote."
+      >
+        <svg class="sv-icon" aria-hidden="true">
+          <use href="assets/icons/sprite.svg#whatsapp"></use>
+        </svg>
+        WhatsApp us
+      </a>
+    </header>
+
+    <main id="main">
+      <!-- Section content is written from docs/03-content-and-copy.md. Starter has headings only. -->
+
+      <section id="home" class="sv-hero" aria-labelledby="home-title" data-hero>
+        <div class="sv-hero__media" aria-hidden="true" data-hero-media>
+          <picture>
+            <source
+              type="image/avif"
+              srcset="
+                assets/img/hero-poster-800.avif   800w,
+                assets/img/hero-poster-1600.avif 1600w
+              "
+              sizes="100vw"
+            />
+            <source
+              type="image/webp"
+              srcset="
+                assets/img/hero-poster-800.webp   800w,
+                assets/img/hero-poster-1600.webp 1600w
+              "
+              sizes="100vw"
+            />
+            <img
+              class="sv-hero__poster"
+              src="assets/img/hero-poster-1600.webp"
+              alt=""
+              width="1600"
+              height="900"
+              fetchpriority="high"
+              decoding="async"
+            />
+          </picture>
+          <video
+            class="sv-hero__video"
+            data-hero-video
+            data-src-desktop="assets/video/hero-720.mp4"
+            data-src-mobile="assets/video/hero-480.mp4"
+            muted
+            loop
+            playsinline
+            preload="none"
+            disablepictureinpicture
+            tabindex="-1"
+            hidden
+          ></video>
+          <div class="sv-hero__veil" data-hero-veil></div>
+        </div>
+
+        <div class="sv-hero__content">
+          <h1 id="home-title" class="sv-hero__title" data-hero-title>
+            Your business, online and easy to find.
+          </h1>
+          <p class="sv-hero__lead" data-hero-in>
+            We design and build websites, set up WhatsApp Business and Google listings, and look
+            after them, for small businesses across Malawi.
+          </p>
+          <div class="sv-hero__actions" data-hero-in>
+            <a class="sv-btn" href="#contact" data-magnetic>Get a free quote</a>
+            <a class="sv-link-quiet" href="#showcase">
+              See our work
+              <svg class="sv-icon" aria-hidden="true">
+                <use href="assets/icons/sprite.svg#arrow-right"></use>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <a class="sv-hero__cue" href="#about" aria-label="Scroll down to About us">
+          <span class="sv-hero__cue-text">Scroll</span>
+          <span class="sv-hero__cue-line" aria-hidden="true"></span>
+        </a>
+      </section>
+
+      <section id="about" class="sv-section sv-about" aria-labelledby="about-title">
+        <div class="sv-about__head">
+          <h2 id="about-title" class="sv-section__title">About us</h2>
+        </div>
+
+        <div class="sv-about__body">
+          <p class="sv-about__statement" data-scrub>
+            Customers look for businesses on their phones. A business that can't be found online, or
+            only shows up as scattered posts, loses people before they ever call. Many small
+            businesses and new entrepreneurs in Malawi don't have the time, money or technical help
+            to fix that. That is the gap we exist to close.
+          </p>
+
+          <ul
+            class="sv-stats"
+            aria-label="Two facts about internet use and small businesses in Malawi"
+          >
+            <li class="sv-stat" data-reveal>
+              <p class="sv-stat__pre">In October 2025,</p>
+              <p class="sv-stat__num">
+                <span class="sv-stat__value" data-count="4.02" data-decimals="2">4.02</span>
+                <span class="sv-stat__unit">million</span>
+              </p>
+              <p class="sv-stat__text">people in Malawi were using the internet.</p>
+              <p class="sv-stat__src">
+                Source:
+                <a
+                  href="https://datareportal.com/reports/digital-2026-malawi"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >DataReportal, Digital 2026: Malawi<span class="sv-sr"> (opens in a new tab)</span></a
+                >, 2025.
+              </p>
+            </li>
+            <li class="sv-stat" data-reveal>
+              <p class="sv-stat__pre">In 2019, almost</p>
+              <p class="sv-stat__num">
+                <span class="sv-stat__value" data-count="1.6" data-decimals="1">1.6</span>
+                <span class="sv-stat__unit">million</span>
+              </p>
+              <p class="sv-stat__text">micro, small and medium businesses were operating in Malawi.</p>
+              <p class="sv-stat__src">
+                Source: 2019 FinScope MSME Survey, as reported by
+                <a
+                  href="https://blogs.worldbank.org/en/africacan/supporting-malawis-small-enterprises-spur-economic-growth-and-create-more-job"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >the World Bank<span class="sv-sr"> (opens in a new tab)</span></a
+                >, 2022.
+              </p>
+            </li>
+          </ul>
+
+          <div class="sv-about__who" data-reveal>
+            <h3 class="sv-about__who-title">Who we are</h3>
+            <p>
+              Saviour Digital Solutions is a five-person team in Blantyre. We build websites and
+              digital services for small businesses and new entrepreneurs.
+            </p>
+            <a class="sv-link-quiet" href="#services">
+              What we do
+              <svg class="sv-icon" aria-hidden="true">
+                <use href="assets/icons/sprite.svg#arrow-right"></use>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section id="services" class="sv-section sv-services" aria-labelledby="services-title">
+        <div class="sv-services__intro">
+          <h2 id="services-title" class="sv-section__title">Services</h2>
+          <p class="sv-services__lead">
+            From a first website to your Google listing, WhatsApp setup and the upkeep after.
+            Select a service to see what you get.
+          </p>
+          <a class="sv-link-quiet" href="#packages">
+            See the packages
+            <svg class="sv-icon" aria-hidden="true">
+              <use href="assets/icons/sprite.svg#arrow-right"></use>
+            </svg>
+          </a>
+        </div>
+
+        <ol class="sv-svc-list" data-accordion="services">
+          <li class="sv-svc" data-accordion-item data-service="website">
+            <div class="sv-svc__head">
+              <span class="sv-svc__num" aria-hidden="true">01</span>
+              <div class="sv-svc__text">
+                <h3 class="sv-svc__name" data-accordion-name>Website design and development</h3>
+                <p class="sv-svc__line">
+                  A custom website that fits your business and works on every phone.
+                </p>
+              </div>
+              <svg class="sv-icon sv-svc__plus" aria-hidden="true">
+                <use href="assets/icons/sprite.svg#plus"></use>
+              </svg>
+            </div>
+            <div class="sv-svc__panel" id="svc-website" data-accordion-panel>
+              <div class="sv-svc__inner">
+                <svg class="sv-icon sv-svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="M10 4v4"/><path d="M2 8h20"/><path d="M6 4v4"/></svg>
+                <div class="sv-svc__detail">
+                  <p class="sv-svc__label">What you get</p>
+                  <ul class="sv-svc__list">
+                    <li>Design and build, phone first</li>
+                    <li>A contact form and a WhatsApp button</li>
+                    <li>Basic search setup</li>
+                  </ul>
+                  <a class="sv-link-quiet" href="#contact" data-service="website">
+                    Ask about this
+                    <svg class="sv-icon" aria-hidden="true">
+                      <use href="assets/icons/sprite.svg#arrow-right"></use>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="sv-svc" data-accordion-item data-service="starter">
+            <div class="sv-svc__head">
+              <span class="sv-svc__num" aria-hidden="true">02</span>
+              <div class="sv-svc__text">
+                <h3 class="sv-svc__name" data-accordion-name>Starter sites for small businesses</h3>
+                <p class="sv-svc__line">A simple site to get you online fast.</p>
+              </div>
+              <svg class="sv-icon sv-svc__plus" aria-hidden="true">
+                <use href="assets/icons/sprite.svg#plus"></use>
+              </svg>
+            </div>
+            <div class="sv-svc__panel" id="svc-starter" data-accordion-panel>
+              <div class="sv-svc__inner">
+                <svg class="sv-icon sv-svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="18" height="7" x="3" y="3" rx="1"/><rect width="9" height="7" x="3" y="14" rx="1"/><rect width="5" height="7" x="16" y="14" rx="1"/></svg>
+                <div class="sv-svc__detail">
+                  <p class="sv-svc__label">What you get</p>
+                  <ul class="sv-svc__list">
+                    <li>A one-page or small site</li>
+                    <li>Your story, services, photos and contact details</li>
+                    <li>A WhatsApp button so customers can reach you</li>
+                  </ul>
+                  <a class="sv-link-quiet" href="#contact" data-service="starter">
+                    Ask about this
+                    <svg class="sv-icon" aria-hidden="true">
+                      <use href="assets/icons/sprite.svg#arrow-right"></use>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="sv-svc" data-accordion-item data-service="shop">
+            <div class="sv-svc__head">
+              <span class="sv-svc__num" aria-hidden="true">03</span>
+              <div class="sv-svc__text">
+                <h3 class="sv-svc__name" data-accordion-name>Online shop or catalogue</h3>
+                <p class="sv-svc__line">Show your products and take orders by WhatsApp or form.</p>
+              </div>
+              <svg class="sv-icon sv-svc__plus" aria-hidden="true">
+                <use href="assets/icons/sprite.svg#plus"></use>
+              </svg>
+            </div>
+            <div class="sv-svc__panel" id="svc-shop" data-accordion-panel>
+              <div class="sv-svc__inner">
+                <svg class="sv-icon sv-svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M15 21v-5a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v5"/><path d="M17.774 10.31a1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.451 0 1.12 1.12 0 0 0-1.548 0 2.5 2.5 0 0 1-3.452 0 1.12 1.12 0 0 0-1.549 0 2.5 2.5 0 0 1-3.77-3.248l2.889-4.184A2 2 0 0 1 7 2h10a2 2 0 0 1 1.653.873l2.895 4.192a2.5 2.5 0 0 1-3.774 3.244"/><path d="M4 10.95V19a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8.05"/></svg>
+                <div class="sv-svc__detail">
+                  <p class="sv-svc__label">What you get</p>
+                  <ul class="sv-svc__list">
+                    <li>Product pages or a catalogue</li>
+                    <li>Customers order by WhatsApp</li>
+                    <li>A simple way for you to manage it</li>
+                  </ul>
+                  <a class="sv-link-quiet" href="#contact" data-service="shop">
+                    Ask about this
+                    <svg class="sv-icon" aria-hidden="true">
+                      <use href="assets/icons/sprite.svg#arrow-right"></use>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="sv-svc" data-accordion-item data-service="google-business-profile">
+            <div class="sv-svc__head">
+              <span class="sv-svc__num" aria-hidden="true">04</span>
+              <div class="sv-svc__text">
+                <h3 class="sv-svc__name" data-accordion-name>
+                  Google Business Profile and local search
+                </h3>
+                <p class="sv-svc__line">
+                  Show up when people nearby search for what you sell.
+                </p>
+              </div>
+              <svg class="sv-icon sv-svc__plus" aria-hidden="true">
+                <use href="assets/icons/sprite.svg#plus"></use>
+              </svg>
+            </div>
+            <div class="sv-svc__panel" id="svc-search" data-accordion-panel>
+              <div class="sv-svc__inner">
+                <svg class="sv-icon sv-svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M18 8c0 3.613-3.869 7.429-5.393 8.795a1 1 0 01-1.214 0C9.87 15.429 6 11.613 6 8a6 6 0 0112 0"/><path d="M4.474 15h-.197a1 1 0 00-.969.753l-1.097 4.35a1.5 1.5 0 001.444 1.898L20.344 22a1.5 1.5 0 001.446-1.897l-1.098-4.35a1 1 0 00-.969-.753h-.197"/><circle cx="12" cy="8" r="2"/></svg>
+                <div class="sv-svc__detail">
+                  <p class="sv-svc__label">What you get</p>
+                  <ul class="sv-svc__list">
+                    <li>Your Google Business Profile created, with help to get it verified</li>
+                    <li>Local search basics</li>
+                    <li>The same name, address and phone number everywhere</li>
+                  </ul>
+                  <a class="sv-link-quiet" href="#contact" data-service="google-business-profile">
+                    Ask about this
+                    <svg class="sv-icon" aria-hidden="true">
+                      <use href="assets/icons/sprite.svg#arrow-right"></use>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="sv-svc" data-accordion-item data-service="whatsapp-business">
+            <div class="sv-svc__head">
+              <span class="sv-svc__num" aria-hidden="true">05</span>
+              <div class="sv-svc__text">
+                <h3 class="sv-svc__name" data-accordion-name>WhatsApp Business setup</h3>
+                <p class="sv-svc__line">Look professional and answer customers faster.</p>
+              </div>
+              <svg class="sv-icon sv-svc__plus" aria-hidden="true">
+                <use href="assets/icons/sprite.svg#plus"></use>
+              </svg>
+            </div>
+            <div class="sv-svc__panel" id="svc-whatsapp" data-accordion-panel>
+              <div class="sv-svc__inner">
+                <svg class="sv-icon sv-svc__icon sv-svc__icon--solid" viewBox="0 0 720 720" fill="currentColor" aria-hidden="true" focusable="false"><path d="M360,0C161.18,0,0,161.18,0,360c0,65.41,17.45,126.75,47.94,179.61L0,720l187.02-44.21c51.34,28.18,110.28,44.21,172.98,44.21,198.82,0,360-161.18,360-360S558.82,0,360,0ZM360,655.52c-60.17,0-116.13-17.98-162.82-48.87l-110.49,28.14,30.99-105.61c-33.53-47.93-53.2-106.26-53.2-169.19,0-163.21,132.31-295.52,295.52-295.52s295.52,132.31,295.52,295.52-132.31,295.52-295.52,295.52Z"/><path d="M444.35,407.52l87.1,41.06c4,1.88,6.56,5.94,6.2,10.34-.94,11.46-5.54,34.43-26.13,55.02-58.12,58.12-162.49-7.64-166.74-10.18-25.67-13.79-50.06-32.24-73.19-55.36-23.12-23.12-41.58-47.52-55.37-73.19-2.55-4.24-68.31-108.61-10.18-166.74,20.59-20.59,43.56-25.19,55.02-26.13,4.41-.36,8.46,2.2,10.34,6.2l41.07,87.1c1.94,4.12,1.09,9.02-2.13,12.24l-30.61,30.61c-6.62,6.62-8.56,16.93-4,25.11,11.17,20.03,26.19,39.32,43.59,57.07,17.75,17.4,37.04,32.43,57.07,43.59,8.18,4.56,18.48,2.62,25.11-4l30.61-30.61c3.22-3.22,8.12-4.08,12.24-2.13Z"/></svg>
+                <div class="sv-svc__detail">
+                  <p class="sv-svc__label">What you get</p>
+                  <ul class="sv-svc__list">
+                    <li>A business profile</li>
+                    <li>A catalogue and quick replies</li>
+                    <li>A click-to-chat link for your site</li>
+                  </ul>
+                  <a class="sv-link-quiet" href="#contact" data-service="whatsapp-business">
+                    Ask about this
+                    <svg class="sv-icon" aria-hidden="true">
+                      <use href="assets/icons/sprite.svg#arrow-right"></use>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="sv-svc" data-accordion-item data-service="social-and-brand">
+            <div class="sv-svc__head">
+              <span class="sv-svc__num" aria-hidden="true">06</span>
+              <div class="sv-svc__text">
+                <h3 class="sv-svc__name" data-accordion-name>Social media and brand basics</h3>
+                <p class="sv-svc__line">A consistent look across your pages.</p>
+              </div>
+              <svg class="sv-icon sv-svc__plus" aria-hidden="true">
+                <use href="assets/icons/sprite.svg#plus"></use>
+              </svg>
+            </div>
+            <div class="sv-svc__panel" id="svc-social" data-accordion-panel>
+              <div class="sv-svc__inner">
+                <svg class="sv-icon sv-svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" x2="15.42" y1="13.51" y2="17.49"/><line x1="15.41" x2="8.59" y1="6.51" y2="10.49"/></svg>
+                <div class="sv-svc__detail">
+                  <p class="sv-svc__label">What you get</p>
+                  <ul class="sv-svc__list">
+                    <li>Your social profiles set up</li>
+                    <li>Simple logo and colour guidance</li>
+                    <li>Image templates you can share</li>
+                  </ul>
+                  <a class="sv-link-quiet" href="#contact" data-service="social-and-brand">
+                    Ask about this
+                    <svg class="sv-icon" aria-hidden="true">
+                      <use href="assets/icons/sprite.svg#arrow-right"></use>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="sv-svc" data-accordion-item data-service="digital-marketing">
+            <div class="sv-svc__head">
+              <span class="sv-svc__num" aria-hidden="true">07</span>
+              <div class="sv-svc__text">
+                <h3 class="sv-svc__name" data-accordion-name>Digital marketing</h3>
+                <p class="sv-svc__line">Help the right people find and remember your business.</p>
+              </div>
+              <svg class="sv-icon sv-svc__plus" aria-hidden="true">
+                <use href="assets/icons/sprite.svg#plus"></use>
+              </svg>
+            </div>
+            <div class="sv-svc__panel" id="svc-marketing" data-accordion-panel>
+              <div class="sv-svc__inner">
+                <svg class="sv-icon sv-svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="m3 11 18-5v12L3 14v-3z"/><path d="M11.6 16.8a3 3 0 1 1-5.8-1.6"/></svg>
+                <div class="sv-svc__detail">
+                  <p class="sv-svc__label">What you get</p>
+                  <p class="sv-svc__body">
+                    What suits you depends on your business, so we set it out in your written quote.
+                  </p>
+                  <a class="sv-link-quiet" href="#contact" data-service="digital-marketing">
+                    Ask about this
+                    <svg class="sv-icon" aria-hidden="true">
+                      <use href="assets/icons/sprite.svg#arrow-right"></use>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="sv-svc" data-accordion-item data-service="data-collection">
+            <div class="sv-svc__head">
+              <span class="sv-svc__num" aria-hidden="true">08</span>
+              <div class="sv-svc__text">
+                <h3 class="sv-svc__name" data-accordion-name>Data collection</h3>
+                <p class="sv-svc__line">
+                  Gather the information you need with digital forms, research and field data
+                  collection.
+                </p>
+              </div>
+              <svg class="sv-icon sv-svc__plus" aria-hidden="true">
+                <use href="assets/icons/sprite.svg#plus"></use>
+              </svg>
+            </div>
+            <div class="sv-svc__panel" id="svc-data" data-accordion-panel>
+              <div class="sv-svc__inner">
+                <svg class="sv-icon sv-svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><rect width="8" height="4" x="8" y="2" rx="1" ry="1"/><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><path d="M12 11h4"/><path d="M12 16h4"/><path d="M8 11h.01"/><path d="M8 16h.01"/></svg>
+                <div class="sv-svc__detail">
+                  <p class="sv-svc__label">What you get</p>
+                  <ul class="sv-svc__list">
+                    <li>Digital forms</li>
+                    <li>Research</li>
+                    <li>Field data collection</li>
+                  </ul>
+                  <p class="sv-svc__body">
+                    Tell us what you need to find out and we set out the work in your written quote.
+                  </p>
+                  <a class="sv-link-quiet" href="#contact" data-service="data-collection">
+                    Ask about this
+                    <svg class="sv-icon" aria-hidden="true">
+                      <use href="assets/icons/sprite.svg#arrow-right"></use>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+
+          <li class="sv-svc" data-accordion-item data-service="maintenance">
+            <div class="sv-svc__head">
+              <span class="sv-svc__num" aria-hidden="true">09</span>
+              <div class="sv-svc__text">
+                <h3 class="sv-svc__name" data-accordion-name>Maintenance and support</h3>
+                <p class="sv-svc__line">We keep it running and up to date.</p>
+              </div>
+              <svg class="sv-icon sv-svc__plus" aria-hidden="true">
+                <use href="assets/icons/sprite.svg#plus"></use>
+              </svg>
+            </div>
+            <div class="sv-svc__panel" id="svc-maintenance" data-accordion-panel>
+              <div class="sv-svc__inner">
+                <svg class="sv-icon sv-svc__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z"/></svg>
+                <div class="sv-svc__detail">
+                  <p class="sv-svc__label">What you get</p>
+                  <ul class="sv-svc__list">
+                    <li>Updates and backups</li>
+                    <li>Small content changes</li>
+                    <li>Fixes when something breaks</li>
+                  </ul>
+                  <a class="sv-link-quiet" href="#contact" data-service="maintenance">
+                    Ask about this
+                    <svg class="sv-icon" aria-hidden="true">
+                      <use href="assets/icons/sprite.svg#arrow-right"></use>
+                    </svg>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section id="packages" class="sv-section sv-packages" aria-labelledby="packages-title">
+        <div class="sv-packages__intro">
+          <h2 id="packages-title" class="sv-section__title">Packages</h2>
+          <p class="sv-packages__lead">
+            Three places to start. Pick the one closest to what you need and we set out the details
+            in a written quote. Not sure which fits? Ask us and we will help you choose.
+          </p>
+        </div>
+
+        <ul class="sv-pkg-list" data-pkg-list>
+          <li class="sv-pkg" data-reveal data-pkg="starter" data-price-from="">
+            <h3 class="sv-pkg__name">Starter</h3>
+            <p class="sv-pkg__for">For getting online quickly.</p>
+            <ul class="sv-pkg__list">
+              <li>
+                <svg class="sv-icon sv-pkg__tick" aria-hidden="true"><use href="assets/icons/sprite.svg#check"></use></svg>
+                A simple site with your story, services, photos and contact details
+              </li>
+              <li>
+                <svg class="sv-icon sv-pkg__tick" aria-hidden="true"><use href="assets/icons/sprite.svg#check"></use></svg>
+                Mobile-first design
+              </li>
+              <li>
+                <svg class="sv-icon sv-pkg__tick" aria-hidden="true"><use href="assets/icons/sprite.svg#check"></use></svg>
+                Contact form and WhatsApp button
+              </li>
+            </ul>
+            <p class="sv-pkg__pay">
+              Pay in instalments. We agree a payment plan in your written quote.
+            </p>
+            <a class="sv-btn sv-btn--ghost" href="#contact" data-package="starter">
+              Request a quote<span class="sv-sr"> for the Starter package</span>
+            </a>
+          </li>
+
+          <li class="sv-pkg sv-pkg--featured" data-reveal data-pkg="business" data-price-from="">
+            <p class="sv-pkg__flag">Recommended</p>
+            <h3 class="sv-pkg__name">Business</h3>
+            <p class="sv-pkg__for">For a full small-business site.</p>
+            <ul class="sv-pkg__list">
+              <li>
+                <svg class="sv-icon sv-pkg__tick" aria-hidden="true"><use href="assets/icons/sprite.svg#check"></use></svg>
+                Mobile-first design
+              </li>
+              <li>
+                <svg class="sv-icon sv-pkg__tick" aria-hidden="true"><use href="assets/icons/sprite.svg#check"></use></svg>
+                Contact form and WhatsApp button
+              </li>
+              <li>
+                <svg class="sv-icon sv-pkg__tick" aria-hidden="true"><use href="assets/icons/sprite.svg#check"></use></svg>
+                Google Business Profile setup
+              </li>
+              <li>
+                <svg class="sv-icon sv-pkg__tick" aria-hidden="true"><use href="assets/icons/sprite.svg#check"></use></svg>
+                Photo gallery or portfolio
+              </li>
+              <li>
+                <svg class="sv-icon sv-pkg__tick" aria-hidden="true"><use href="assets/icons/sprite.svg#check"></use></svg>
+                Local search basics
+              </li>
+            </ul>
+            <p class="sv-pkg__pay">
+              Pay in instalments. We agree a payment plan in your written quote.
+            </p>
+            <a class="sv-btn" href="#contact" data-package="business">
+              Request a quote<span class="sv-sr"> for the Business package</span>
+            </a>
+          </li>
+
+          <li class="sv-pkg" data-reveal data-pkg="growth" data-price-from="">
+            <h3 class="sv-pkg__name">Growth</h3>
+            <p class="sv-pkg__for">For selling and growing online.</p>
+            <ul class="sv-pkg__list">
+              <li>
+                <svg class="sv-icon sv-pkg__tick" aria-hidden="true"><use href="assets/icons/sprite.svg#check"></use></svg>
+                Everything in Business
+              </li>
+              <li>
+                <svg class="sv-icon sv-pkg__tick" aria-hidden="true"><use href="assets/icons/sprite.svg#check"></use></svg>
+                A larger site
+              </li>
+              <li>
+                <svg class="sv-icon sv-pkg__tick" aria-hidden="true"><use href="assets/icons/sprite.svg#check"></use></svg>
+                Online catalogue or shop
+              </li>
+            </ul>
+            <p class="sv-pkg__pay">
+              Pay in instalments. We agree a payment plan in your written quote.
+            </p>
+            <a class="sv-btn sv-btn--ghost" href="#contact" data-package="growth">
+              Request a quote<span class="sv-sr"> for the Growth package</span>
+            </a>
+          </li>
+        </ul>
+
+        <div class="sv-packages__foot">
+          <p class="sv-packages__pay">Pay by Airtel Money, TNM Mpamba or bank transfer.</p>
+          <p class="sv-packages__note">
+            Want something extra? You can add Google Business Profile, WhatsApp Business setup,
+            social media and brand basics, digital marketing, data collection or maintenance to any
+            package.
+          </p>
+        </div>
+      </section>
+
+      <section id="showcase" class="sv-section" aria-labelledby="showcase-title">
+        <h2 id="showcase-title" class="sv-section__title">Business showcase</h2>
+      </section>
+
+      <section id="why" class="sv-section sv-section--dark" aria-labelledby="why-title">
+        <h2 id="why-title" class="sv-section__title">Why choose us</h2>
+      </section>
+
+      <section id="faq" class="sv-section" aria-labelledby="faq-title">
+        <h2 id="faq-title" class="sv-section__title">Questions</h2>
+      </section>
+
+      <section id="contact" class="sv-section" aria-labelledby="contact-title">
+        <h2 id="contact-title" class="sv-section__title">Request a quote</h2>
+      </section>
+    </main>
+
+    <footer class="sv-footer">
+      <p class="sv-footer__name">Saviour Digital Solutions, Blantyre, Malawi</p>
+      <ul class="sv-footer__links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#faq">Questions</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </footer>
+
+    <nav class="sv-action" aria-label="Quick contact" data-action-bar>
+      <a
+        class="sv-action__item sv-action__item--wa"
+        href="https://wa.me/265[TBC]?text=Hello%20Saviour%20Digital%20Solutions%2C%20I%27d%20like%20a%20quote."
+      >
+        <svg class="sv-icon" aria-hidden="true">
+          <use href="assets/icons/sprite.svg#whatsapp"></use>
+        </svg>
+        <span>WhatsApp</span>
+      </a>
+      <a class="sv-action__item" href="tel:+265[TBC]">
+        <svg class="sv-icon" aria-hidden="true">
+          <use href="assets/icons/sprite.svg#phone"></use>
+        </svg>
+        <span>Call</span>
+      </a>
+      <a class="sv-action__item" href="#contact">
+        <svg class="sv-icon" aria-hidden="true">
+          <use href="assets/icons/sprite.svg#arrow-right"></use>
+        </svg>
+        <span>Free quote</span>
+      </a>
+    </nav>
+  </body>
+</html>

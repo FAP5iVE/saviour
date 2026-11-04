@@ -1,0 +1,10 @@
+node_modules/
+dist/
+package-lock.json
+assets/vendor/
+docs/
+.claude/
+AGENTS.md
+CLAUDE.md
+*.min.js
+*.min.css

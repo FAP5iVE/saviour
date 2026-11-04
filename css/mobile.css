@@ -1,0 +1,385 @@
+/* Mobile layout. Loaded only below 1024px (see the media attribute in index.html).
+   Lane F owns this file. Keep one commented block per section. */
+
+/* === SECTION: header === */
+.sv-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  min-height: var(--header-h);
+  padding: 0 var(--gutter);
+  background: var(--bg);
+  color: var(--text);
+  border-bottom: 1px solid var(--rule);
+  transition:
+    background-color var(--t-fade) var(--ease-out),
+    color var(--t-fade) var(--ease-out),
+    border-color var(--t-fade) var(--ease-out);
+}
+
+/* Brand and menu button sit above the sheet (the sheet is a child of the header). */
+.sv-header__brand {
+  position: relative;
+  z-index: calc(var(--z-sheet) + 1);
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  color: inherit;
+  font-size: var(--text-base);
+}
+
+/* WhatsApp lives in the bottom action bar on phones. */
+.sv-header__cta {
+  display: none;
+}
+
+.sv-menu-btn {
+  display: none;
+}
+
+.sv-menu-btn__close {
+  display: none;
+}
+
+.sv-menu-btn[aria-expanded='true'] .sv-menu-btn__open {
+  display: none;
+}
+
+.sv-menu-btn[aria-expanded='true'] .sv-menu-btn__close {
+  display: block;
+}
+
+.js .sv-menu-btn {
+  position: relative;
+  z-index: calc(var(--z-sheet) + 1);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--tap);
+  height: var(--tap);
+  margin-right: calc(var(--space-1) * -1);
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+}
+
+/* === SECTION: nav (no JavaScript: a plain row of links under the brand) === */
+.sv-nav {
+  order: 3;
+  width: 100%;
+  overflow-x: auto;
+}
+
+.sv-nav__list {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.sv-nav__list a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  color: inherit;
+  white-space: nowrap;
+}
+
+/* === SECTION: menu sheet (JavaScript on: the nav becomes a full-screen sheet) === */
+.js .sv-nav {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-sheet);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: auto;
+  padding: calc(var(--header-h) + var(--space-3)) var(--gutter) var(--space-5);
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  background: var(--blue-deep);
+  color: var(--white);
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(calc(var(--space-2) * -1));
+  transition:
+    opacity var(--t-fade-out) var(--ease-out),
+    transform var(--t-fade-out) var(--ease-out),
+    visibility 0s linear var(--t-fade-out);
+}
+
+.js .sv-nav__list {
+  display: grid;
+  gap: 0;
+}
+
+.js .sv-nav__list li + li {
+  border-top: 1px solid var(--rule-on-dark);
+}
+
+.js .sv-nav__list a {
+  display: flex;
+  min-height: var(--tap);
+  padding: var(--space-2) 0;
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  text-decoration: none;
+}
+
+.js .sv-nav__list a[aria-current='location'] {
+  color: var(--orange);
+}
+
+html[data-menu='open'] {
+  overflow: hidden;
+}
+
+html[data-menu='open'] .sv-nav {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition:
+    opacity var(--t-fade) var(--ease-out),
+    transform var(--t-fade) var(--ease-out),
+    visibility 0s;
+}
+
+/* The header stays above the sheet and joins it, so the close button is always in the same place. */
+html[data-menu='open'] .sv-header {
+  background: var(--blue-deep);
+  color: var(--white);
+  border-bottom-color: var(--rule-on-dark);
+}
+
+html[data-menu='open'] .sv-header :focus-visible {
+  outline-color: var(--focus-on-dark);
+}
+
+/* === SECTION: hero === */
+.sv-hero {
+  position: relative;
+  isolation: isolate;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: calc(100svh - var(--header-h));
+  padding: var(--space-5) var(--gutter);
+  overflow: clip;
+}
+
+.sv-hero__content {
+  justify-items: stretch;
+}
+
+.sv-hero__actions {
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.sv-hero__actions .sv-btn {
+  justify-content: center;
+}
+
+.sv-hero__actions .sv-link-quiet {
+  align-self: flex-start;
+}
+
+/* The scroll cue is a desktop detail. */
+.sv-hero__cue {
+  display: none;
+}
+
+/* === SECTION: action bar === */
+.sv-action {
+  position: fixed;
+  right: var(--space-2);
+  bottom: calc(var(--space-2) + env(safe-area-inset-bottom, 0px));
+  left: var(--space-2);
+  z-index: var(--z-action);
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1.3fr;
+  height: var(--action-h);
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-bar);
+}
+
+.sv-action__item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-1);
+  min-height: var(--tap);
+  color: inherit;
+  font-size: var(--text-small);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.sv-action__item + .sv-action__item {
+  border-left: 1px solid var(--rule-on-dark);
+}
+
+/* Orange with charcoal text, like every orange button on the site. */
+.sv-action__item--wa {
+  background: var(--orange);
+  color: var(--ink);
+}
+
+.sv-action :focus-visible {
+  outline-color: var(--focus-on-dark);
+  outline-offset: -4px;
+}
+
+.sv-action__item--wa:focus-visible {
+  outline-color: var(--ink);
+}
+
+/* With JavaScript the bar waits off screen until the visitor scrolls past the hero. */
+.js .sv-action {
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(calc(100% + var(--space-4)));
+  transition:
+    transform var(--t-fade-out) var(--ease-out),
+    opacity var(--t-fade-out) var(--ease-out),
+    visibility 0s linear var(--t-fade-out);
+}
+
+.js .sv-action.is-visible {
+  visibility: visible;
+  opacity: 1;
+  transform: none;
+  transition:
+    transform var(--t-reveal) var(--ease-out),
+    opacity var(--t-fade) var(--ease-out),
+    visibility 0s;
+}
+
+html[data-menu='open'] .sv-action {
+  visibility: hidden;
+}
+
+/* A small pulse on the WhatsApp icon, once, the first time the bar appears. */
+.sv-action[data-pulse] .sv-action__item--wa .sv-icon {
+  animation: sv-pulse 1s var(--ease-out) 0.4s 1;
+}
+
+@keyframes sv-pulse {
+  50% {
+    transform: scale(1.25);
+  }
+}
+
+/* === SECTION: about (phase 3) === */
+.sv-about {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.sv-about__body {
+  display: grid;
+  gap: var(--space-5);
+}
+
+.sv-stats {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.sv-about__who {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-2);
+}
+
+/* === SECTION: services (phase 3) === */
+.sv-services {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.sv-services__intro {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-2);
+}
+
+/* === SECTION: packages (phase 3) === */
+.sv-packages {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.sv-packages__intro {
+  display: grid;
+  gap: var(--space-2);
+}
+
+/* One column. The recommended package comes first on a phone. */
+.sv-pkg-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.sv-pkg--featured {
+  order: -1;
+}
+
+/* === SECTION: tablet (768 to 1023px, still the mobile module) === */
+@media (min-width: 768px) {
+  .sv-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: var(--space-4);
+  }
+
+  .sv-pkg-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  /* The recommended package spans the full row, the other two sit side by side below it. */
+  .sv-pkg--featured {
+    grid-column: 1 / -1;
+  }
+}
+
+/* === SECTION: generic === */
+.sv-section {
+  padding: var(--space-5) var(--gutter);
+  border-top: 1px solid var(--rule);
+}
+
+.sv-section--dark {
+  border-top: 0;
+}
+
+/* === SECTION: footer === */
+.sv-footer {
+  display: grid;
+  gap: var(--space-3);
+  padding: var(--space-4) var(--gutter) calc(var(--action-h) + var(--space-5));
+  border-top: 1px solid var(--rule);
+}
+
+.sv-footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-1) var(--space-3);
+}
+
+.sv-footer__links a {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+}

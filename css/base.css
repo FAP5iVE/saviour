@@ -1,0 +1,660 @@
+/* Base: reset, fonts, typography, accessibility. No page layout here.
+   Layout belongs in mobile.css and desktop.css. */
+
+/* Fonts. Files are self-hosted (see assets/fonts/README.md). */
+@font-face {
+  font-family: 'Clash Display';
+  src: url('../assets/fonts/clash-display-600.woff2') format('woff2');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Inter';
+  src: url('../assets/fonts/inter-latin-var.woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Metrics-adjusted local fallback, so text does not jump when Inter loads. Approximate: tune later. */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 107%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+  scroll-padding-top: 5rem;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: var(--font-display);
+  font-weight: 600;
+  line-height: var(--leading-display);
+  letter-spacing: -0.02em;
+}
+
+h1 {
+  font-size: var(--text-h1);
+}
+
+h2 {
+  font-size: var(--text-h2);
+}
+
+p {
+  margin: 0;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img,
+video,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: var(--link);
+}
+
+:focus-visible {
+  outline: var(--focus-width) solid var(--focus);
+  outline-offset: 3px;
+}
+
+.sv-section--dark :focus-visible {
+  outline-color: var(--orange);
+}
+
+.sv-skip {
+  position: absolute;
+  left: var(--gutter);
+  top: 0;
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0 var(--space-2);
+  background: var(--ink);
+  color: var(--white);
+  transform: translateY(-120%);
+}
+
+.sv-skip:focus {
+  transform: none;
+  z-index: 100;
+}
+
+/* Orange button: charcoal text on orange (never white). */
+.sv-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--tap);
+  padding: 0 var(--space-3);
+  background: var(--orange);
+  color: var(--ink);
+  font-weight: 600;
+  text-decoration: none;
+  border-radius: var(--radius);
+}
+
+.sv-section--dark {
+  background: var(--ink);
+  color: var(--white);
+}
+
+/* === Shared components: icons, buttons, header brand, hero (added with the hero and nav phase) ===
+   Layout for these lives in mobile.css and desktop.css. */
+
+.sv-icon {
+  width: var(--icon);
+  height: var(--icon);
+  flex: none;
+}
+
+.sv-btn {
+  gap: var(--space-1);
+  cursor: pointer;
+  transition:
+    background-color var(--t-micro) var(--ease-out),
+    color var(--t-micro) var(--ease-out),
+    transform var(--t-micro) var(--ease-out);
+}
+
+/* Hover turns the orange button charcoal with white text (17:1), so it reads on any background. */
+.sv-btn:hover {
+  background: var(--ink);
+  color: var(--white);
+}
+
+.sv-btn:active {
+  transform: scale(0.97);
+}
+
+.sv-btn--slim {
+  padding: 0 var(--space-2);
+  font-size: var(--text-small);
+}
+
+.sv-link-quiet {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: var(--tap);
+  color: inherit;
+  font-weight: 600;
+  text-underline-offset: 0.35em;
+}
+
+.sv-header__brand {
+  font-family: var(--font-display);
+  font-size: var(--text-lead);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1;
+  text-decoration: none;
+}
+
+/* Sections that receive focus after an in-page jump (see js/core/nav.js) show no ring. */
+[tabindex='-1']:focus {
+  outline: none;
+}
+
+/* Hero media: poster first, optional video on top, flat blue veil above both. */
+.sv-hero__media {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  background: var(--blue-deep);
+}
+
+.sv-hero__poster,
+.sv-hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: 45% 60%;
+}
+
+.sv-hero__video {
+  opacity: 0;
+  transition: opacity var(--t-reveal) var(--ease-out);
+}
+
+.sv-hero__video.is-playing {
+  opacity: 1;
+}
+
+.sv-hero__veil {
+  position: absolute;
+  inset: 0;
+  background: var(--veil);
+  opacity: var(--veil-opacity);
+}
+
+.sv-hero {
+  color: var(--white);
+}
+
+.sv-hero__content {
+  position: relative;
+  display: grid;
+  justify-items: start;
+  gap: var(--space-3);
+}
+
+.sv-hero__title {
+  text-wrap: balance;
+}
+
+.sv-hero__lead {
+  max-width: 38ch;
+  font-size: var(--text-lead);
+}
+
+.sv-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-1) var(--space-3);
+}
+
+.sv-hero :focus-visible,
+.sv-header[data-over-hero] :focus-visible {
+  outline-color: var(--focus-on-dark);
+}
+
+/* Hidden "before animation" states exist only under html.js, and a CSS failsafe shows the text
+   after 4 seconds even if scripts never finish. js/core/hero-intro.js adds .sv-intro-done. */
+.js:not(.sv-intro-done) [data-hero-title],
+.js:not(.sv-intro-done) [data-hero-in] {
+  opacity: 0;
+  animation: sv-failsafe-show 0.01s 4s forwards;
+}
+
+@keyframes sv-failsafe-show {
+  to {
+    opacity: 1;
+  }
+}
+
+/* === Shared components: about, services, packages (phase 3, Lane C) ===
+   Look and structure that are the same in both modes. Page-level layout (columns, sticky,
+   hover lift) lives in mobile.css and desktop.css. */
+
+/* Text for screen readers only (for example "opens in a new tab"). */
+.sv-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Quiet orange button for the packages that are not the recommended one: charcoal outline. */
+.sv-btn--ghost {
+  background: transparent;
+  box-shadow: inset 0 0 0 2px var(--ink);
+}
+
+/* --- About --- */
+.sv-about__statement {
+  font-family: var(--font-display);
+  font-size: var(--text-statement);
+  font-weight: 600;
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  text-wrap: pretty;
+}
+
+.sv-stat {
+  padding-top: var(--space-2);
+  border-top: var(--rule-thick) solid var(--orange);
+}
+
+.sv-stat__pre {
+  font-weight: 600;
+}
+
+.sv-stat__num {
+  font-family: var(--font-display);
+  font-size: var(--text-stat);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  color: var(--blue);
+  font-variant-numeric: tabular-nums;
+}
+
+.sv-stat__unit {
+  font-size: 0.34em;
+  letter-spacing: -0.01em;
+}
+
+.sv-stat__text {
+  margin-top: var(--space-1);
+  max-width: 30ch;
+  font-size: var(--text-lead);
+  line-height: 1.35;
+}
+
+.sv-stat__src {
+  margin-top: var(--space-2);
+  max-width: 44ch;
+  color: var(--text-soft);
+  font-size: var(--text-small);
+}
+
+.sv-stat__src a {
+  text-underline-offset: 0.2em;
+}
+
+.sv-about__who-title {
+  font-size: var(--text-h3);
+}
+
+.sv-about__who p {
+  max-width: var(--measure);
+}
+
+/* --- Services: ruled rows, no boxes --- */
+.sv-services__lead {
+  max-width: 36ch;
+  font-size: var(--text-lead);
+}
+
+.sv-svc-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sv-svc {
+  position: relative;
+  border-top: 1px solid var(--rule);
+}
+
+.sv-svc:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+/* A dark line draws across the top of a row when it opens or is hovered (transform only). */
+.sv-svc::before {
+  content: '';
+  position: absolute;
+  inset: -1px 0 auto;
+  height: 1px;
+  background: var(--text);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--t-reveal) var(--ease-out);
+}
+
+.sv-svc[data-open]::before {
+  transform: scaleX(1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .sv-svc:hover::before {
+    transform: scaleX(1);
+  }
+}
+
+.sv-svc__head {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--svc-num, 2.5rem) minmax(0, 1fr) var(--tap);
+  column-gap: var(--space-1);
+  align-items: start;
+  padding: var(--space-3) 0;
+}
+
+.sv-svc__num {
+  padding-top: 0.35em;
+  color: var(--accent-text);
+  font-size: var(--text-small);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.sv-svc__name {
+  font-size: var(--text-h3);
+  line-height: 1.1;
+}
+
+.sv-svc__line {
+  margin-top: var(--space-1);
+  max-width: 48ch;
+  color: var(--text-soft);
+}
+
+/* The plus only exists when scripts can make the row work. */
+.sv-svc__plus {
+  display: none;
+  justify-self: end;
+  margin-top: 0.1em;
+  transition: transform var(--t-micro) var(--ease-out);
+}
+
+.js .sv-svc__plus {
+  display: block;
+}
+
+.sv-svc[data-open] .sv-svc__plus {
+  transform: rotate(45deg);
+}
+
+/* Added by js/core/accordion.js: a real button inside the heading. Its ::after stretches over
+   the whole row head, so the row is one big tap target. */
+.sv-accordion__trigger {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  letter-spacing: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sv-accordion__trigger::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+}
+
+.sv-accordion__trigger:focus-visible {
+  outline: none;
+}
+
+.sv-accordion__trigger:focus-visible::after {
+  outline: var(--focus-width) solid var(--focus);
+  outline-offset: calc(var(--focus-width) * -1);
+}
+
+/* The panel opens with the grid-rows trick (no height animation). With scripts off or failed,
+   nothing is collapsed: these rules only exist under .js. */
+.sv-svc__panel {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.sv-svc__inner {
+  min-height: 0;
+  overflow: hidden;
+  padding-left: calc(var(--svc-num, 2.5rem) + var(--space-1));
+}
+
+.js .sv-svc__panel {
+  transition:
+    grid-template-rows var(--t-fade) var(--ease-out),
+    visibility 0s;
+}
+
+.js .sv-svc:not([data-open]) .sv-svc__panel {
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition:
+    grid-template-rows var(--t-fade-out) var(--ease-out),
+    visibility 0s linear var(--t-fade-out);
+}
+
+.sv-svc__inner {
+  display: grid;
+  gap: var(--space-2);
+  align-content: start;
+}
+
+.sv-svc__icon {
+  width: calc(var(--icon) * 1.5);
+  height: calc(var(--icon) * 1.5);
+  color: var(--blue);
+}
+
+.sv-svc__detail {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-1);
+  padding-bottom: var(--space-3);
+}
+
+.sv-svc__label {
+  color: var(--text-soft);
+  font-size: var(--text-small);
+  font-weight: 600;
+}
+
+.sv-svc__list {
+  display: grid;
+  gap: 0.25rem;
+  max-width: var(--measure);
+}
+
+.sv-svc__list li {
+  display: flex;
+  gap: var(--space-1);
+}
+
+/* A short orange dash instead of a bullet. */
+.sv-svc__list li::before {
+  content: '';
+  flex: none;
+  width: var(--space-2);
+  height: 2px;
+  margin-top: 0.8em;
+  background: var(--orange);
+}
+
+.sv-svc__body {
+  max-width: var(--measure);
+}
+
+/* --- Packages: the only cards on the site --- */
+.sv-packages__lead {
+  max-width: 44ch;
+  font-size: var(--text-lead);
+}
+
+.sv-pkg {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: calc(var(--space-3) + var(--rule-thick)) var(--space-3) var(--space-3);
+  background: var(--white);
+  border: 1px solid var(--rule);
+  border-radius: var(--radius);
+}
+
+/* The recommended package: blue border and a thick blue top rule (it draws in on desktop). */
+.sv-pkg--featured {
+  border-color: var(--blue);
+}
+
+.sv-pkg--featured::before {
+  content: '';
+  position: absolute;
+  inset: -1px -1px auto;
+  height: var(--rule-thick);
+  background: var(--blue);
+  border-radius: var(--radius) var(--radius) 0 0;
+  transform: scaleX(var(--rule-scale, 1));
+  transform-origin: left;
+}
+
+.sv-pkg__flag {
+  position: absolute;
+  top: calc(var(--rule-thick) + var(--space-2));
+  right: var(--space-3);
+  color: var(--blue);
+  font-size: var(--text-small);
+  font-weight: 600;
+}
+
+.sv-pkg__name {
+  font-size: var(--text-h3);
+}
+
+.sv-pkg__for {
+  color: var(--text-soft);
+}
+
+.sv-pkg__list {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.sv-pkg__list li {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.sv-pkg__tick {
+  margin-top: 0.1em;
+  color: var(--blue);
+}
+
+.sv-pkg__pay {
+  margin-top: auto;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--rule);
+  color: var(--text-soft);
+  font-size: var(--text-small);
+}
+
+.sv-pkg .sv-btn {
+  justify-content: center;
+}
+
+.sv-packages__foot {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.sv-packages__pay {
+  font-weight: 600;
+}
+
+.sv-packages__note {
+  max-width: var(--measure);
+  color: var(--text-soft);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
