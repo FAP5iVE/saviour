@@ -135,8 +135,7 @@ Each new JS file in `desktop/` or `mobile/` must be called from that mode's `ini
 
 Follow the lanes in `AGENTS.md` section 5 and the schedule in `docs/05`.
 
-2. ~~**Hero and navigation** (Lane B)~~ **Done 4 Nov 2026.** See the status block in section 1.
-3. ~~**About, services, packages** (Lane C)~~ **Done 4 Nov 2026.** See the status block in section 1. Owner detail still needed for services 07 and 08, timelines, page counts and the team.
+
 4. **NEXT PHASE. Showcase, why, FAQ** (Lane D): desktop horizontal pin, mobile swipe row, charcoal "why" section, FAQ accordion (reuse `js/core/accordion.js`, see `docs/HANDOFF.md`). Label demos "Concept demo, not a client."
 5. **Contact, form, privacy, SEO** (Lane E): Web3Forms form with honeypot, WhatsApp link, `privacy.html`, `404.html`, JSON-LD, Open Graph tags.
 6. **Motion pass**: loader, section folds (twice only), scrub text, cursor, magnetic button. See `docs/04`.
