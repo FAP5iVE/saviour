@@ -62,7 +62,7 @@ These limits come from third-party comparisons dated 2026. Check each provider's
 
 - [ ] Phone/WhatsApp number (with +265), email, Blantyre street address, opening hours
 - [ ] Social links that really exist (Facebook, Instagram, LinkedIn, TikTok, others)
-- [ ] The five team members: full names, roles, one-line bio each, one photo each (clear, well lit, at least 1000 px wide, similar framing)
+- [x] Team members supplied 4 Nov 2026: three people (names, roles, photos). Still open: are there two more? Better, matching photos for Saviour and Charity (at least 1000 px wide, similar framing).
 - [ ] Logo files (SVG or PNG), or tell me to build a temporary wordmark
 - [ ] Domain name chosen and who will register it (start today; DNS can take time)
 - [ ] Your view on hero clip A (see file 06) and, when ready, your own footage

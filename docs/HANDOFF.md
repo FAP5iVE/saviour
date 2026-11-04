@@ -15,6 +15,18 @@ Template:
 
 Also list here every item still marked `[TBC]` or `[DRAFT-EDIT]` that the owner must supply.
 
+## Update 4 Nov 2026 (later): owner supplied story, services detail, team and WhatsApp number
+
+- **WhatsApp / phone:** +265 886 02 34 82 is now in the three links that were `[TBC]` (`https://wa.me/265886023482`, `tel:+265886023482`). The QA script now exits 0. Lane E: use the same number in the contact block and JSON-LD (display format `+265 886 02 34 82`).
+- **Team size:** the owner listed **three** people, not five. The "five-person team" wording is **removed** from the page ("a team in Blantyre"). **Owner to confirm** whether there are two more people to add. docs/00 and docs/03 still say five in places: treat them as superseded.
+- **Team block is live** inside `#about` (`.sv-team`): Saviour Banda (Founder; data collection and digital marketing), Fyaupi Guthrie Mwenelupembe (Web developer), Charity Phiri (Digital marketing and content creation; also data collection). No bios on the page (none were supplied and none were invented). Photos in `assets/img/team-*-{400,800}.{avif,webp}`, all cropped to 4:5. Fyaupi's photo is the suit portrait (sharper and better framed than the hoodie selfie).
+  - **Photo quality, owner to act:** the Saviour and Charity images are small, differently lit and differently framed (574 px and 1425 px wide; Charity has no 800 px version because the source is too small). Replace with matching portraits (same distance, plain or blurred background, at least 1000 px wide) when available. Confirm the owner has the right to use them.
+  - Desktop: photos rise in one by one (`js/desktop/team-reveal.js`). Phone: one photo per row, then three columns from 768 px. Mobile uses the generic `[data-reveal]` fade.
+- **Founding story is live** under "How we started" in `#about`. The pun is on the name (also the founder's name). It names Rynberg Stacks as the source of the digital and entrepreneurship lesson. It deliberately does not say who was taught, or when, or where. **Owner to confirm** who was taught (if it was the founder, the first sentence can name Saviour Banda) and that naming Rynberg Stacks is fine.
+- **Service 07 (Digital marketing)** now reads: social media marketing on Facebook, Instagram and LinkedIn to build engagement, share content and run targeted campaigns (owner's wording, tightened).
+- **Service 08 (Data collection)** now has two parts from the owner's text: Online forms and surveys, and Physical data collection (paper questionnaires, face-to-face interviews, focus groups, offline tablet or phone entry, data entry rules, secure storage of sensitive paper forms). The owner's pasted text was cut off mid-word in places ("completion ra", "stored secu"), so the last bullets are completed in plain wording: **owner to read service 08 once and confirm it says what they mean.** The "Encrypted (HTTPS), clear privacy policy" and "stored securely" lines are promises about how Saviour works, so they must be true.
+- Still open: timelines, page counts, maintenance terms (all left off), the "Recommended" label on Business.
+
 ## Notes from phase 3 (About, services, packages), 4 Nov 2026
 
 **What was built (Lane C):** `#about` (problem statement, two sourced figures, "who we are"), `#services` (nine ruled rows, accordion), `#packages` (three cards, no prices). Everything is content-once in `index.html`; desktop and mobile only differ in CSS and JS.
@@ -37,40 +49,23 @@ Also list here every item still marked `[TBC]` or `[DRAFT-EDIT]` that the owner 
 ### Content decisions in phase 3 (nothing invented)
 
 - Every cell that is `[TBC]` in docs/03 (timelines, page counts, maintenance terms) is **left off the page**, not shown as a placeholder. Nothing in `index.html` for this phase contains `[TBC]`, so the QA script has no new failures.
-- Service 07 (Digital marketing) shows only the one-liner and "What suits you depends on your business, so we set it out in your written quote." Service 08 (Data collection) lists only the three areas the owner confirmed (digital forms, research, field data collection) plus the same quote line. Replace these when the owner gives the detail.
+- Services 07 and 08 were first built with minimal wording; the owner then supplied the detail (see the update at the top of this file).
 - Statistics, both re-checked on 4 Nov 2026 against the source pages:
   - 4.02 million internet users in Malawi, October 2025. DataReportal, *Digital 2026: Malawi*, published 8 Nov 2025. https://datareportal.com/reports/digital-2026-malawi
   - "Almost 1.6 million MSMEs" (employing about 1.8 million) from the 2019 FinScope MSME Survey, as reported in a World Bank *Africa Can End Poverty* blog post by Efrem Chilima, 30 May 2022. https://blogs.worldbank.org/en/africacan/supporting-malawis-small-enterprises-spur-economic-growth-and-create-more-job
   - Not used: the 2.40 million social media figure, the GDP and employment shares, and the 18% internet figure (docs/03 says to verify those first). No "Chamber of Commerce" or Airtel Money market-share claims.
-- "A five-person team in Blantyre" comes from the owner's brief (docs/00 and the skill). The founding story sentence from docs/03 section 3 is **not** on the page (still unknown).
+- The "five-person team" wording came from the original brief and has since been removed (owner listed three people). The founding story is now on the page (see the update at the top of this file).
 - Payment line ("Pay by Airtel Money, TNM Mpamba or bank transfer.") and the instalment wording appear exactly as in docs/03. No instalment numbers anywhere.
 
-### Team block (not on the page yet, on purpose)
+### Team block
 
-Names, roles, bios and photos are not available, so no team markup exists. When the owner supplies them, add this inside `#about`, after `.sv-about__who`, and add its CSS (a plain grid with `--space-3` gaps, two columns on a phone, five on desktop, photos with `width`/`height`, no card styling):
-
-```html
-<div class="sv-team" data-reveal>
-  <h3 class="sv-team__title">The team</h3>
-  <ul class="sv-team__list">
-    <li class="sv-team__person">
-      <picture>
-        <source type="image/avif" srcset="assets/img/team-NAME-400.avif 400w, assets/img/team-NAME-800.avif 800w" sizes="(min-width: 1024px) 18vw, 45vw" />
-        <img src="assets/img/team-NAME-400.webp" srcset="assets/img/team-NAME-400.webp 400w, assets/img/team-NAME-800.webp 800w" sizes="(min-width: 1024px) 18vw, 45vw" alt="FULL NAME, ROLE" width="400" height="500" loading="lazy" decoding="async" />
-      </picture>
-      <p class="sv-team__name">FULL NAME</p>
-      <p class="sv-team__role">ROLE</p>
-    </li>
-  </ul>
-</div>
-```
+Now built, see the update at the top of this file. To add the other two people (if there are two more), copy one `<li class="sv-team__person" data-reveal data-team-person>` block in `index.html`; the grid is three columns, so for five switch `.sv-team__list` to `repeat(5, ...)` in `css/desktop.css` and `css/mobile.css`.
 
 ### Open owner items added by phase 3
 
-- Digital marketing: what is included (service 07).
-- Data collection: the detail of digital forms, research and field data collection (service 08).
 - Timelines for each service and package page counts (docs/03 tables). Maintenance terms per package.
-- Team: five names, roles, one-line bios, photos (already listed below). Founding story, one true sentence.
+- Team: are there two more people? One-line bios if wanted. Better matching photos for Saviour and Charity.
+- Founding story: who was taught by Rynberg Stacks, and is naming them fine?
 - Whether the "Recommended" label on Business is what the owner wants (it is a proposal from docs/01).
 
 ## Notes from phase 2 (hero and navigation), 4 Nov 2026
@@ -91,7 +86,7 @@ Names, roles, bios and photos are not available, so no team markup exists. When 
 
 - Phone / WhatsApp number, email, Blantyre street address, opening hours
 - Real social profile links
-- Team: five names, roles, bios, photos
+- Team: three people supplied. Open: two more people? Matching, better photos for Saviour and Charity.
 - Logo files
 - Domain name
 - Hero footage decision (see docs/06-hero-footage-shortlist.md)

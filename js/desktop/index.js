@@ -17,6 +17,7 @@ import { initScrubText } from './scrub-text.js';
 import { initSectionRail } from './section-rail.js';
 import { initServicesHover } from './services-hover.js';
 import { initSmoothScroll } from './smooth-scroll.js';
+import { initTeamReveal } from './team-reveal.js';
 
 let ctx = null;
 let smooth = null;
@@ -47,7 +48,7 @@ export function init() {
 
   // About, services and packages (phase 3). Each makes its own gsap.context and cleans itself up.
   if (!reduced) {
-    cleanups.push(initScrubText(), initCountUp(), initPackagesRise());
+    cleanups.push(initScrubText(), initCountUp(), initTeamReveal(), initPackagesRise());
   }
 
   // Positions depend on font metrics, so measure again once fonts are ready.

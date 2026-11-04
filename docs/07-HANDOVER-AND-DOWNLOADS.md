@@ -11,8 +11,9 @@ Read this first if you are picking the project up. Then read `AGENTS.md` and `do
 - **About (`#about`):** title left, big statement right (desktop: words scrub from faint to full; mobile: lines fade up once), two sourced figures with "Source, year" links (4.02 million internet users, October 2025; almost 1.6 million MSMEs, 2019), and "who we are". Figures count up once on desktop; the real number is in the HTML.
 - **Services (`#services`):** nine ruled rows (no cards). Desktop: sticky title column, row 1 open, hover intent opens a row, the icon draws itself (DrawSVG). Mobile: tap to open, one open at a time. Both use `js/core/accordion.js`, which turns each heading into a real `<button>` and works for the FAQ too. Without JS every row is open.
 - **Packages (`#packages`):** three cards (the only cards on the site), Business recommended with a blue top rule, check icons, instalment wording, quote-only buttons with `data-package`. Shared payment line and add-ons line underneath. Desktop cards rise with a small overshoot and lift on hover; on a phone they stack with Business first.
-- **Left off the page on purpose:** the team block (no names or photos yet; template in `docs/HANDOFF.md`), all timelines, page counts and maintenance terms (all `[TBC]` in docs/03), and detail for services 07 and 08.
-- **New files:** `js/core/accordion.js`, `js/desktop/scrub-text.js`, `count-up.js`, `packages-rise.js`, `services-hover.js`, `js/mobile/services-accordion.js`, `reveal.js`.
+- **Added later the same day, from the owner:** WhatsApp number (+265 886 02 34 82, QA now exits 0), founding story with the Saviour pun, detail for services 07 and 08, and a three-person team block with photos. Details and open questions at the top of `docs/HANDOFF.md`. The team is three people (the old "five" is removed from the page).
+- **Left off the page on purpose:** all timelines, page counts and maintenance terms (all `[TBC]` in docs/03).
+- **New files:** `js/core/accordion.js`, `js/desktop/scrub-text.js`, `count-up.js`, `packages-rise.js`, `team-reveal.js`, `services-hover.js`, `js/mobile/services-accordion.js`, `reveal.js`.
 - **Verified in Chromium (4 Nov 2026):** 375, 768 and 1440 px screenshots; tap, hover-intent, keyboard (Enter, Tab order, focus ring); DrawSVG draws; resizing 1400, 900, 375, 700, 1300 px leaves one button per heading, one rail and no pin spacers; reduced motion shows everything at once; no-JS shows every row open; no console errors; `npm run qa` has no new failures (only the three phase 2 contact `[TBC]` links); CSP hash still matches. **Not run:** `npm run lint`, `format:check`, Lighthouse and a real phone (the build environment cannot run npm).
 - **Found, not fixed (other lane):** deep links such as `index.html#packages` do not scroll to the section on desktop (also true of the phase 2 zip). See `docs/HANDOFF.md`.
 
@@ -122,7 +123,7 @@ Five people. Per person, `assets/img/team-<firstname>-400.avif`, `-800.avif`, pl
 | `assets/img/` | `.gitkeep` | team photos, `og-image.jpg`, favicon set |
 | `assets/icons/` | `.gitkeep` | Icons from section 4: run `npm run icons`, then add `whatsapp.svg` and any real social icons by hand |
 | `js/core/` | `env.js`, `motion-tokens.js`, `nav.js`, `hero-video.js`, `hero-intro.js`, `accordion.js` | add `form.js` |
-| `js/desktop/` | `index.js`, `smooth-scroll.js`, `header-scroll.js`, `hero-scroll.js`, `section-rail.js`, `scrub-text.js`, `count-up.js`, `packages-rise.js`, `services-hover.js` | add `fold.js`, `showcase-horizontal.js` |
+| `js/desktop/` | `index.js`, `smooth-scroll.js`, `header-scroll.js`, `hero-scroll.js`, `section-rail.js`, `scrub-text.js`, `count-up.js`, `packages-rise.js`, `team-reveal.js`, `services-hover.js` | add `fold.js`, `showcase-horizontal.js` |
 | `js/mobile/` | `index.js`, `menu-sheet.js`, `action-bar.js`, `services-accordion.js`, `reveal.js` | add `showcase-swipe.js` |
 
 Files that do not exist yet: `privacy.html` (required by Malawi's Data Protection Act, 2024), `404.html`, `.env.example` (not needed: the Web3Forms key is public by design and goes in the form markup).
