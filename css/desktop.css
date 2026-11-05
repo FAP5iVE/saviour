@@ -406,6 +406,43 @@ html.lenis body {
   grid-column: 6 / -1;
 }
 
+/* === SECTION: contact (phase 5) === */
+/* Same two-column rhythm as the FAQ: title and quick ways to reach us stay in view while the
+   form scrolls. */
+.sv-contact {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--space-3);
+  align-items: start;
+}
+
+.sv-contact__intro {
+  position: sticky;
+  top: calc(var(--header-h) + var(--space-4));
+  display: grid;
+  grid-column: 1 / span 4;
+  justify-items: start;
+  gap: var(--space-3);
+}
+
+.sv-contact__formwrap {
+  grid-column: 6 / -1;
+}
+
+/* The big WhatsApp button grows with the screen, but must fit the narrow column below 1400px. */
+@media (min-width: 1400px) {
+  .sv-btn--large {
+    padding: 0 var(--space-4);
+    font-size: var(--text-lead);
+  }
+}
+
+/* "Number copied." appears under the phone number for mouse users. Its space is kept so the
+   column does not jump. */
+.sv-contact__copied {
+  min-height: 1.5em;
+}
+
 /* === SECTION: section rail (built by js/desktop/section-rail.js) === */
 .sv-rail {
   position: fixed;
@@ -512,15 +549,18 @@ html.lenis body {
 /* === SECTION: footer === */
 .sv-footer {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   align-items: center;
+  gap: var(--space-1) var(--space-4);
   padding: var(--space-4) var(--gutter);
   border-top: 1px solid var(--rule);
 }
 
 .sv-footer__links {
   display: flex;
-  gap: var(--space-4);
+  flex-wrap: wrap;
+  gap: 0 var(--space-4);
 }
 
 .sv-footer__links a {

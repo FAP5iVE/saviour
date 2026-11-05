@@ -15,6 +15,41 @@ Template:
 
 Also list here every item still marked `[TBC]` or `[DRAFT-EDIT]` that the owner must supply.
 
+## Update 5 Nov 2026 (later): phase 5 (contact, form, privacy, SEO)
+
+**What was built (Lane E):** the `#contact` section (WhatsApp button, phone link, quote form), `js/core/form.js`, `privacy.html`, `404.html`, JSON-LD, canonical and `og:url`, the footer privacy and phone links, and a sitemap entry for `/privacy`.
+
+### Owner to supply before launch (nothing was invented; each is left off the page, not shown as a placeholder)
+
+1. **Web3Forms access key.** Make a free key at web3forms.com (it is tied to the email that should receive requests) and paste it into `<input type="hidden" name="access_key" value="">` in `index.html`. **Until then the form cannot send:** it shows the "Sorry, that didn't send" state with WhatsApp and call links, and logs a console warning. The key is public by design.
+2. **Domain.** `REPLACE-WITH-DOMAIN` appears in `index.html` (canonical, `og:url`, `og:image`, `twitter:image`, JSON-LD), `privacy.html` (canonical), `sitemap.xml`. `robots.txt` has the Sitemap line commented out until the domain exists.
+3. **Email address.** When supplied: add it to the failure block in the form (`data-form-fail`), to the contact details list (`.sv-contact__details`), to `privacy.html` ("Who we are" and "Your rights") and to the JSON-LD (`"email"`).
+4. **Street address, opening hours, map link, real social profiles.** Add to `.sv-contact__details` and to the JSON-LD (`streetAddress`, `openingHours`, `sameAs`). Only real profiles.
+5. **Retention period.** `privacy.html` says requests are kept "only for as long as we need it", with no number. Pick one (for example 12 months after the last contact) and state it.
+
+### Notes for other lanes
+- **[Lane E to Lane A] Wiring:** `initForm()` is called from `js/desktop/index.js` and `js/mobile/index.js` (one import and one line each). `form.js` keeps its state on the form element (`data-source`, `data-autofill`) so it survives the desktop/mobile swap on resize.
+- **[Lane E to Lane A] CSS:** one shared block in `css/base.css` ("Shared components: contact and form"), one contact block each in `css/desktop.css` and `css/mobile.css`, and the desktop footer now wraps (`flex-wrap`) because it has six links. New file `css/legal.css` for `privacy.html` and `404.html` only. No tokens added. No change to `_headers`: the CSP already allows `connect-src https://api.web3forms.com` and `form-action`.
+- **[Lane E to Lane G] `scripts/qa-check.sh` (both copies):** new check 13 warns when the Web3Forms key is empty and when `REPLACE-WITH-DOMAIN` is still in html, xml or txt files. **On launch day change both `warn` to `fail`** (they are warnings now so `npm run check` stays at 0 failures while the owner's details are missing).
+- **[Lane E to Lane G] Test the real form once deployed:** send a request with a real key and confirm the email arrives. In testing, Web3Forms was mocked (the sandbox cannot reach it).
+- **[Lane E to motion pass] Mobile action bar:** its "Free quote" item still shows while the visitor is already in `#contact` and can cover the form's lower edge. Consider hiding the bar while `#contact` is in view.
+- **[Lane E] 404 page:** all its asset addresses start with `/` on purpose, because the host serves it for missing paths any number of folders deep. Do not make them relative.
+
+### Decisions in phase 5
+- **Form fields** are named as the future database columns: `name`, `phone`, `email`, `package`, `add_ons`, `budget_range`, `message`, `consent`, plus `source` (which button brought the visitor: `form`, `package:business`, `service:maintenance`, `demo:salon`) and `consent_at` (browser time). Budget is free text ("Budget in kwacha (optional)"), not ranges, because the owner has not given price bands and the site shows no prices.
+- **Phone check is loose on purpose:** 9 to 15 digits, optional leading `+`, spaces, dashes and brackets ignored. It accepts local (0886 023 482) and international numbers.
+- **Spam:** Web3Forms `botcheck` honeypot. If it is ticked the page shows success and sends nothing.
+- **No-JS:** the `<form>` posts straight to Web3Forms, and the WhatsApp links work as plain links.
+- **WhatsApp links** inside the form are rebuilt on every keystroke from what the visitor typed (package, add-ons, message, budget, name), so the failure fallback carries the request.
+- **Pre-fill hooks:** `data-package` selects the package; `data-service` ticks the matching add-on (Starter service selects the Starter package; Website and Shop add a line to the message); `data-demo` adds "I would like a site like the ... concept." Typed text is never overwritten, only appended to.
+- **Phone click on a mouse device** also copies the number and says "Number copied." (no phone app on most desktops).
+- **Meta title and description were left as the owner had them.** One suggestion for the description (currently "...build digital footprint for small businesses..."): "Websites, Google Business Profile, WhatsApp Business setup and digital marketing for small businesses in Malawi. Request a quote." If changed, change the JSON-LD `description` to match.
+- **Privacy policy** is plain-language and states only what the site does today: no cookies set by us, no analytics, form data goes to Web3Forms by email, host may keep technical logs. **It has not been reviewed by a lawyer.** If analytics is added before launch, add a line. Links: Web3Forms home page only (its policy page address could not be verified), MACRA named without a link (its web address could not be verified). The Data Protection Act, 2024 wording (rights, MACRA as regulator) came from a law-firm overview; check with a Malawian lawyer.
+- **Sitemap lists `/privacy`**, not `/privacy.html` (Cloudflare Pages and Netlify redirect `.html` to the clean address).
+
+### Checked in Chromium (375, 768, 1024, 1440 px)
+38 scripted checks pass (validation, send, rejected and offline failure, honeypot, every pre-fill hook, copy, three resize swaps still send exactly one request). No CSP violations with the real `_headers` policy, no console errors, no horizontal scroll. ESLint clean on the changed JS; Prettier clean on the new files. Not tested: a real submission to Web3Forms, a real screen reader, Safari and Firefox.
+
 ## Update 5 Nov 2026: phase 4 (showcase, why, FAQ) and the hero video fix
 
 **What was built (Lane D):** `#showcase` (five concept demos, desktop pin or phone swipe row), `#why` (six statements on the charcoal section), `#faq` (six questions). Details in `docs/07` section 1.

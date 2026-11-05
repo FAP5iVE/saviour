@@ -12,14 +12,17 @@
     />
     <meta name="theme-color" content="#FAF9F6" />
 
-    <!-- Icons and share image. Replace REPLACE-WITH-DOMAIN with the real domain before launch
-         (the og:image and twitter:image addresses must be absolute; same placeholder as sitemap.xml). -->
+    <!-- Icons and share image. Replace REPLACE-WITH-DOMAIN with the real domain before launch.
+         It appears in the canonical link, og:url, og:image, twitter:image and the business data
+         (JSON-LD) below, and in sitemap.xml. These addresses must be absolute. -->
+    <link rel="canonical" href="https://REPLACE-WITH-DOMAIN/" />
     <link rel="icon" href="assets/img/favicon.ico" sizes="32x32" />
     <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Saviour Digital Solutions" />
+    <meta property="og:url" content="https://REPLACE-WITH-DOMAIN/" />
     <meta
       property="og:title"
       content="Saviour Digital Solutions | Web solutions for small businesses in Blantyre, Malawi"
@@ -36,7 +39,31 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://REPLACE-WITH-DOMAIN/assets/img/og-image.jpg" />
 
-    <!-- The script below adds the "js" class. It is the ONLY inline script on the site.
+    <!-- Business data for search engines (schema.org). Only facts already on the page: name, phone,
+         town and country. Add "email", "sameAs" (real social profiles only), a street address and
+         "openingHours" here when the owner supplies them. It is a data block, not a running script,
+         so the Content-Security-Policy does not need a hash for it. -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "ProfessionalService",
+        "@id": "https://REPLACE-WITH-DOMAIN/#business",
+        "name": "Saviour Digital Solutions",
+        "url": "https://REPLACE-WITH-DOMAIN/",
+        "logo": "https://REPLACE-WITH-DOMAIN/assets/img/logo.svg",
+        "image": "https://REPLACE-WITH-DOMAIN/assets/img/og-image.jpg",
+        "description": "Saviour Digital Solutions build digital footprint for small businesses and new entrepreneurs in Blantyre, Malawi.",
+        "telephone": "+265886023482",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "Blantyre",
+          "addressCountry": "MW"
+        },
+        "areaServed": { "@type": "Country", "name": "Malawi" }
+      }
+    </script>
+
+    <!-- The script below adds the "js" class. It is the ONLY inline script that runs on the site.
          Its hash is in _headers. If you edit it, run: npm run csp:check -->
     <!-- prettier-ignore -->
     <script>document.documentElement.classList.add('js');</script>
@@ -1189,8 +1216,265 @@
         </ul>
       </section>
 
-      <section id="contact" class="sv-section" aria-labelledby="contact-title">
-        <h2 id="contact-title" class="sv-section__title">Request a quote</h2>
+      <section id="contact" class="sv-section sv-contact" aria-labelledby="contact-title">
+        <div class="sv-contact__intro">
+          <h2 id="contact-title" class="sv-section__title">Request a quote</h2>
+          <p class="sv-contact__lead">
+            Fill in the form and we will reply on WhatsApp or by email. Prefer to talk? Message us
+            or call.
+          </p>
+
+          <a
+            class="sv-btn sv-btn--large"
+            href="https://wa.me/265886023482?text=Hello%20Saviour%20Digital%20Solutions%2C%20I%27d%20like%20a%20quote."
+          >
+            <svg class="sv-icon" aria-hidden="true">
+              <use href="assets/icons/sprite.svg#whatsapp"></use>
+            </svg>
+            Message us on WhatsApp
+          </a>
+
+          <ul class="sv-contact__details">
+            <li>
+              <a class="sv-link-quiet" href="tel:+265886023482" data-copy="+265 886 02 34 82">
+                <svg class="sv-icon" aria-hidden="true">
+                  <use href="assets/icons/sprite.svg#phone"></use>
+                </svg>
+                +265 886 02 34 82
+              </a>
+            </li>
+          </ul>
+          <p class="sv-contact__copied" role="status" data-copy-status></p>
+        </div>
+
+        <div class="sv-contact__formwrap">
+          <!-- The form posts to Web3Forms. js/core/form.js sends it with fetch; without scripts the
+               browser posts it directly. Paste the free Web3Forms access key into the hidden
+               "access_key" field below (the key is public by design). Until then the form cannot send.
+               data-whatsapp is the WhatsApp number without + or a leading 0. -->
+          <form
+            class="sv-form"
+            id="quote-form"
+            action="https://api.web3forms.com/submit"
+            method="post"
+            aria-labelledby="form-title"
+            data-form
+            data-whatsapp="265886023482"
+          >
+            <h3 id="form-title" class="sv-form__title">Tell us about your business</h3>
+            <p class="sv-form__note" role="status" data-form-note></p>
+
+            <input type="hidden" name="access_key" value="" />
+            <input type="hidden" name="subject" value="New quote request from the website" />
+            <input type="hidden" name="from_name" value="Saviour Digital Solutions website" />
+
+            <!-- Honeypot: people never see it, bots tick it. -->
+            <div class="sv-hp" aria-hidden="true">
+              <label>
+                Leave this box empty
+                <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" />
+              </label>
+            </div>
+
+            <div class="sv-form__grid">
+              <div class="sv-field">
+                <input
+                  class="sv-field__control"
+                  id="f-name"
+                  name="name"
+                  type="text"
+                  autocomplete="name"
+                  maxlength="100"
+                  placeholder=" "
+                  required
+                />
+                <label class="sv-field__label" for="f-name">Your name</label>
+                <p class="sv-field__error" id="e-name" hidden>Please add your name.</p>
+              </div>
+
+              <div class="sv-field">
+                <input
+                  class="sv-field__control"
+                  id="f-phone"
+                  name="phone"
+                  type="tel"
+                  inputmode="tel"
+                  autocomplete="tel"
+                  maxlength="30"
+                  placeholder=" "
+                  required
+                />
+                <label class="sv-field__label" for="f-phone">Phone or WhatsApp number</label>
+                <p
+                  class="sv-field__error"
+                  id="e-phone"
+                  data-invalid-text="That number doesn't look right. Try something like 0999 123 456."
+                  hidden
+                >
+                  Please add a phone or WhatsApp number we can reach.
+                </p>
+              </div>
+
+              <div class="sv-field">
+                <input
+                  class="sv-field__control"
+                  id="f-email"
+                  name="email"
+                  type="email"
+                  autocomplete="email"
+                  maxlength="120"
+                  placeholder=" "
+                />
+                <label class="sv-field__label" for="f-email">Email (optional)</label>
+                <p class="sv-field__error" id="e-email" hidden>
+                  That email doesn't look right. Check it, or leave it empty.
+                </p>
+              </div>
+
+              <div class="sv-field sv-field--select">
+                <select class="sv-field__control" id="f-package" name="package">
+                  <option value="not-sure">Not sure yet</option>
+                  <option value="starter">Starter</option>
+                  <option value="business">Business</option>
+                  <option value="growth">Growth</option>
+                </select>
+                <label class="sv-field__label" for="f-package">Package</label>
+              </div>
+
+              <fieldset class="sv-addons sv-field--wide">
+                <legend class="sv-addons__legend">Add-ons (optional)</legend>
+                <ul class="sv-addons__list">
+                  <li>
+                    <label class="sv-check">
+                      <input type="checkbox" name="add_ons" value="google-business-profile" />
+                      <span>Google Business Profile</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="sv-check">
+                      <input type="checkbox" name="add_ons" value="whatsapp-business" />
+                      <span>WhatsApp Business setup</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="sv-check">
+                      <input type="checkbox" name="add_ons" value="social-and-brand" />
+                      <span>Social media and brand basics</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="sv-check">
+                      <input type="checkbox" name="add_ons" value="digital-marketing" />
+                      <span>Digital marketing</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="sv-check">
+                      <input type="checkbox" name="add_ons" value="data-collection" />
+                      <span>Data collection</span>
+                    </label>
+                  </li>
+                  <li>
+                    <label class="sv-check">
+                      <input type="checkbox" name="add_ons" value="maintenance" />
+                      <span>Maintenance and support</span>
+                    </label>
+                  </li>
+                </ul>
+              </fieldset>
+
+              <div class="sv-field sv-field--wide">
+                <input
+                  class="sv-field__control"
+                  id="f-budget"
+                  name="budget_range"
+                  type="text"
+                  maxlength="60"
+                  placeholder=" "
+                />
+                <label class="sv-field__label" for="f-budget">Budget in kwacha (optional)</label>
+              </div>
+
+              <div class="sv-field sv-field--wide">
+                <textarea
+                  class="sv-field__control"
+                  id="f-message"
+                  name="message"
+                  rows="4"
+                  maxlength="1500"
+                  placeholder=" "
+                  data-lenis-prevent
+                ></textarea>
+                <label class="sv-field__label" for="f-message">About your business (optional)</label>
+              </div>
+
+              <div class="sv-consent sv-field--wide">
+                <label class="sv-check">
+                  <input type="checkbox" id="f-consent" name="consent" value="yes" required />
+                  <span>
+                    I agree that Saviour Digital Solutions may contact me about my enquiry. Read our
+                    <a href="privacy.html" target="_blank" rel="noopener noreferrer"
+                      >privacy policy<span class="sv-sr"> (opens in a new tab)</span></a
+                    >.
+                  </span>
+                </label>
+                <p class="sv-field__error" id="e-consent" hidden>
+                  Please tick the box so we can contact you about your enquiry.
+                </p>
+              </div>
+            </div>
+
+            <div class="sv-form__actions">
+              <button class="sv-btn" type="submit" data-form-submit>
+                <span data-form-submit-label>Send request</span>
+              </button>
+              <a
+                class="sv-btn sv-btn--ghost"
+                href="https://wa.me/265886023482?text=Hello%20Saviour%20Digital%20Solutions%2C%20I%27d%20like%20a%20quote."
+                data-form-whatsapp
+              >
+                <svg class="sv-icon" aria-hidden="true">
+                  <use href="assets/icons/sprite.svg#whatsapp"></use>
+                </svg>
+                Send via WhatsApp instead
+              </a>
+            </div>
+
+            <div class="sv-form__fail" data-form-fail hidden>
+              <p class="sv-form__fail-text" tabindex="-1">
+                Sorry, that didn't send. Please message us on WhatsApp or call us on +265 886 02 34
+                82.
+              </p>
+              <p class="sv-form__fail-links">
+                <a
+                  class="sv-link-quiet"
+                  href="https://wa.me/265886023482?text=Hello%20Saviour%20Digital%20Solutions%2C%20I%27d%20like%20a%20quote."
+                  data-form-whatsapp
+                >
+                  Message us on WhatsApp
+                  <svg class="sv-icon" aria-hidden="true">
+                    <use href="assets/icons/sprite.svg#whatsapp"></use>
+                  </svg>
+                </a>
+                <a class="sv-link-quiet" href="tel:+265886023482">
+                  Call +265 886 02 34 82
+                  <svg class="sv-icon" aria-hidden="true">
+                    <use href="assets/icons/sprite.svg#phone"></use>
+                  </svg>
+                </a>
+              </p>
+            </div>
+          </form>
+
+          <div class="sv-form__success" data-form-success hidden>
+            <svg class="sv-icon sv-form__tick" aria-hidden="true">
+              <use href="assets/icons/sprite.svg#check"></use>
+            </svg>
+            <h3 class="sv-form__success-title" tabindex="-1">Thank you, we received your message.</h3>
+            <p>We will reply on WhatsApp or by email.</p>
+            <button class="sv-link-quiet" type="button" data-form-reset>Send another request</button>
+          </div>
+        </div>
       </section>
     </main>
 
@@ -1201,6 +1485,8 @@
         <li><a href="#packages">Packages</a></li>
         <li><a href="#faq">Questions</a></li>
         <li><a href="#contact">Contact</a></li>
+        <li><a href="tel:+265886023482">+265 886 02 34 82</a></li>
+        <li><a href="privacy.html">Privacy policy</a></li>
       </ul>
     </footer>
 

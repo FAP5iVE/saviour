@@ -1,11 +1,18 @@
 # 07. Handover and downloads
 
-Written Tue 3 Nov 2026, updated Thu 5 Nov 2026 after phase 4. Business deadline: **Sunday 8 Nov 2026**.
+Written Tue 3 Nov 2026, updated Thu 5 Nov 2026 after phase 5. Business deadline: **Sunday 8 Nov 2026**.
 Read this first if you are picking the project up. Then read `AGENTS.md` and `docs/00` to `docs/06`.
 
 ---
 
 ## 1. Where the project stands
+
+### Phase 5 done (Thu 5 Nov 2026): contact, form, privacy, SEO (Lane E)
+- **Contact (`#contact`):** title, WhatsApp button and phone link on the left (sticky on desktop), quote form on the right. Underline fields with floating labels, package select, six add-on tick boxes, free-text budget and message, consent box, "Send request" and "Send via WhatsApp instead". Success, failure and error states are in the page (no pop-ups, no redirect).
+- **Form code:** `js/core/form.js`, started from both modes. Web3Forms by `fetch`, honeypot, loose phone check, pre-fill from `data-package`, `data-service`, `data-demo`, copy-phone on mouse devices. Works without scripts (native post).
+- **`privacy.html`, `404.html`:** plain reading pages styled by `css/legal.css`, no scripts. 404 uses root-relative paths.
+- **SEO:** canonical, `og:url`, JSON-LD `ProfessionalService` (name, phone, Blantyre, Malawi, logo, image), sitemap entry for `/privacy`.
+- **Blocked on the owner:** Web3Forms key, domain, email, street address, hours, socials, retention period. Full list and details in `docs/HANDOFF.md` (top entry).
 
 ### Phase 4 done (Thu 5 Nov 2026): showcase, why choose us, FAQ (Lane D) and the hero video fix
 - **Showcase (`#showcase`):** five concept demos, each a mini-site built in HTML and CSS (hair and beauty studio, hardware and building supplies, restaurant and takeaway, farm produce and agro-dealer, private tutoring and training). Every panel says "Concept demo, not a client.", names what the site does, lists its features and has an "Ask for a site like this" link to `#contact` (`data-demo="salon|hardware|restaurant|agro|tutoring"`). Mini-sites use only generic labels and grey bars for prices, hours and addresses, so nothing is invented. The mini-site is `aria-hidden`; the text beside it carries the meaning.
@@ -150,8 +157,8 @@ Follow the lanes in `AGENTS.md` section 5 and the schedule in `docs/05`.
 
 
 4. **Done (5 Nov 2026). Showcase, why, FAQ** (Lane D). See the phase 4 block in section 1.
-5. **NEXT PHASE. Contact, form, privacy, SEO** (Lane E): Web3Forms form with honeypot, WhatsApp link, `privacy.html`, `404.html`, JSON-LD, Open Graph tags. The markup already has hooks for pre-filling the form: `data-package`, `data-service` and (new) `data-demo` links to `#contact`; see `docs/HANDOFF.md`.
-6. **Motion pass**: loader, section folds (twice only), scrub text, cursor, magnetic button. See `docs/04`.
+5. **Done (5 Nov 2026). Contact, form, privacy, SEO** (Lane E). See the phase 5 block in section 1. Still needs the owner's Web3Forms key and domain.
+6. **NEXT PHASE. Motion pass**: loader, section folds (twice only), scrub text, cursor, magnetic button. See `docs/04`.
 7. **QA and launch** (Lane G): `npm run check`, Lighthouse mobile, form test, keyboard and reduced-motion checks, deploy to Cloudflare Pages (build `npm run build`, output `dist`), then replace the placeholder domain in `sitemap.xml` and `robots.txt`.
 
 Do not add `data-reveal` hiding styles until the reveal code exists. Hidden "before animation" states must live only under `html.js`.

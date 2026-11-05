@@ -388,6 +388,24 @@ html[data-menu='open'] .sv-action {
   gap: var(--space-2);
 }
 
+/* === SECTION: contact (phase 5) === */
+/* One column: the quick ways to reach us first, then the form. */
+.sv-contact {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.sv-contact__intro {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-2);
+}
+
+/* The "Number copied." line only speaks on mouse devices; empty, it must not leave a gap. */
+.sv-contact__copied:empty {
+  margin-top: calc(var(--space-2) * -1);
+}
+
 /* === SECTION: tablet (768 to 1023px, still the mobile module) === */
 @media (min-width: 768px) {
   .sv-stats {

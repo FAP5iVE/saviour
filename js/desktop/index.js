@@ -8,6 +8,7 @@ import { gsap, ScrollTrigger } from '../../assets/vendor/vendor.js';
 import { prefersReducedMotion } from '../core/env.js';
 import { initHeroIntro } from '../core/hero-intro.js';
 import { initFaq } from '../core/faq.js';
+import { initForm } from '../core/form.js';
 import { initHeroVideo } from '../core/hero-video.js';
 import { initNav } from '../core/nav.js';
 import { initWhyReveal } from '../core/why-reveal.js';
@@ -48,6 +49,7 @@ export function init() {
     initHeroIntro(),
     initServicesHover(), // services list: works for everyone, draws icons unless reduced motion
     initFaq(), // FAQ accordion (phase 4): works for everyone
+    initForm(), // contact form and quote pre-fill (phase 5): works for everyone
   );
 
   // About, services and packages (phase 3). Each makes its own gsap.context and cleans itself up.

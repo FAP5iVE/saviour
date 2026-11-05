@@ -1152,6 +1152,296 @@ a {
     visibility 0s linear var(--t-fade-out);
 }
 
+/* === Shared components: contact and form (phase 5, Lane E) ===
+   Look and structure that are the same in both modes. Columns and stickiness live in
+   mobile.css and desktop.css. The form is open: underline fields, no box around it. */
+
+.sv-btn--large {
+  min-height: 3.5rem;
+  padding: 0 var(--space-2);
+}
+
+/* Real <button> elements: the page has no global button reset, so give them the look of the links. */
+button.sv-btn,
+button.sv-link-quiet {
+  border: 0;
+  font: inherit;
+  font-weight: 600;
+}
+
+button.sv-link-quiet {
+  padding: 0;
+  background: none;
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.sv-btn:disabled {
+  cursor: progress;
+  opacity: 0.6;
+}
+
+.sv-btn:disabled:hover {
+  background: var(--orange);
+  color: var(--ink);
+}
+
+.sv-contact__lead {
+  max-width: 36ch;
+  font-size: var(--text-lead);
+}
+
+.sv-contact__details {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.sv-contact__copied {
+  color: var(--text-soft);
+  font-size: var(--text-small);
+}
+
+/* Anything we show and hide from script must really disappear (some rules above set display). */
+.sv-contact [hidden] {
+  display: none !important;
+}
+
+.sv-form {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.sv-form__title {
+  font-size: var(--text-h3);
+}
+
+/* The status line stays in the page (screen readers need it there before it speaks). When it is
+   empty, the grid gap above it is taken back so it leaves no hole. */
+.sv-form__note {
+  color: var(--text-soft);
+}
+
+.sv-form__note:empty {
+  margin-top: calc(var(--space-3) * -1);
+}
+
+/* Honeypot: off screen, not display: none, so bots still fill it. */
+.sv-hp {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.sv-form__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  column-gap: var(--space-4);
+  row-gap: var(--space-3);
+}
+
+.sv-field--wide {
+  grid-column: 1 / -1;
+}
+
+/* Underline field with a floating label. The label is a real <label> after the control, so the
+   control's :focus and :placeholder-shown states can move it (transform only). */
+.sv-field {
+  position: relative;
+}
+
+.sv-field__control {
+  display: block;
+  width: 100%;
+  min-height: 3.5rem;
+  padding: 1.5rem 0 0.375rem;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  border: 0;
+  border-bottom: 1px solid var(--text-soft);
+  border-radius: 0;
+  appearance: none;
+  transition:
+    border-color var(--t-micro) var(--ease-out),
+    box-shadow var(--t-micro) var(--ease-out);
+}
+
+textarea.sv-field__control {
+  min-height: 7rem;
+  resize: vertical;
+}
+
+.sv-field__control:focus-visible {
+  outline: none;
+  border-bottom-color: var(--focus);
+  box-shadow: 0 2px 0 0 var(--focus);
+}
+
+.sv-field__label {
+  position: absolute;
+  top: 1.05rem;
+  left: 0;
+  max-width: 100%;
+  overflow: hidden;
+  color: var(--text-soft);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  pointer-events: none;
+  transform-origin: left top;
+  transition:
+    transform var(--t-micro) var(--ease-out),
+    color var(--t-micro) var(--ease-out);
+}
+
+.sv-field__control:focus + .sv-field__label,
+.sv-field__control:not(:placeholder-shown) + .sv-field__label,
+.sv-field--select .sv-field__label {
+  transform: translateY(-0.8rem) scale(0.78);
+}
+
+.sv-field__control:focus + .sv-field__label {
+  color: var(--blue);
+}
+
+/* Browsers that fill a field in without telling the page: float the label so it never overlaps. */
+.sv-field__control:-webkit-autofill + .sv-field__label {
+  transform: translateY(-0.8rem) scale(0.78);
+}
+
+.sv-field__control:autofill + .sv-field__label {
+  transform: translateY(-0.8rem) scale(0.78);
+}
+
+/* A drawn chevron for the package select (the browser's own arrow is removed above). */
+.sv-field--select .sv-field__control {
+  padding-right: var(--space-4);
+  cursor: pointer;
+}
+
+.sv-field--select::after {
+  content: '';
+  position: absolute;
+  right: 0.25rem;
+  bottom: 1.3rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border: solid var(--text);
+  border-width: 0 2px 2px 0;
+  pointer-events: none;
+  transform: rotate(45deg);
+}
+
+/* A field with a problem: orange-deep line and message (orange text on light must be -deep). */
+.sv-field__control[aria-invalid='true'] {
+  border-bottom-color: var(--accent-text);
+  box-shadow: 0 1px 0 0 var(--accent-text);
+}
+
+.sv-field__error {
+  margin-top: var(--space-1);
+  color: var(--accent-text);
+  font-size: var(--text-small);
+  font-weight: 600;
+}
+
+/* Add-ons and consent: plain rows with native checkboxes, at least 44px tall to tap. */
+.sv-addons {
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+}
+
+.sv-addons__legend {
+  margin-bottom: var(--space-1);
+  padding: 0;
+  color: var(--text-soft);
+  font-size: var(--text-small);
+  font-weight: 600;
+}
+
+.sv-addons__list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 15rem), 1fr));
+  column-gap: var(--space-3);
+}
+
+.sv-check {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  min-height: var(--tap);
+  cursor: pointer;
+}
+
+.sv-check input {
+  flex: none;
+  width: 1.25rem;
+  height: 1.25rem;
+  margin: 0;
+  accent-color: var(--blue);
+  cursor: pointer;
+}
+
+.sv-consent .sv-check {
+  align-items: flex-start;
+  padding: var(--space-1) 0;
+}
+
+.sv-consent .sv-check input {
+  margin-top: 0.2rem;
+}
+
+.sv-form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2) var(--space-3);
+}
+
+.sv-form__actions .sv-btn {
+  justify-content: center;
+}
+
+/* Sent: a blue rule on top, the same accent language as a sourced figure. */
+.sv-form__success {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-2);
+  padding-top: var(--space-3);
+  border-top: var(--rule-thick) solid var(--blue);
+}
+
+.sv-form__tick {
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--blue);
+}
+
+.sv-form__success-title {
+  font-size: var(--text-h3);
+}
+
+/* Not sent: an orange rule, the message and the two ways to reach us instead. */
+.sv-form__fail {
+  display: grid;
+  gap: var(--space-1);
+  padding-top: var(--space-2);
+  border-top: var(--rule-thick) solid var(--orange);
+}
+
+.sv-form__fail-text {
+  font-weight: 600;
+}
+
+.sv-form__fail-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0 var(--space-3);
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;

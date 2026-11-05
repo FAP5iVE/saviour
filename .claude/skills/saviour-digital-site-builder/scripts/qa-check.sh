@@ -115,6 +115,15 @@ if [ -f "$ROOT/index.html" ]; then
   grep -qiE 'name=["'"'"']description["'"'"']' "$ROOT/index.html" || warn 'index.html: missing meta description'
 fi
 
+# 13. Launch gates. These are warnings while the owner's details are missing. On launch day,
+#     change warn to fail here (see docs/HANDOFF.md, "Before launch").
+if [ -f "$ROOT/index.html" ]; then
+  grep -qE 'name="access_key"[[:space:]]+value="[^"]+"' "$ROOT/index.html" \
+    || warn 'Contact form: the Web3Forms access_key in index.html is empty, so the form cannot send yet'
+fi
+run_grep warn 'REPLACE-WITH-DOMAIN is still in the site files (set the real domain before launch)' \
+  --include='*.html' --include='*.xml' --include='*.txt' -e 'REPLACE-WITH-DOMAIN'
+
 echo
 echo "Result: $FAILS failure(s), $WARNS warning(s)."
 [ "$FAILS" -eq 0 ] && exit 0 || exit 1

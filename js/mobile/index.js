@@ -6,6 +6,7 @@ import { gsap, ScrollTrigger } from '../../assets/vendor/vendor.js';
 import { prefersReducedMotion } from '../core/env.js';
 import { initHeroIntro } from '../core/hero-intro.js';
 import { initFaq } from '../core/faq.js';
+import { initForm } from '../core/form.js';
 import { initHeroVideo } from '../core/hero-video.js';
 import { initNav } from '../core/nav.js';
 import { initWhyReveal } from '../core/why-reveal.js';
@@ -36,6 +37,7 @@ export function init() {
     initServicesAccordion(), // tap a service row to open it
     initShowcaseSwipe(), // dots under the native swipe row (phase 4)
     initFaq(), // FAQ accordion (phase 4)
+    initForm(), // contact form and quote pre-fill (phase 5)
   );
 
   // About, packages and showcase reveals (phase 3 and 4). Each makes its own gsap.context and
