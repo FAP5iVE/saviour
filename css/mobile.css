@@ -336,6 +336,58 @@ html[data-menu='open'] .sv-action {
   order: -1;
 }
 
+/* === SECTION: showcase (phase 4) === */
+/* A native swipe row: scroll-snap, and the next panel peeks in at the edge. No pinning. */
+.sv-showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--space-3);
+}
+
+.sv-showcase__head {
+  display: grid;
+  gap: var(--space-2);
+}
+
+/* The row runs edge to edge: it cancels the section padding and puts it back inside. */
+.sv-showcase__viewport {
+  margin-inline: calc(var(--gutter) * -1);
+  padding-inline: var(--gutter);
+  padding-bottom: var(--space-1);
+  scroll-padding-inline: var(--gutter);
+}
+
+.sv-showcase__track {
+  gap: var(--space-2);
+}
+
+.sv-demo {
+  flex: 0 0 min(82vw, 24rem);
+  gap: var(--space-2);
+}
+
+.sv-showcase__progress {
+  display: none;
+}
+
+/* === SECTION: why (phase 4) === */
+.sv-why {
+  display: grid;
+  gap: var(--space-4);
+}
+
+/* === SECTION: faq (phase 4) === */
+.sv-faq {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.sv-faq__intro {
+  display: grid;
+  justify-items: start;
+  gap: var(--space-2);
+}
+
 /* === SECTION: tablet (768 to 1023px, still the mobile module) === */
 @media (min-width: 768px) {
   .sv-stats {

@@ -747,16 +747,419 @@
         </div>
       </section>
 
-      <section id="showcase" class="sv-section" aria-labelledby="showcase-title">
-        <h2 id="showcase-title" class="sv-section__title">Business showcase</h2>
+      <section
+        id="showcase"
+        class="sv-section sv-showcase"
+        aria-labelledby="showcase-title"
+        data-showcase
+      >
+        <div class="sv-showcase__head">
+          <h2 id="showcase-title" class="sv-section__title">Business showcase</h2>
+          <p class="sv-showcase__lead" data-reveal>
+            Five concept demos, each built in code to show what a small-business site can do. None
+            of them is a real client.
+          </p>
+        </div>
+
+        <div
+          class="sv-showcase__viewport"
+          data-showcase-viewport
+          role="region"
+          aria-label="Concept demos. Scroll sideways to see all five."
+          tabindex="0"
+        >
+          <ul class="sv-showcase__track" data-showcase-track>
+            <li class="sv-demo" data-showcase-panel>
+              <div class="sv-demo__screen" aria-hidden="true" data-cursor="view">
+                <div class="sv-mini sv-mini--salon" data-showcase-page>
+                  <div class="sv-mini__bar">
+                    <span class="sv-mini__brand">Hair and beauty studio</span>
+                    <span class="sv-mini__links">
+                      <span class="sv-skel sv-skel--s"></span><span class="sv-skel sv-skel--s"></span>
+                    </span>
+                  </div>
+                  <div class="sv-mini__hero">
+                    <p class="sv-mini__title">Book your next visit on WhatsApp.</p>
+                    <span class="sv-mini__btn">Book on WhatsApp</span>
+                  </div>
+                  <ul class="sv-mini__rows">
+                    <li class="sv-mini__row"><span>Braiding</span><span class="sv-skel sv-skel--m"></span></li>
+                    <li class="sv-mini__row"><span>Cut and style</span><span class="sv-skel sv-skel--m"></span></li>
+                    <li class="sv-mini__row"><span>Nails</span><span class="sv-skel sv-skel--m"></span></li>
+                  </ul>
+                  <div class="sv-mini__tiles sv-mini__tiles--3">
+                    <span class="sv-mini__tile"></span><span class="sv-mini__tile"></span><span class="sv-mini__tile"></span>
+                  </div>
+                  <p class="sv-mini__foot"><span>Opening hours</span><span class="sv-skel sv-skel--l"></span></p>
+                </div>
+              </div>
+              <div class="sv-demo__text">
+                <p class="sv-demo__label">Concept demo, not a client.</p>
+                <h3 class="sv-demo__name">Hair and beauty studio</h3>
+                <p class="sv-demo__does">
+                  A site where customers see your services and book by WhatsApp.
+                </p>
+                <ul class="sv-demo__features">
+                  <li>Services and prices list</li>
+                  <li>Booking by WhatsApp</li>
+                  <li>Photo gallery</li>
+                  <li>Opening hours</li>
+                </ul>
+                <a class="sv-link-quiet" href="#contact" data-demo="salon">
+                  Ask for a site like this<span class="sv-sr"> (hair and beauty studio)</span>
+                  <svg class="sv-icon" aria-hidden="true">
+                    <use href="assets/icons/sprite.svg#arrow-right"></use>
+                  </svg>
+                </a>
+              </div>
+            </li>
+
+            <li class="sv-demo" data-showcase-panel>
+              <div class="sv-demo__screen" aria-hidden="true" data-cursor="view">
+                <div class="sv-mini sv-mini--hardware" data-showcase-page>
+                  <div class="sv-mini__bar">
+                    <span class="sv-mini__brand">Hardware and building supplies</span>
+                    <span class="sv-mini__links">
+                      <span class="sv-skel sv-skel--s"></span><span class="sv-skel sv-skel--s"></span>
+                    </span>
+                  </div>
+                  <div class="sv-mini__hero">
+                    <p class="sv-mini__title">Ask for a price on WhatsApp.</p>
+                    <span class="sv-mini__btn">Ask for a price</span>
+                  </div>
+                  <div class="sv-mini__tiles sv-mini__tiles--3">
+                    <span class="sv-mini__tile"><span>Cement and sand</span></span>
+                    <span class="sv-mini__tile"><span>Roofing</span></span>
+                    <span class="sv-mini__tile"><span>Paint</span></span>
+                    <span class="sv-mini__tile"><span>Tools</span></span>
+                    <span class="sv-mini__tile"><span>Plumbing</span></span>
+                    <span class="sv-mini__tile"><span>Electrical</span></span>
+                  </div>
+                  <p class="sv-mini__foot"><span>Location and hours</span><span class="sv-skel sv-skel--l"></span></p>
+                </div>
+              </div>
+              <div class="sv-demo__text">
+                <p class="sv-demo__label">Concept demo, not a client.</p>
+                <h3 class="sv-demo__name">Hardware and building supplies</h3>
+                <p class="sv-demo__does">
+                  A catalogue by category, where customers ask for a price on WhatsApp.
+                </p>
+                <ul class="sv-demo__features">
+                  <li>Product catalogue by category</li>
+                  <li>Price enquiry by WhatsApp</li>
+                  <li>Location and hours</li>
+                </ul>
+                <a class="sv-link-quiet" href="#contact" data-demo="hardware">
+                  Ask for a site like this<span class="sv-sr"> (hardware and building supplies)</span>
+                  <svg class="sv-icon" aria-hidden="true">
+                    <use href="assets/icons/sprite.svg#arrow-right"></use>
+                  </svg>
+                </a>
+              </div>
+            </li>
+
+            <li class="sv-demo" data-showcase-panel>
+              <div class="sv-demo__screen" aria-hidden="true" data-cursor="view">
+                <div class="sv-mini sv-mini--restaurant" data-showcase-page>
+                  <div class="sv-mini__bar">
+                    <span class="sv-mini__brand">Restaurant and takeaway</span>
+                    <span class="sv-mini__links">
+                      <span class="sv-skel sv-skel--s"></span><span class="sv-skel sv-skel--s"></span>
+                    </span>
+                  </div>
+                  <div class="sv-mini__hero">
+                    <p class="sv-mini__title">Order by WhatsApp.</p>
+                    <span class="sv-mini__btn">Order now</span>
+                  </div>
+                  <ul class="sv-mini__rows">
+                    <li class="sv-mini__row"><span>Starters</span><span class="sv-skel sv-skel--m"></span></li>
+                    <li class="sv-mini__row"><span>Mains</span><span class="sv-skel sv-skel--m"></span></li>
+                    <li class="sv-mini__row"><span>Drinks</span><span class="sv-skel sv-skel--m"></span></li>
+                  </ul>
+                  <p class="sv-mini__foot"><span>Delivery area</span><span class="sv-skel sv-skel--l"></span></p>
+                  <p class="sv-mini__foot"><span>Opening hours</span><span class="sv-skel sv-skel--l"></span></p>
+                </div>
+              </div>
+              <div class="sv-demo__text">
+                <p class="sv-demo__label">Concept demo, not a client.</p>
+                <h3 class="sv-demo__name">Restaurant and takeaway</h3>
+                <p class="sv-demo__does">A menu customers can read and order from by WhatsApp.</p>
+                <ul class="sv-demo__features">
+                  <li>Menu</li>
+                  <li>Order by WhatsApp</li>
+                  <li>Delivery area</li>
+                  <li>Opening hours</li>
+                </ul>
+                <a class="sv-link-quiet" href="#contact" data-demo="restaurant">
+                  Ask for a site like this<span class="sv-sr"> (restaurant and takeaway)</span>
+                  <svg class="sv-icon" aria-hidden="true">
+                    <use href="assets/icons/sprite.svg#arrow-right"></use>
+                  </svg>
+                </a>
+              </div>
+            </li>
+
+            <li class="sv-demo" data-showcase-panel>
+              <div class="sv-demo__screen" aria-hidden="true" data-cursor="view">
+                <div class="sv-mini sv-mini--agro" data-showcase-page>
+                  <div class="sv-mini__bar">
+                    <span class="sv-mini__brand">Farm produce and agro-dealer</span>
+                    <span class="sv-mini__links">
+                      <span class="sv-skel sv-skel--s"></span><span class="sv-skel sv-skel--s"></span>
+                    </span>
+                  </div>
+                  <div class="sv-mini__hero">
+                    <p class="sv-mini__title">Produce in season, ready to order.</p>
+                    <span class="sv-mini__btn">Bulk enquiry</span>
+                  </div>
+                  <ul class="sv-mini__rows">
+                    <li class="sv-mini__row"><span>Maize</span><span class="sv-skel sv-skel--m"></span></li>
+                    <li class="sv-mini__row"><span>Groundnuts</span><span class="sv-skel sv-skel--m"></span></li>
+                    <li class="sv-mini__row"><span>Beans</span><span class="sv-skel sv-skel--m"></span></li>
+                  </ul>
+                  <p class="sv-mini__foot"><span>Delivery and collection</span><span class="sv-skel sv-skel--l"></span></p>
+                </div>
+              </div>
+              <div class="sv-demo__text">
+                <p class="sv-demo__label">Concept demo, not a client.</p>
+                <h3 class="sv-demo__name">Farm produce and agro-dealer</h3>
+                <p class="sv-demo__does">
+                  A product list that shows what is in season, with an enquiry form for bulk
+                  buyers.
+                </p>
+                <ul class="sv-demo__features">
+                  <li>Product list with seasons</li>
+                  <li>Bulk enquiry form</li>
+                  <li>Delivery and collection information</li>
+                </ul>
+                <a class="sv-link-quiet" href="#contact" data-demo="agro">
+                  Ask for a site like this<span class="sv-sr"> (farm produce and agro-dealer)</span>
+                  <svg class="sv-icon" aria-hidden="true">
+                    <use href="assets/icons/sprite.svg#arrow-right"></use>
+                  </svg>
+                </a>
+              </div>
+            </li>
+
+            <li class="sv-demo" data-showcase-panel>
+              <div class="sv-demo__screen" aria-hidden="true" data-cursor="view">
+                <div class="sv-mini sv-mini--tutoring" data-showcase-page>
+                  <div class="sv-mini__bar">
+                    <span class="sv-mini__brand">Private tutoring and training</span>
+                    <span class="sv-mini__links">
+                      <span class="sv-skel sv-skel--s"></span><span class="sv-skel sv-skel--s"></span>
+                    </span>
+                  </div>
+                  <div class="sv-mini__hero">
+                    <p class="sv-mini__title">Lessons that fit your week.</p>
+                    <span class="sv-mini__btn">Enrol</span>
+                  </div>
+                  <ul class="sv-mini__rows">
+                    <li class="sv-mini__row"><span>Mathematics</span><span class="sv-skel sv-skel--m"></span></li>
+                    <li class="sv-mini__row"><span>English</span><span class="sv-skel sv-skel--m"></span></li>
+                    <li class="sv-mini__row"><span>Computer skills</span><span class="sv-skel sv-skel--m"></span></li>
+                  </ul>
+                  <div class="sv-mini__week">
+                    <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span>
+                  </div>
+                  <p class="sv-mini__foot"><span>Parent contact</span><span class="sv-skel sv-skel--l"></span></p>
+                </div>
+              </div>
+              <div class="sv-demo__text">
+                <p class="sv-demo__label">Concept demo, not a client.</p>
+                <h3 class="sv-demo__name">Private tutoring and training</h3>
+                <p class="sv-demo__does">
+                  Courses and a timetable in one place, with enrolment and a parent contact.
+                </p>
+                <ul class="sv-demo__features">
+                  <li>Courses</li>
+                  <li>Timetable</li>
+                  <li>Enrolment form</li>
+                  <li>Parent contact</li>
+                </ul>
+                <a class="sv-link-quiet" href="#contact" data-demo="tutoring">
+                  Ask for a site like this<span class="sv-sr"> (private tutoring and training)</span>
+                  <svg class="sv-icon" aria-hidden="true">
+                    <use href="assets/icons/sprite.svg#arrow-right"></use>
+                  </svg>
+                </a>
+              </div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="sv-showcase__progress" aria-hidden="true">
+          <span class="sv-showcase__fill" data-showcase-fill></span>
+        </div>
       </section>
 
-      <section id="why" class="sv-section sv-section--dark" aria-labelledby="why-title">
-        <h2 id="why-title" class="sv-section__title">Why choose us</h2>
+      <section id="why" class="sv-section sv-section--dark sv-why" aria-labelledby="why-title">
+        <div class="sv-why__head">
+          <h2 id="why-title" class="sv-section__title">Why choose us</h2>
+        </div>
+
+        <ul class="sv-why__list">
+          <li class="sv-why__item" data-why-item>
+            <h3 class="sv-why__statement" data-split="lines">Built for phones first.</h3>
+            <p class="sv-why__proof" data-why-proof>
+              Every package includes mobile-first design. We start from the phone screen and build
+              up to the larger ones.
+            </p>
+          </li>
+          <li class="sv-why__item" data-why-item>
+            <h3 class="sv-why__statement" data-split="lines">Local, in Blantyre.</h3>
+            <p class="sv-why__proof" data-why-proof>
+              We are a team in Blantyre. You can call us or message us on WhatsApp.
+            </p>
+          </li>
+          <li class="sv-why__item" data-why-item>
+            <h3 class="sv-why__statement" data-split="lines">Pay in instalments.</h3>
+            <p class="sv-why__proof" data-why-proof>
+              We split the cost so a website does not have to wait for one big payment. We agree the
+              plan in your written quote.
+            </p>
+          </li>
+          <li class="sv-why__item" data-why-item>
+            <h3 class="sv-why__statement" data-split="lines">Pay the way you already pay.</h3>
+            <p class="sv-why__proof" data-why-proof>Airtel Money, TNM Mpamba or bank transfer.</p>
+          </li>
+          <li class="sv-why__item" data-why-item>
+            <h3 class="sv-why__statement" data-split="lines">A clear written quote.</h3>
+            <p class="sv-why__proof" data-why-proof>
+              Pick a package and ask. We set out the details in a written quote, including the
+              payment plan.
+            </p>
+          </li>
+          <li class="sv-why__item" data-why-item>
+            <h3 class="sv-why__statement" data-split="lines">We can look after it after launch.</h3>
+            <p class="sv-why__proof" data-why-proof>
+              Maintenance and support is one of our services: updates, backups, small content
+              changes and fixes.
+            </p>
+          </li>
+        </ul>
       </section>
 
-      <section id="faq" class="sv-section" aria-labelledby="faq-title">
-        <h2 id="faq-title" class="sv-section__title">Questions</h2>
+      <section id="faq" class="sv-section sv-faq" aria-labelledby="faq-title">
+        <div class="sv-faq__intro">
+          <h2 id="faq-title" class="sv-section__title">Questions</h2>
+          <p class="sv-faq__lead">Short answers to read before you ask for a quote.</p>
+          <a
+            class="sv-link-quiet"
+            href="https://wa.me/265886023482?text=Hello%20Saviour%20Digital%20Solutions%2C%20I%20have%20a%20question."
+          >
+            Ask your own question on WhatsApp
+            <svg class="sv-icon" aria-hidden="true">
+              <use href="assets/icons/sprite.svg#whatsapp"></use>
+            </svg>
+          </a>
+        </div>
+
+        <ul class="sv-faq-list" data-accordion="faq">
+          <li class="sv-faq__item" data-accordion-item>
+            <div class="sv-faq__head">
+              <h3 class="sv-faq__q" data-accordion-name>How long does a website take?</h3>
+              <svg class="sv-icon sv-faq__plus" aria-hidden="true">
+                <use href="assets/icons/sprite.svg#plus"></use>
+              </svg>
+            </div>
+            <div class="sv-faq__panel" id="faq-time" data-accordion-panel>
+              <div class="sv-faq__inner">
+                <p>
+                  It depends on the package and on how soon you send us your photos and details. Ask
+                  us and we will tell you for your site.
+                </p>
+              </div>
+            </div>
+          </li>
+
+          <li class="sv-faq__item" data-accordion-item>
+            <div class="sv-faq__head">
+              <h3 class="sv-faq__q" data-accordion-name>What do I need to give you?</h3>
+              <svg class="sv-icon sv-faq__plus" aria-hidden="true">
+                <use href="assets/icons/sprite.svg#plus"></use>
+              </svg>
+            </div>
+            <div class="sv-faq__panel" id="faq-need" data-accordion-panel>
+              <div class="sv-faq__inner">
+                <p>
+                  Your business name, your logo if you have one, photos, a list of your products or
+                  services, and your contact details.
+                </p>
+              </div>
+            </div>
+          </li>
+
+          <li class="sv-faq__item" data-accordion-item>
+            <div class="sv-faq__head">
+              <h3 class="sv-faq__q" data-accordion-name>How do I pay?</h3>
+              <svg class="sv-icon sv-faq__plus" aria-hidden="true">
+                <use href="assets/icons/sprite.svg#plus"></use>
+              </svg>
+            </div>
+            <div class="sv-faq__panel" id="faq-pay" data-accordion-panel>
+              <div class="sv-faq__inner">
+                <p>
+                  By Airtel Money, TNM Mpamba or bank transfer. You can pay in instalments. We agree
+                  a payment plan in your written quote.
+                </p>
+              </div>
+            </div>
+          </li>
+
+          <li class="sv-faq__item" data-accordion-item>
+            <div class="sv-faq__head">
+              <h3 class="sv-faq__q" data-accordion-name>
+                Do you register domain names or host websites?
+              </h3>
+              <svg class="sv-icon sv-faq__plus" aria-hidden="true">
+                <use href="assets/icons/sprite.svg#plus"></use>
+              </svg>
+            </div>
+            <div class="sv-faq__panel" id="faq-domain" data-accordion-panel>
+              <div class="sv-faq__inner">
+                <p>
+                  No. We do not register domain names and we do not offer hosting. If you are not
+                  sure how a finished site goes live, ask us before you decide.
+                </p>
+              </div>
+            </div>
+          </li>
+
+          <li class="sv-faq__item" data-accordion-item>
+            <div class="sv-faq__head">
+              <h3 class="sv-faq__q" data-accordion-name>What happens after the site goes live?</h3>
+              <svg class="sv-icon sv-faq__plus" aria-hidden="true">
+                <use href="assets/icons/sprite.svg#plus"></use>
+              </svg>
+            </div>
+            <div class="sv-faq__panel" id="faq-after" data-accordion-panel>
+              <div class="sv-faq__inner">
+                <p>
+                  Maintenance and support is one of our services: updates, backups, small content
+                  changes and fixes when something breaks. Ask about it when you request a quote.
+                </p>
+              </div>
+            </div>
+          </li>
+
+          <li class="sv-faq__item" data-accordion-item>
+            <div class="sv-faq__head">
+              <h3 class="sv-faq__q" data-accordion-name>Can I change things later?</h3>
+              <svg class="sv-icon sv-faq__plus" aria-hidden="true">
+                <use href="assets/icons/sprite.svg#plus"></use>
+              </svg>
+            </div>
+            <div class="sv-faq__panel" id="faq-change" data-accordion-panel>
+              <div class="sv-faq__inner">
+                <p>
+                  Yes. Small content changes are part of our maintenance and support service. For
+                  bigger changes, message us and we will tell you what is involved.
+                </p>
+              </div>
+            </div>
+          </li>
+        </ul>
       </section>
 
       <section id="contact" class="sv-section" aria-labelledby="contact-title">

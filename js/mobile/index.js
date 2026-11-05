@@ -5,12 +5,15 @@
 import { gsap, ScrollTrigger } from '../../assets/vendor/vendor.js';
 import { prefersReducedMotion } from '../core/env.js';
 import { initHeroIntro } from '../core/hero-intro.js';
+import { initFaq } from '../core/faq.js';
 import { initHeroVideo } from '../core/hero-video.js';
 import { initNav } from '../core/nav.js';
+import { initWhyReveal } from '../core/why-reveal.js';
 import { initActionBar } from './action-bar.js';
 import { initMenuSheet } from './menu-sheet.js';
 import { initReveal } from './reveal.js';
 import { initServicesAccordion } from './services-accordion.js';
+import { initShowcaseSwipe } from './showcase-swipe.js';
 
 let ctx = null;
 let cleanups = [];
@@ -31,10 +34,13 @@ export function init() {
     initHeroVideo(),
     initHeroIntro(),
     initServicesAccordion(), // tap a service row to open it
+    initShowcaseSwipe(), // dots under the native swipe row (phase 4)
+    initFaq(), // FAQ accordion (phase 4)
   );
 
-  // About and packages reveals (phase 3). Makes its own gsap.context and cleans itself up.
-  if (!prefersReducedMotion()) cleanups.push(initReveal());
+  // About, packages and showcase reveals (phase 3 and 4). Each makes its own gsap.context and
+  // cleans itself up.
+  if (!prefersReducedMotion()) cleanups.push(initReveal(), initWhyReveal());
 
   // Positions depend on font metrics, so measure again once fonts are ready.
   document.fonts?.ready.then(() => ScrollTrigger.refresh());

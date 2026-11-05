@@ -1,11 +1,23 @@
 # 07. Handover and downloads
 
-Written Tue 3 Nov 2026, updated Wed 4 Nov 2026 after phase 3. Business deadline: **Sunday 8 Nov 2026**.
+Written Tue 3 Nov 2026, updated Thu 5 Nov 2026 after phase 4. Business deadline: **Sunday 8 Nov 2026**.
 Read this first if you are picking the project up. Then read `AGENTS.md` and `docs/00` to `docs/06`.
 
 ---
 
 ## 1. Where the project stands
+
+### Phase 4 done (Thu 5 Nov 2026): showcase, why choose us, FAQ (Lane D) and the hero video fix
+- **Showcase (`#showcase`):** five concept demos, each a mini-site built in HTML and CSS (hair and beauty studio, hardware and building supplies, restaurant and takeaway, farm produce and agro-dealer, private tutoring and training). Every panel says "Concept demo, not a client.", names what the site does, lists its features and has an "Ask for a site like this" link to `#contact` (`data-demo="salon|hardware|restaurant|agro|tutoring"`). Mini-sites use only generic labels and grey bars for prices, hours and addresses, so nothing is invented. The mini-site is `aria-hidden`; the text beside it carries the meaning.
+  - **Desktop:** `js/desktop/showcase-horizontal.js` pins the section and slides the track sideways as you scroll (scrub 1 s), with a progress line and a 10 px parallax inside each frame. Tabbing into an off-screen panel scrolls the page to show it. Without the pin (reduced motion, scripts failed) it is a native sideways scroll row.
+  - **Mobile and tablet:** `js/mobile/showcase-swipe.js` adds dots under a native scroll-snap row (next panel peeks in). No scroll hijacking.
+- **Why choose us (`#why`, the one charcoal section):** six large statements with one proof line each, shared reveal in `js/core/why-reveal.js` (SplitText lines, then the proof fades in, once). Every proof line only says what the site already says elsewhere (see HANDOFF for the list the owner must confirm).
+- **FAQ (`#faq`):** six questions in the same ruled-row accordion as services, wrapper `js/core/faq.js` around `initAccordion(list, { single: true })`. Without scripts every answer is open. Answers contain no timelines, prices or support terms (not supplied).
+- **Hero video fix:** the video played on localhost but not once deployed, because `isLocalDev()` skipped the connection checks locally while the deployed rule only allowed `effectiveType === '4g'` (and blocked every phone whose browser does not report a connection). New rule in `js/core/env.js` (`heroVideoBlocker()`): blocked only by reduced motion, Save-Data or a 2g-class connection. A 3g connection gets the 480 clip. `js/core/hero-video.js` also retries on the first tap if autoplay is refused, re-checks if the connection improves, and writes the reason to `data-state` on the `<video>` (`blocked:save-data`, `blocked:slow-connection`, `blocked:reduced-motion`, `needs-tap`, `failed:<code>`, `loading`, `playing`). **If the video still does not play on the live site, open DevTools, select the `<video>` and read `data-state`.**
+- **New files:** `js/desktop/showcase-horizontal.js`, `js/mobile/showcase-swipe.js`, `js/core/faq.js`, `js/core/why-reveal.js`. New blocks in `css/base.css`, `desktop.css`, `mobile.css`. `MOTION` gained `showcase`, `why`, `faq`.
+- **Verified in Chromium (5 Nov 2026):** desktop 1440 px (pin starts and ends exactly, track travels 0 to the full 3608 px, progress line, rail follows, keyboard reveals the last panel, one FAQ answer open at a time); 375 px and 768 px (no sideways page scroll, dots follow the swipe including the last panel); resizing 1440, 375 and 1300 px leaves one pin spacer or none, no stray dots, no leftover inline styles; reduced motion (native row, everything visible); scripts off (all FAQ answers open); no console errors; CSP hash matches; `bash scripts/qa-check.sh` exits 0. Video: on a non-localhost hostname the original code blocked 3g and every phone with an unknown connection; the new code plays them, and 2g, Save-Data and reduced motion still block. **Not run:** `npm run lint`, `format:check`, Lighthouse, a real phone, and the real hero clips (stand-in clips were used).
+- **Found and handled:** the first service row finishes opening after the scroll triggers are measured, which moved everything below it down 243 px and made the pin start early. The pin now re-measures when the page above it changes height. The root cause is in Lane C's accordion (see HANDOFF).
+- **Found, not fixed (other lane):** nav links to `#showcase` from further down the page land on the last panel (end of the pin). See HANDOFF.
 
 ### Phase 3 done (Wed 4 Nov 2026): about, services, packages (Lane C)
 - **About (`#about`):** title left, big statement right (desktop: words scrub from faint to full; mobile: lines fade up once), two sourced figures with "Source, year" links (4.02 million internet users, October 2025; almost 1.6 million MSMEs, 2019), and "who we are". Figures count up once on desktop; the real number is in the HTML.
@@ -20,7 +32,7 @@ Read this first if you are picking the project up. Then read `AGENTS.md` and `do
 ### Phase 2 done (Wed 4 Nov 2026): hero and navigation (Lane B)
 - **Markup:** header (brand, six links, WhatsApp button, menu button), hero (poster picture, video element, veil, headline, lead, two actions, scroll cue), mobile action bar.
 - **Hero poster:** `assets/img/hero-poster-800.avif/.webp` and `hero-poster-1600.avif/.webp` made from `assets/img/hero-poster.png` (AVIF 23 KB and 57 KB). The PNG stays as the source and is skipped by `npm run build`.
-- **Hero video:** `js/core/hero-video.js` loads `assets/video/hero-720.mp4` (desktop layout) or `hero-480.mp4` (mobile layout) after the page `load` event, only on good connections, never with reduced motion or Save-Data; pauses off-screen and in hidden tabs. These two files must exist in `assets/video/` (they were removed from the zip only to keep it small).
+- **Hero video:** `js/core/hero-video.js` loads `assets/video/hero-720.mp4` (desktop layout) or `hero-480.mp4` (mobile layout) after the page `load` event, unless the visitor has reduced motion or Save-Data on, or the browser reports a 2g-class connection (3g gets the 480 clip; since phase 4, see the hero video fix above); pauses off-screen and in hidden tabs. These two files must exist in `assets/video/` (they were removed from the zip only to keep it small).
 - **Hero entrance:** `js/core/hero-intro.js` (SplitText headline lines, then lead and buttons). Plays once per page load. CSS hides the text only under `html.js`, with a 4 second failsafe.
 - **Desktop:** `smooth-scroll.js` (Lenis), `header-scroll.js` (transparent over hero, solid after, hides on scroll down), `hero-scroll.js` (media grows 1 to 1.08, veil deepens), `section-rail.js` (right-edge rail).
 - **Mobile:** `menu-sheet.js` (full-screen sheet, focus trap, Escape, inert page), `action-bar.js` (WhatsApp, Call, Free quote; appears after the hero).
@@ -122,9 +134,9 @@ Five people. Per person, `assets/img/team-<firstname>-400.avif`, `-800.avif`, pl
 | `assets/video/` | `.gitkeep` | `hero-720.mp4`, `hero-480.mp4`, `hero-poster.avif/.webp` |
 | `assets/img/` | `.gitkeep` | team photos, `og-image.jpg`, favicon set |
 | `assets/icons/` | `.gitkeep` | Icons from section 4: run `npm run icons`, then add `whatsapp.svg` and any real social icons by hand |
-| `js/core/` | `env.js`, `motion-tokens.js`, `nav.js`, `hero-video.js`, `hero-intro.js`, `accordion.js` | add `form.js` |
-| `js/desktop/` | `index.js`, `smooth-scroll.js`, `header-scroll.js`, `hero-scroll.js`, `section-rail.js`, `scrub-text.js`, `count-up.js`, `packages-rise.js`, `team-reveal.js`, `services-hover.js` | add `fold.js`, `showcase-horizontal.js` |
-| `js/mobile/` | `index.js`, `menu-sheet.js`, `action-bar.js`, `services-accordion.js`, `reveal.js` | add `showcase-swipe.js` |
+| `js/core/` | `env.js`, `motion-tokens.js`, `nav.js`, `hero-video.js`, `hero-intro.js`, `accordion.js`, `faq.js`, `why-reveal.js` | add `form.js` |
+| `js/desktop/` | `index.js`, `smooth-scroll.js`, `header-scroll.js`, `hero-scroll.js`, `section-rail.js`, `scrub-text.js`, `count-up.js`, `packages-rise.js`, `team-reveal.js`, `services-hover.js`, `showcase-horizontal.js` | add `fold.js` |
+| `js/mobile/` | `index.js`, `menu-sheet.js`, `action-bar.js`, `services-accordion.js`, `reveal.js`, `showcase-swipe.js` | |
 
 Files that do not exist yet: `privacy.html` (required by Malawi's Data Protection Act, 2024), `404.html`, `.env.example` (not needed: the Web3Forms key is public by design and goes in the form markup).
 
@@ -137,8 +149,8 @@ Each new JS file in `desktop/` or `mobile/` must be called from that mode's `ini
 Follow the lanes in `AGENTS.md` section 5 and the schedule in `docs/05`.
 
 
-4. **NEXT PHASE. Showcase, why, FAQ** (Lane D): desktop horizontal pin, mobile swipe row, charcoal "why" section, FAQ accordion (reuse `js/core/accordion.js`, see `docs/HANDOFF.md`). Label demos "Concept demo, not a client."
-5. **Contact, form, privacy, SEO** (Lane E): Web3Forms form with honeypot, WhatsApp link, `privacy.html`, `404.html`, JSON-LD, Open Graph tags.
+4. **Done (5 Nov 2026). Showcase, why, FAQ** (Lane D). See the phase 4 block in section 1.
+5. **NEXT PHASE. Contact, form, privacy, SEO** (Lane E): Web3Forms form with honeypot, WhatsApp link, `privacy.html`, `404.html`, JSON-LD, Open Graph tags. The markup already has hooks for pre-filling the form: `data-package`, `data-service` and (new) `data-demo` links to `#contact`; see `docs/HANDOFF.md`.
 6. **Motion pass**: loader, section folds (twice only), scrub text, cursor, magnetic button. See `docs/04`.
 7. **QA and launch** (Lane G): `npm run check`, Lighthouse mobile, form test, keyboard and reduced-motion checks, deploy to Cloudflare Pages (build `npm run build`, output `dist`), then replace the placeholder domain in `sitemap.xml` and `robots.txt`.
 

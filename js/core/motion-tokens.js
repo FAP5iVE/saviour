@@ -44,6 +44,19 @@ export const MOTION = Object.freeze({
     ruleDuration: 0.8, // seconds the featured top rule takes to draw
   }),
 
+  // Showcase, why and FAQ (phase 4)
+  showcase: Object.freeze({
+    scrub: 1, // seconds the horizontal track takes to catch up with the scroll (desktop pin)
+    parallax: 10, // px the mini-site inside a panel drifts either way (desktop pin). Keep it below the frame's side padding.
+  }),
+  why: Object.freeze({
+    riseOffset: 20, // px the proof line rises from
+    proofDelay: 0.25, // seconds the proof line waits after its statement starts
+  }),
+  faq: Object.freeze({
+    refreshDelay: 400, // ms to wait for a row to finish opening before measuring the page again
+  }),
+
   // Mobile menu sheet and action bar
   menu: Object.freeze({
     itemOffset: 28, // px the menu links rise from

@@ -7,8 +7,10 @@
 import { gsap, ScrollTrigger } from '../../assets/vendor/vendor.js';
 import { prefersReducedMotion } from '../core/env.js';
 import { initHeroIntro } from '../core/hero-intro.js';
+import { initFaq } from '../core/faq.js';
 import { initHeroVideo } from '../core/hero-video.js';
 import { initNav } from '../core/nav.js';
+import { initWhyReveal } from '../core/why-reveal.js';
 import { initHeaderScroll } from './header-scroll.js';
 import { initCountUp } from './count-up.js';
 import { initHeroScroll } from './hero-scroll.js';
@@ -16,6 +18,7 @@ import { initPackagesRise } from './packages-rise.js';
 import { initScrubText } from './scrub-text.js';
 import { initSectionRail } from './section-rail.js';
 import { initServicesHover } from './services-hover.js';
+import { initShowcaseHorizontal } from './showcase-horizontal.js';
 import { initSmoothScroll } from './smooth-scroll.js';
 import { initTeamReveal } from './team-reveal.js';
 
@@ -44,12 +47,18 @@ export function init() {
     initHeroVideo(),
     initHeroIntro(),
     initServicesHover(), // services list: works for everyone, draws icons unless reduced motion
+    initFaq(), // FAQ accordion (phase 4): works for everyone
   );
 
   // About, services and packages (phase 3). Each makes its own gsap.context and cleans itself up.
   if (!reduced) {
     cleanups.push(initScrubText(), initCountUp(), initTeamReveal(), initPackagesRise());
   }
+
+  // Showcase, why and FAQ (phase 4). The pinned showcase goes after the sections above it, so
+  // its pin spacing is counted in the right order. With reduced motion the showcase stays a
+  // plain sideways scroll row and the statements are simply visible.
+  if (!reduced) cleanups.push(initShowcaseHorizontal(), initWhyReveal());
 
   // Positions depend on font metrics, so measure again once fonts are ready.
   document.fonts?.ready.then(() => ScrollTrigger.refresh());

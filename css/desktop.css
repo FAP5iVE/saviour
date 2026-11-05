@@ -280,6 +280,132 @@ html.lenis body {
   grid-column: 7 / -1;
 }
 
+/* === SECTION: showcase (phase 4) === */
+/* Without the pin (reduced motion, scripts off) this is a sideways scroll row, which still works.
+   js/desktop/showcase-horizontal.js adds data-pinned: the section then fills the screen, stays
+   fixed while you scroll, and the track slides sideways. The row stays inside the section's side
+   padding, so panels never slide under the section rail. */
+.sv-showcase {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto minmax(0, 1fr) auto;
+  row-gap: var(--space-4);
+  min-height: 100svh;
+  padding-top: calc(var(--header-h) + var(--space-4));
+  padding-bottom: var(--space-4);
+}
+
+.sv-showcase__head {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--space-3);
+  align-items: end;
+}
+
+.sv-showcase__head .sv-section__title {
+  grid-column: 1 / span 6;
+}
+
+.sv-showcase__lead {
+  grid-column: 8 / -1;
+}
+
+.sv-showcase__viewport {
+  align-self: center;
+  padding-bottom: var(--space-2);
+}
+
+.sv-showcase__track {
+  --bleed: 1rem; /* extra room inside each frame so the small parallax never shows an edge */
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.sv-demo {
+  flex: 0 0 min(62rem, 66vw);
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+  align-items: center;
+  gap: var(--space-4);
+}
+
+.sv-mini {
+  --mini-pad: calc(1.4em + var(--bleed));
+  inset: 0 calc(var(--bleed) * -1);
+}
+
+.sv-showcase__progress {
+  display: none;
+}
+
+.sv-showcase__dots {
+  display: none;
+}
+
+.sv-showcase[data-pinned] .sv-showcase__viewport {
+  padding-bottom: 0;
+  scroll-snap-type: none;
+  overflow: hidden;
+  overflow: clip; /* clip, not hidden: the browser can never scroll it to reveal a focused link */
+}
+
+.sv-showcase[data-pinned] .sv-showcase__track {
+  will-change: transform;
+}
+
+.sv-showcase[data-pinned] .sv-showcase__progress {
+  display: block;
+}
+
+/* === SECTION: why (phase 4) === */
+.sv-why {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--space-3);
+  align-items: start;
+}
+
+.sv-why__head {
+  position: sticky;
+  top: calc(var(--header-h) + var(--space-4));
+  grid-column: 1 / span 4;
+}
+
+.sv-why__list {
+  grid-column: 5 / -1;
+}
+
+.sv-why__item {
+  grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+  align-items: start;
+  column-gap: var(--space-4);
+  padding: var(--space-4) 0;
+}
+
+.sv-why__proof {
+  padding-top: 0.5em;
+}
+
+/* === SECTION: faq (phase 4) === */
+.sv-faq {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: var(--space-3);
+  align-items: start;
+}
+
+.sv-faq__intro {
+  position: sticky;
+  top: calc(var(--header-h) + var(--space-4));
+  display: grid;
+  grid-column: 1 / span 4;
+  justify-items: start;
+  gap: var(--space-3);
+}
+
+.sv-faq-list {
+  grid-column: 6 / -1;
+}
+
 /* === SECTION: section rail (built by js/desktop/section-rail.js) === */
 .sv-rail {
   position: fixed;

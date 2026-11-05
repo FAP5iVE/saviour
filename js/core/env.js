@@ -18,26 +18,40 @@ export const allowPointerExtras = () => hasFinePointer() && !prefersReducedMotio
 
 export const saveDataOn = () => navigator.connection?.saveData === true;
 
-/** Connection types too slow for a hero video. Unknown (Safari/Firefox) is handled in canPlayHeroVideo. */
-export function connectionAllowsVideo() {
-  const type = navigator.connection?.effectiveType;
-  if (!type) return null; // unknown
-  return type === '4g';
-}
+/**
+ * The connection type the browser reports, or null when it does not say (Safari, Firefox).
+ * "effectiveType" is a guess from recent round-trip time, not a speed test. On Malawian mobile
+ * networks it often says "3g" or even "2g" on a perfectly usable 4G line, so it is only used to
+ * rule out the very slow cases and to pick the lighter clip.
+ */
+export const connectionType = () => navigator.connection?.effectiveType ?? null;
+
+/** True when the connection is modest: the video still plays, but the light mobile clip is used. */
+export const connectionIsModest = () => connectionType() === '3g';
 
 /** True when the page is served from the developer's own machine (npm run dev). */
 export const isLocalDev = () =>
   ['localhost', '127.0.0.1', '[::1]'].includes(location.hostname) ||
   location.hostname.endsWith('.localhost');
 
-/** Hero video is an enhancement. Poster alone must always work. */
-export function canPlayHeroVideo() {
-  if (prefersReducedMotion()) return false;
+/**
+ * Why the hero video must NOT load right now, or null when it may.
+ * The reason is also written to the video element (data-state) so it can be read in DevTools.
+ *
+ * Blocked only when the visitor asked for less (reduced motion, Save-Data) or the browser reports
+ * a 2g-class connection. Everything else plays, including 3g and "unknown": the poster is already
+ * on screen, the clip loads after the page "load" event, and 3g visitors get the light clip.
+ */
+export function heroVideoBlocker() {
+  if (prefersReducedMotion()) return 'reduced-motion';
   // Local testing: the connection and Save-Data checks are about real visitors on slow or
   // metered networks. They do not apply on localhost, even when offline or throttled.
-  if (isLocalDev()) return true;
-  if (saveDataOn()) return false;
-  const known = connectionAllowsVideo();
-  if (known === null) return isDesktopLayout(); // unknown connection: desktop layout only
-  return known;
+  if (isLocalDev()) return null;
+  if (saveDataOn()) return 'save-data';
+  const type = connectionType();
+  if (type === 'slow-2g' || type === '2g') return 'slow-connection';
+  return null;
 }
+
+/** Hero video is an enhancement. Poster alone must always work. */
+export const canPlayHeroVideo = () => heroVideoBlocker() === null;

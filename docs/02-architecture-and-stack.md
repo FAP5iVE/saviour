@@ -168,7 +168,7 @@ Initial hidden states for reveals (opacity 0, offsets) are applied **only** unde
 | LCP / INP / CLS | Standard Core Web Vitals "good" thresholds: LCP at or under 2.5 s, INP at or under 200 ms, CLS at or under 0.1, tested on a throttled mid-range Android profile |
 | Fonts | Two preloaded files, Latin subset |
 | Images | AVIF with WebP fallback, `srcset`, explicit `width`/`height`, lazy-load below the fold |
-| Hero video | Poster paints first. Video loads **after** `load`, only if: no `prefers-reduced-motion`, no Save-Data, an acceptable connection, and the hero is visible. Mobile gets a smaller clip or just the poster. Pause when off-screen and when the tab is hidden |
+| Hero video | Poster paints first. Video loads **after** `load`, only if: no `prefers-reduced-motion`, no Save-Data, the browser does not report a 2g-class connection, and the hero is visible. A 3g report still plays, with the lighter 480 clip; a browser that does not report the connection (Safari, Firefox) plays too. Do not require `4g`: `effectiveType` is a latency guess and says 3g on many good Malawian lines. Mobile gets a smaller clip or just the poster. Pause when off-screen and when the tab is hidden |
 | Animation | Only `transform` and `opacity`. No layout-property animation in scroll handlers |
 
 Tooling: Lighthouse and WebPageTest with a throttled profile; Chrome DevTools CPU 4x slowdown for motion checks.

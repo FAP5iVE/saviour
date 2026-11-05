@@ -697,6 +697,447 @@ a {
   color: var(--text-soft);
 }
 
+/* === Shared components: showcase, why, FAQ (phase 4, Lane D) ===
+   Look and structure that are the same in both modes. Page-level layout (the pin on desktop, the
+   swipe row on phones, columns) lives in mobile.css and desktop.css. */
+
+/* --- Showcase: media panels, not cards --- */
+.sv-showcase__lead {
+  max-width: 40ch;
+  font-size: var(--text-lead);
+}
+
+/* The default is a plain sideways scroll row with snap points. That is what you get with no
+   JavaScript, with reduced motion and on every phone. On desktop, js/desktop/showcase-horizontal.js
+   turns it into a pinned track (data-pinned on the section). */
+.sv-showcase__viewport {
+  min-width: 0; /* a wide track must never stretch the section (also needed when clipped) */
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: thin;
+}
+
+.sv-showcase__track {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  width: max-content;
+  min-width: 100%;
+}
+
+.sv-demo {
+  display: grid;
+  align-content: start;
+  scroll-snap-align: start;
+}
+
+/* The mini-site frame. Everything inside is sized in em from a font size that follows the frame's
+   width (container query units), so a mini-site looks the same on a phone and on a big screen. */
+.sv-demo__screen {
+  position: relative;
+  overflow: hidden;
+  container-type: inline-size;
+  aspect-ratio: 5 / 4;
+  border: 1px solid var(--rule);
+  background: var(--white);
+}
+
+.sv-mini {
+  --mini-pad: 1.4em;
+  --mini-rule: var(--rule);
+  --mini-tile: var(--blue-tint);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6em;
+  padding: 0 var(--mini-pad) 1em;
+  overflow: hidden;
+  background: var(--white);
+  color: var(--ink);
+  font-size: var(--text-small);
+  line-height: 1.25;
+}
+
+@supports (font-size: 1cqw) {
+  .sv-mini {
+    font-size: 3.6cqw;
+  }
+}
+
+.sv-mini__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8em;
+  margin: 0 calc(var(--mini-pad) * -1);
+  padding: 0.8em var(--mini-pad);
+  border-bottom: 1px solid var(--mini-rule);
+}
+
+.sv-mini__brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.sv-mini__links {
+  display: flex;
+  gap: 0.6em;
+}
+
+/* Grey bars stand in for text that the real site would fill in (prices, hours, addresses). */
+.sv-skel {
+  display: block;
+  height: 0.55em;
+  background: currentColor;
+  opacity: 0.16;
+}
+
+.sv-skel--s {
+  width: 2.6em;
+}
+
+.sv-skel--m {
+  width: 4em;
+}
+
+.sv-skel--l {
+  width: 8em;
+}
+
+.sv-mini__hero {
+  display: grid;
+  justify-items: start;
+  gap: 0.6em;
+}
+
+.sv-mini__title {
+  max-width: 12em;
+  font-family: var(--font-display);
+  font-size: 1.7em;
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+.sv-mini__btn {
+  display: inline-flex;
+  padding: 0.5em 0.9em;
+  background: var(--orange);
+  color: var(--ink);
+  font-size: 0.85em;
+  font-weight: 600;
+}
+
+.sv-mini__rows {
+  display: grid;
+}
+
+.sv-mini__row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1em;
+  padding: 0.35em 0;
+  border-top: 1px solid var(--mini-rule);
+  font-size: 0.85em;
+}
+
+.sv-mini__tiles {
+  display: grid;
+  gap: 0.45em;
+}
+
+.sv-mini__tiles--3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.sv-mini__tile {
+  display: flex;
+  align-items: flex-end;
+  min-height: 2.2em;
+  padding: 0.4em;
+  background: var(--mini-tile);
+  font-size: 0.7em;
+  font-weight: 600;
+  line-height: 1.15;
+}
+
+.sv-mini__week {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 0.35em;
+}
+
+.sv-mini__week span {
+  padding: 0.35em 0;
+  background: var(--mini-tile);
+  font-size: 0.75em;
+  font-weight: 600;
+  text-align: center;
+}
+
+.sv-mini__foot {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  font-size: 0.75em;
+}
+
+/* One look per concept, from the palette tokens only. */
+.sv-mini--salon {
+  --mini-tile: var(--white);
+  background: var(--orange-tint);
+}
+
+.sv-mini--hardware .sv-mini__bar {
+  border-bottom: 0;
+  background: var(--blue-deep);
+  color: var(--white);
+}
+
+.sv-mini--restaurant {
+  --mini-rule: var(--rule-on-dark);
+  background: var(--blue-deep);
+  color: var(--white);
+}
+
+.sv-mini--agro {
+  --mini-tile: var(--white);
+  background: var(--blue-tint);
+}
+
+.sv-mini--agro .sv-mini__btn {
+  background: var(--blue);
+  color: var(--white);
+}
+
+.sv-mini--tutoring {
+  background: var(--paper);
+}
+
+.sv-mini--tutoring .sv-mini__bar {
+  border-bottom: 0;
+  background: var(--blue);
+  color: var(--white);
+}
+
+/* The words next to each mini-site. The label is always shown: these are not clients. */
+.sv-demo__text {
+  display: grid;
+  justify-items: start;
+  align-content: start;
+  gap: var(--space-1);
+}
+
+.sv-demo__label {
+  color: var(--accent-text);
+  font-size: var(--text-small);
+  font-weight: 600;
+}
+
+.sv-demo__name {
+  font-size: var(--text-h3);
+  line-height: 1.1;
+}
+
+.sv-demo__does {
+  max-width: 40ch;
+}
+
+.sv-demo__features {
+  display: grid;
+  gap: 0.25rem;
+  margin-bottom: var(--space-1);
+}
+
+.sv-demo__features li {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.sv-demo__features li::before {
+  content: '';
+  flex: none;
+  width: var(--space-2);
+  height: 2px;
+  margin-top: 0.8em;
+  background: var(--orange);
+}
+
+/* Progress line and dots: the line is shown by the desktop pin, the dots by the phone row. */
+.sv-showcase__progress {
+  position: relative;
+  height: 2px;
+  background: var(--rule);
+}
+
+.sv-showcase__fill {
+  position: absolute;
+  inset: 0;
+  background: var(--blue);
+  transform: scaleX(0);
+  transform-origin: left;
+}
+
+.sv-showcase__dots {
+  display: flex;
+  gap: var(--space-1);
+}
+
+.sv-showcase__dot {
+  width: var(--space-3);
+  height: 2px;
+  background: var(--text);
+  opacity: 0.25;
+  transition: opacity var(--t-fade) var(--ease-out);
+}
+
+.sv-showcase__dot[data-active] {
+  opacity: 1;
+}
+
+/* --- Why choose us: big statements on the one charcoal section --- */
+.sv-why__item {
+  position: relative;
+  display: grid;
+  gap: var(--space-1);
+  padding: var(--space-3) 0;
+  border-top: 1px solid var(--rule-on-dark);
+}
+
+.sv-why__item:last-child {
+  border-bottom: 1px solid var(--rule-on-dark);
+}
+
+/* A short orange rule on top of each statement (orange on charcoal is 5.86:1). */
+.sv-why__item::before {
+  content: '';
+  position: absolute;
+  inset: -1px auto auto 0;
+  width: var(--space-4);
+  height: 2px;
+  background: var(--orange);
+}
+
+.sv-why__statement {
+  font-size: var(--text-statement);
+  line-height: 1.12; /* a little room so the line mask never clips letter tails */
+  text-wrap: balance;
+}
+
+.sv-why__proof {
+  max-width: 44ch;
+  color: var(--muted-on-dark);
+}
+
+/* --- FAQ: ruled rows that open, same mechanics as the services list --- */
+.sv-faq__lead {
+  max-width: 36ch;
+  font-size: var(--text-lead);
+}
+
+.sv-faq-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sv-faq__item {
+  position: relative;
+  border-top: 1px solid var(--rule);
+}
+
+.sv-faq__item:last-child {
+  border-bottom: 1px solid var(--rule);
+}
+
+/* A dark line draws across the top of a row when it opens or is hovered (transform only). */
+.sv-faq__item::before {
+  content: '';
+  position: absolute;
+  inset: -1px 0 auto;
+  height: 1px;
+  background: var(--text);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--t-reveal) var(--ease-out);
+}
+
+.sv-faq__item[data-open]::before {
+  transform: scaleX(1);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .sv-faq__item:hover::before {
+    transform: scaleX(1);
+  }
+}
+
+/* position: relative lets the button's ::after (see .sv-accordion__trigger) cover the whole head. */
+.sv-faq__head {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) var(--tap);
+  column-gap: var(--space-1);
+  align-items: start;
+  padding: var(--space-3) 0;
+}
+
+.sv-faq__q {
+  font-size: var(--text-h3);
+  line-height: 1.15;
+}
+
+/* The plus only exists when scripts can make the row work. */
+.sv-faq__plus {
+  display: none;
+  justify-self: end;
+  margin-top: 0.1em;
+  transition: transform var(--t-micro) var(--ease-out);
+}
+
+.js .sv-faq__plus {
+  display: block;
+}
+
+.sv-faq__item[data-open] .sv-faq__plus {
+  transform: rotate(45deg);
+}
+
+/* Opens with the grid-rows trick (no height animation). Collapsed only under .js, so with
+   scripts off or failed every answer is visible. */
+.sv-faq__panel {
+  display: grid;
+  grid-template-rows: 1fr;
+}
+
+.sv-faq__inner {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.sv-faq__inner p {
+  max-width: var(--measure);
+  padding-bottom: var(--space-3);
+}
+
+.js .sv-faq__panel {
+  transition:
+    grid-template-rows var(--t-fade) var(--ease-out),
+    visibility 0s;
+}
+
+.js .sv-faq__item:not([data-open]) .sv-faq__panel {
+  grid-template-rows: 0fr;
+  visibility: hidden;
+  transition:
+    grid-template-rows var(--t-fade-out) var(--ease-out),
+    visibility 0s linear var(--t-fade-out);
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;

@@ -15,6 +15,33 @@ Template:
 
 Also list here every item still marked `[TBC]` or `[DRAFT-EDIT]` that the owner must supply.
 
+## Update 5 Nov 2026: phase 4 (showcase, why, FAQ) and the hero video fix
+
+**What was built (Lane D):** `#showcase` (five concept demos, desktop pin or phone swipe row), `#why` (six statements on the charcoal section), `#faq` (six questions). Details in `docs/07` section 1.
+
+### Requests and notes for other lanes
+
+- **[Lane D to Lane B] Nav links to a pinned section.** Clicking Showcase (or `#showcase` from anywhere below it) scrolls to where the section sits *after* the pin, which is the end of the pin: the last panel shows. From above it lands correctly. Suggested fix in `js/core/nav.js` `goTo()` (and the future deep-link on load): if `ScrollTrigger.getAll().find((st) => st.pin === target)` exists, scroll to that trigger's `start` instead of the element's position. Same root cause will apply to the hero fold pin. Status: open.
+- **[Lane D to Lane C] The first service row opens after ScrollTriggers are measured.** `js/desktop/services-hover.js` opens row 1 at init, and its CSS transition grows the row by about 243 px over 300 ms, after the triggers have measured (measured `#showcase` top 5992 px at 100 ms, 6090 px from 300 ms on). Every trigger below Services (rail, packages rise, the showcase pin) starts early until something refreshes. The pin now protects itself (it re-measures when the page above it changes height, and that refresh also fixes the other triggers), but the clean fix is yours: call `ScrollTrigger.refresh()` once the opening transition ends, or open row 1 without a transition on first paint. Status: open, not urgent.
+- **[Lane D to Lane E] `data-demo` hook.** Each showcase panel has `<a href="#contact" data-demo="salon|hardware|restaurant|agro|tutoring">Ask for a site like this</a>`. `form.js` can delegate on `[data-demo]` the same way as `[data-package]` and `[data-service]` (for example put "I would like a site like the hair and beauty studio concept" in the message box). If unused nothing breaks. The FAQ intro also has a WhatsApp link with the text "Hello Saviour Digital Solutions, I have a question."
+- **[Lane D to Lane F / motion pass] Hooks left for the motion pass.** Showcase screens carry `data-cursor="view"` (cursor.js: labelled disc). The showcase and the Why section are not part of any fold transition yet. Fold 2 (Why to Contact) is still to do; `#why` is not pinned, so a fold can use it as the incoming or outgoing layer.
+- **[Lane D to Lane A] Tokens added to `js/core/motion-tokens.js`:** groups `showcase` (`scrub`, `parallax`), `why` (`riseOffset`, `proofDelay`), `faq` (`refreshDelay`). **`css/base.css`:** one new block, "Shared components: showcase, why, FAQ". No new CSS tokens. Status: done, nothing to action.
+- **[Lane D to Lane B] Hero video (your file, changed at the owner's request).** `js/core/env.js` and `js/core/hero-video.js` were changed to fix the video not playing once deployed. The rule that blocks the clip is now `heroVideoBlocker()`; `canPlayHeroVideo()` is kept. The old `connectionAllowsVideo()` is removed (no other file used it). `docs/02` section on hero video updated to match. Status: done.
+
+### Owner to confirm (nothing invented, but these are claims about the business)
+
+- **Why choose us, six statements.** Each proof line repeats only what the site already says elsewhere. Confirm they are all true, and say if you want to add or drop any:
+  1. "Built for phones first." (mobile-first design is in every package)
+  2. "Local, in Blantyre." (a team in Blantyre; call or WhatsApp). Left out: that people can visit or meet in person (not confirmed).
+  3. "Pay in instalments." (plan agreed in the written quote; no numbers)
+  4. "Pay the way you already pay." (Airtel Money, TNM Mpamba, bank transfer)
+  5. "A clear written quote." (details and payment plan set out in writing)
+  6. "We can look after it after launch." (maintenance and support is a service). Left out: any support terms or response times (not supplied).
+  Not used because unconfirmed: owning the site outright, free changes, response times, years of experience.
+- **FAQ answers.** Q1 (how long) has **no timeline**, because none was supplied: it says it depends on the package and on how soon content arrives. Q4 says we do not register domains or host sites, then tells people to ask how a site goes live, because that process is not yet written down. Please supply: a real timeline range per package, and how a finished site goes live (who arranges the domain and hosting, and what it costs the client). Then those two answers can be made specific.
+- **Concept demos.** The five business types are taken from `docs/03`. Say if you want different ones. If a real client site replaces a concept later, remove its "Concept demo, not a client." label only then.
+- **Video.** Put the real `hero-720.mp4`, `hero-480.mp4` back in `assets/video/` before deploying (they are not in the zip). Open question: Save-Data still blocks the video on purpose (the visitor asked their phone to save data). If you want it to play even then, change `heroVideoBlocker()` in `js/core/env.js`.
+
 ## Update 4 Nov 2026 (later): owner supplied story, services detail, team and WhatsApp number
 
 - **WhatsApp / phone:** +265 886 02 34 82 is now in the three links that were `[TBC]` (`https://wa.me/265886023482`, `tel:+265886023482`). The QA script now exits 0. Lane E: use the same number in the contact block and JSON-LD (display format `+265 886 02 34 82`).
