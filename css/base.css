@@ -186,6 +186,20 @@ a {
   text-decoration: none;
 }
 
+/* Logo mark. The white tile keeps the blue halves readable over the dark hero. */
+.sv-header__brand {
+  gap: var(--space-1);
+}
+
+.sv-header__mark {
+  flex: none;
+  width: 2.25rem;
+  height: 2.25rem;
+  padding: 0.15rem;
+  background: var(--white);
+  border-radius: 0.5rem;
+}
+
 /* Sections that receive focus after an in-page jump (see js/core/nav.js) show no ring. */
 [tabindex='-1']:focus {
   outline: none;

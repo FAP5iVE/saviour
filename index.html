@@ -12,6 +12,30 @@
     />
     <meta name="theme-color" content="#FAF9F6" />
 
+    <!-- Icons and share image. Replace REPLACE-WITH-DOMAIN with the real domain before launch
+         (the og:image and twitter:image addresses must be absolute; same placeholder as sitemap.xml). -->
+    <link rel="icon" href="assets/img/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Saviour Digital Solutions" />
+    <meta
+      property="og:title"
+      content="Saviour Digital Solutions | Web solutions for small businesses in Blantyre, Malawi"
+    />
+    <meta
+      property="og:description"
+      content="Saviour Digital Solutions build digital footprint for small businesses and new entrepreneurs in Blantyre, Malawi."
+    />
+    <meta property="og:image" content="https://REPLACE-WITH-DOMAIN/assets/img/og-image.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Saviour Digital Solutions logo" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:image" content="https://REPLACE-WITH-DOMAIN/assets/img/og-image.jpg" />
+
     <!-- The script below adds the "js" class. It is the ONLY inline script on the site.
          Its hash is in _headers. If you edit it, run: npm run csp:check -->
     <!-- prettier-ignore -->
@@ -43,7 +67,10 @@
     <a class="sv-skip" href="#main">Skip to content</a>
 
     <header class="sv-header" data-header>
-      <a class="sv-header__brand" href="#home">Saviour Digital Solutions</a>
+      <a class="sv-header__brand" href="#home">
+        <img class="sv-header__mark" src="assets/img/favicon.svg" alt="" width="36" height="36" />
+        <span>Saviour Digital Solutions</span>
+      </a>
 
       <button
         class="sv-menu-btn"
