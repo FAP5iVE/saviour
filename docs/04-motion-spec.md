@@ -137,4 +137,4 @@ With reduced motion: no loader, no Lenis, no pinning, no parallax, no scrubbing,
 - **Folds:** `js/desktop/fold.js`. Fold 1 is Hero to About. **Fold 2 is FAQ to Contact** (the FAQ sits between Why and Contact on the page). Both use `pin: true, pinSpacing: false` and scrub; the FAQ is pinned by its bottom edge. Phones fade and rise (`data-reveal`) instead.
 - **Cursor and magnetic button:** `js/desktop/cursor.js`, `js/desktop/magnetic.js`. Fine pointer, desktop layout, no reduced motion. The pull uses the `translate` property through `--mx`/`--my` so it never fights the button's `transform`.
 - **Refresh:** `js/core/refresh.js` measures again after fonts and the page `load`.
-- **Not built:** footer wordmark drift.
+- **Built in phase 8:** footer wordmark drift (`js/desktop/footer-drift.js`).

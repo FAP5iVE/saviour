@@ -14,6 +14,7 @@ Planning pack, kept up to date as phases finish. Build status is in `07-HANDOVER
 | `05-roadmap-schedule-risks.md` | Admin-dashboard roadmap, day-by-day schedule to Sunday, cut list, risks |
 | `06-hero-footage-shortlist.md` | Stock hero footage I found, what I rejected and why, shot list for your own footage |
 | `08-LAUNCH-RUNBOOK.md` | Launch day, step by step: fix, fill in domain and key, deploy, domain, live tests, Search Console, rollback |
+| `09-CHANGE-WEB3FORMS-KEY.md` | How to swap the Web3Forms key later (three ways), redeploy and test |
 | `saviour-digital-site-builder/SKILL.md` | The skill for other agents: do's, don'ts, gates, hand-off rules |
 | `saviour-digital-site-builder/scripts/qa-check.sh` | A runnable check for dead links, emoji, banned words, leftover placeholders |
 

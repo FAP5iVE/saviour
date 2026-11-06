@@ -639,23 +639,38 @@ html[data-folding] body {
 
 /* === SECTION: footer === */
 .sv-footer {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  align-items: center;
-  gap: var(--space-1) var(--space-4);
-  padding: var(--space-4) var(--gutter);
-  border-top: 1px solid var(--rule);
+  padding: var(--space-5) var(--gutter) 0;
 }
 
-.sv-footer__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0 var(--space-4);
+.sv-footer__body {
+  display: grid;
+  grid-template-columns: 1.5fr repeat(3, minmax(0, 1fr));
+  gap: var(--space-4) var(--space-4);
+  align-items: start;
+  padding-bottom: var(--space-6);
 }
 
-.sv-footer__links a {
-  display: inline-flex;
-  align-items: center;
-  min-height: var(--tap);
+.sv-footer__tag {
+  padding-top: var(--space-2);
+}
+
+/* Mouse layout: tighter rows. Touch screens on this layout keep the 44 px tap target. */
+@media (hover: hover) and (pointer: fine) {
+  .sv-footer__list a,
+  .sv-footer__text {
+    min-height: 2.25rem;
+  }
+}
+
+.sv-footer__wordmark {
+  padding-bottom: var(--space-3);
+  will-change: transform;
+}
+
+.sv-footer__bar {
+  padding: var(--space-1) 0;
+}
+
+.sv-footer__copy {
+  margin-right: auto;
 }

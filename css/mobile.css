@@ -447,20 +447,45 @@ html[data-menu='open'] .sv-action {
 
 /* === SECTION: footer === */
 .sv-footer {
+  padding: var(--space-5) var(--gutter) 0;
+}
+
+.sv-footer__body {
   display: grid;
   gap: var(--space-3);
-  padding: var(--space-4) var(--gutter) calc(var(--action-h) + var(--space-5));
-  border-top: 1px solid var(--rule);
+  padding-bottom: var(--space-5);
 }
 
-.sv-footer__links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-1) var(--space-3);
+.sv-footer__tag {
+  margin-bottom: var(--space-2);
 }
 
-.sv-footer__links a {
-  display: inline-flex;
-  align-items: center;
-  min-height: var(--tap);
+.sv-footer__wordmark {
+  padding-bottom: var(--space-3);
+}
+
+/* The fixed action bar covers the bottom of the page on phones, so the bar leaves room for it. */
+.sv-footer__bar {
+  padding: var(--space-1) 0 calc(var(--action-h) + var(--space-2));
+}
+
+.sv-footer__copy {
+  width: 100%;
+  margin-bottom: var(--space-1);
+}
+
+@media (min-width: 768px) {
+  .sv-footer__body {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: var(--space-4) var(--space-3);
+  }
+
+  .sv-footer__tag {
+    grid-column: 1 / -1;
+  }
+
+  .sv-footer__copy {
+    width: auto;
+    margin: 0 auto 0 0;
+  }
 }

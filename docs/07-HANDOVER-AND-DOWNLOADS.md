@@ -1,11 +1,15 @@
 # 07. Handover and downloads
 
-Written Tue 3 Nov 2026, updated Fri 6 Nov 2026 after phase 7. Business deadline: **Sunday 8 Nov 2026**.
+Written Tue 3 Nov 2026, updated Fri 6 Nov 2026 after phase 8. Business deadline: **Sunday 8 Nov 2026**.
 Read this first if you are picking the project up. Then read `AGENTS.md` and `docs/00` to `docs/06`.
 
 ---
 
 ## 1. Where the project stands
+
+### Phase 8 done in the repo (Fri 6 Nov 2026, night): owner corrections and footer
+- **Name fixed:** the founder is Saviour **Kumalawi** (was Banda) everywhere. **Fyaupi:** role is Developer; his bio now opens with Electronics and Computer Engineer.
+- **Footer restyled** in the site's own language (tinted flat band, ruled columns, orange top rule, huge Clash Display wordmark, bottom bar with Back to top) and the **footer wordmark drift** from docs/04 is built (`js/desktop/footer-drift.js`, desktop only, off for reduced motion). Full list, checks and open items in `docs/HANDOFF.md` (phase 8 entry). **Next is still the launch** (`docs/08`).
 
 ### Phase 7 done in the repo (Fri 6 Nov 2026): QA and launch preparation (Lane G). Not deployed: needs the owner's accounts and details
 - **Checks run in Chromium against `dist/`** (with the real `_headers`): console and CSP clean at 375, 768, 1024, 1440 px; no sideways scroll; mode swap across 1023/1024 px clean; links, headings, labels, tap targets, keyboard (69 stops), reduced motion, no-JS, Back/Forward, 404 page, and a mocked end-to-end form submission with a key filled in. Throttled phone (slow 4G, 4x CPU): LCP 2.04 s, CLS 0. Full list in `docs/HANDOFF.md` (phase 7 entry).
@@ -20,7 +24,7 @@ Read this first if you are picking the project up. Then read `AGENTS.md` and `do
 - **Fixes from earlier hand-off requests:** (1) nav links and deep links to pinned sections now measure the `.pin-spacer` wrapper (`nav.js`); (2) `index.html#section` is honoured after the page is measured, on both modes (`nav.js`, `smooth-scroll.js` now calls `lenis.resize()` first); (3) services row 1 opens without a transition at start-up, so nothing below it moves 240 px later (`services-hover.js`); (4) the mobile action bar hides while `#contact` is on screen (`action-bar.js`); (5) triggers re-measure after fonts and the page `load` (`js/core/refresh.js`).
 - **Verified in Chromium (6 Nov 2026):** loader frames at 250 to 2600 ms (desktop) and 350 ms (375 px); repeat load has no loader; both folds at several scroll positions (transforms, dim layer, backdrop attribute, three pin spacers); cursor states (default, link, disc "View", field, window leave); magnetic pull 6.5 px at 30 px from the button and back to 0; deep links and nav clicks for packages, showcase, why, faq, contact, about, home all land the same distance (80 px, the header offset) above the section; resize 1400, 375, 1400, 800, 1280 px leaves 3 spacers, one cursor and one dim layer on desktop and none on mobile; reduced motion (no loader, no pins, no cursor, text visible); no JS (loader hidden); a touch screen at 1280 px gets the desktop layout but no cursor; no console errors or warnings; `npm run qa` 0 failures (same 3 warnings as before); CSP hash matches; Prettier clean on the new files.
 - **Not run (build environment cannot run npm):** `npm run lint` as configured (a temporary ESLint config on `js/` passed except one pre-existing `console` call in `form.js`), Lighthouse, a real phone, keyboard tab-through of the folds, back and forward buttons. See `docs/HANDOFF.md` for a bug in `package.json` (ESLint version) that Lane G must fix first.
-- **Left out on purpose:** the large footer wordmark that drifts (docs/04 section 7) because the footer has no wordmark element yet; adding one is a design decision.
+- **Left out on purpose (built in phase 8):** the large footer wordmark that drifts (docs/04 section 7).
 
 ### Phase 5 done (Thu 5 Nov 2026): contact, form, privacy, SEO (Lane E)
 - **Contact (`#contact`):** title, WhatsApp button and phone link on the left (sticky on desktop), quote form on the right. Underline fields with floating labels, package select, six add-on tick boxes, free-text budget and message, consent box, "Send request" and "Send via WhatsApp instead". Success, failure and error states are in the page (no pop-ups, no redirect).

@@ -1516,6 +1516,117 @@ textarea.sv-field__control {
   gap: 0 var(--space-3);
 }
 
+/* === Shared components: footer === */
+/* A flat tinted band, ruled columns, one big wordmark. No cards, no shadows. */
+.sv-footer {
+  position: relative;
+  overflow: clip;
+  background: var(--blue-tint);
+  border-top: 0;
+}
+
+/* Short orange rule on the top edge (decoration, not text; the same device as the package top rule). */
+.sv-footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: var(--gutter);
+  width: var(--space-5);
+  height: var(--rule-thick);
+  background: var(--orange);
+}
+
+.sv-footer__tag {
+  max-width: 22ch;
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  color: var(--blue-deep);
+}
+
+.sv-footer__col {
+  border-top: 1px solid var(--rule);
+  padding-top: var(--space-2);
+}
+
+.sv-footer__title {
+  margin-bottom: var(--space-1);
+  font-family: var(--font-body);
+  font-size: var(--text-small);
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+}
+
+.sv-footer__list a,
+.sv-footer__legal,
+.sv-footer__up {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  min-height: var(--tap);
+  color: var(--text);
+  text-decoration: none;
+  text-underline-offset: 0.3em;
+  transition: color var(--t-micro) var(--ease-out);
+}
+
+.sv-footer__list a:hover,
+.sv-footer__legal:hover,
+.sv-footer__up:hover {
+  color: var(--blue);
+  text-decoration: underline;
+}
+
+.sv-footer__text {
+  display: flex;
+  align-items: center;
+  min-height: var(--tap);
+}
+
+.sv-footer__wordmark {
+  font-family: var(--font-display);
+  font-size: var(--text-wordmark);
+  font-weight: 600;
+  line-height: 0.9;
+  letter-spacing: -0.035em;
+  color: var(--blue);
+  white-space: nowrap;
+}
+
+.sv-footer__word {
+  display: block;
+}
+
+.sv-footer__bar {
+  position: relative; /* sits above the wordmark, which drifts up from behind it on desktop */
+  z-index: 1;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0 var(--space-3);
+  border-top: 1px solid var(--rule);
+  background: var(--blue-tint);
+  font-size: var(--text-small);
+  color: var(--text-soft);
+}
+
+.sv-footer__legal {
+  color: var(--text-soft);
+}
+
+.sv-footer__up {
+  font-weight: 600;
+}
+
+.sv-footer__up .sv-icon {
+  transform: rotate(-90deg);
+}
+
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;

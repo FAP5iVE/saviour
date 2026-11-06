@@ -40,7 +40,7 @@ Do **not** publish: any "Chamber of Commerce" statistic (none was verified), or 
 
 Suggested use: one or two figures only, in large display type, each with a small "Source, year" line linking to the page. Fewer, solid numbers beat a wall of stats.
 
-**Who we are (live):** Saviour Digital Solutions is a team in Blantyre. We build websites and digital services for small businesses and new entrepreneurs. Founding story is live on the page ("How we started", 4 Nov 2026), written from the owner's notes: a lesson in digital and entrepreneurship skills from Rynberg Stacks, a pun on the name Saviour, ambition to go big starting in Blantyre. The owner listed three team members (Saviour Banda, Fyaupi Guthrie Mwenelupembe, Charity Phiri), so the earlier "five" is superseded.
+**Who we are (live):** Saviour Digital Solutions is a team in Blantyre. We build websites and digital services for small businesses and new entrepreneurs. Founding story is live on the page ("How we started", 4 Nov 2026), written from the owner's notes: a lesson in digital and entrepreneurship skills from Rynberg Stacks, a pun on the name Saviour, ambition to go big starting in Blantyre. The owner listed three team members (Saviour Kumalawi, Fyaupi Guthrie Mwenelupembe, Charity Phiri), so the earlier "five" is superseded.
 
 ### Team (five people)
 For each: full name, role, one-line bio, photo. `[TBC from owner]`

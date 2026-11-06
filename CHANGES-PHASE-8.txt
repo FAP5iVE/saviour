@@ -1,0 +1,14 @@
+Phase 8 (owner corrections and footer), Fri 6 Nov 2026. Unzip over your copy, keeping the paths.
+
+NAME:    Saviour Banda -> Saviour Kumalawi (index.html, docs). Fyaupi: role Developer, bio opens with Electronics and Computer Engineer.
+FOOTER:  restyled (index.html footer, css/base.css "Shared components: footer", css/desktop.css and
+         css/mobile.css footer blocks, css/tokens.css --text-wordmark). Wordmark drift on desktop.
+NEW:     js/desktop/footer-drift.js, CHANGES-PHASE-8.txt
+CHANGED: index.html, css/tokens.css, css/base.css, css/desktop.css, css/mobile.css,
+         js/core/motion-tokens.js, js/desktop/index.js, docs/HANDOFF.md, docs/07, docs/04
+
+CURSOR:   custom cursor switched off (js/desktop/index.js). Ordinary cursor now. cursor.js kept, dormant.
+WEB3FORMS: key set in index.html; new guide docs/09-CHANGE-WEB3FORMS-KEY.md (how to change it later).
+
+STILL THE OWNER'S: domain, ESLint fix, deploy, Lighthouse, real-phone test
+(docs/08-LAUNCH-RUNBOOK.md). Replace the Saviour and Charity team photos with real matching portraits.

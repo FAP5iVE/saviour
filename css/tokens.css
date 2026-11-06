@@ -37,6 +37,7 @@
   --text-h3: clamp(1.25rem, 1.05rem + 0.9vw, 1.9rem); /* service names, package names */
   --text-statement: clamp(1.5rem, 1rem + 2.4vw, 3.25rem); /* the About statement */
   --text-stat: clamp(3.25rem, 1.5rem + 7vw, 7rem); /* big sourced numbers */
+  --text-wordmark: min(18rem, calc((100vw - 2 * var(--gutter)) / 7.45)); /* footer wordmark: the longer line, "Digital Solutions", is about 7.25em wide, so this fills the page width */
   --measure: 62ch; /* longest comfortable line of body text */
   --leading-display: 1;
   --leading-body: 1.6;

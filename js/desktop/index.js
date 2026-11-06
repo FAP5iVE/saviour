@@ -16,8 +16,8 @@ import { refreshWhenReady } from '../core/refresh.js';
 import { initWhyReveal } from '../core/why-reveal.js';
 import { initHeaderScroll } from './header-scroll.js';
 import { initCountUp } from './count-up.js';
-import { initCursor } from './cursor.js';
 import { initFolds } from './fold.js';
+import { initFooterDrift } from './footer-drift.js';
 import { initMagnetic } from './magnetic.js';
 import { initPackagesRise } from './packages-rise.js';
 import { initScrubText } from './scrub-text.js';
@@ -65,12 +65,17 @@ export function init() {
   // scroll effect), the custom cursor and the magnetic button. The folds pin and scrub, so reduced
   // motion skips them. The cursor and the magnetic button check for a mouse themselves.
   if (!reduced) cleanups.push(initFolds());
-  cleanups.push(initCursor(), initMagnetic());
+  // The custom cursor (js/desktop/cursor.js) is switched off at the owner's request: visitors get
+  // the ordinary cursor. To turn it back on, import initCursor and add it to this push.
+  cleanups.push(initMagnetic());
 
   // Showcase, why and FAQ (phase 4). The pinned showcase goes after the sections above it, so
   // its pin spacing is counted in the right order. With reduced motion the showcase stays a
   // plain sideways scroll row and the statements are simply visible.
   if (!reduced) cleanups.push(initShowcaseHorizontal(), initWhyReveal());
+
+  // Footer wordmark drift. Last of the scroll triggers, so it measures after every pin above it.
+  if (!reduced) cleanups.push(initFooterDrift());
 
   // Positions depend on font metrics and images, so measure again once they are ready.
   cleanups.push(refreshWhenReady());

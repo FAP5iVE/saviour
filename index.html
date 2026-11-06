@@ -305,7 +305,7 @@
             </p>
             <h3 class="sv-about__who-title sv-about__who-title--next">How we started</h3>
             <p>
-              Our founder, Saviour Banda, took part in the Zantchito Entrepreneurship Incubation
+              Our founder, Saviour Kumalawi, took part in the Zantchito Entrepreneurship Incubation
               Programme, which covered business development and managing money. One lesson, in
               digital and entrepreneurship skills from Rynberg Stacks, sparked a hunger to learn
               more, and to turn what we learned into something bigger: a business that gives
@@ -339,7 +339,7 @@
                     src="assets/img/team-saviour-400.webp"
                     srcset="assets/img/team-saviour-400.webp 400w, assets/img/team-saviour-800.webp 800w"
                     sizes="(min-width: 1024px) 18vw, (min-width: 768px) 28vw, 7rem"
-                    alt="Saviour Banda, founder"
+                    alt="Saviour Kumalawi, founder"
                     width="400"
                     height="500"
                     loading="lazy"
@@ -347,7 +347,7 @@
                   />
                 </picture>
                 <div class="sv-team__text">
-                  <p class="sv-team__name">Saviour Banda</p>
+                  <p class="sv-team__name">Saviour Kumalawi</p>
                   <p class="sv-team__role">Founder</p>
                   <p class="sv-team__does">Data collection and digital marketing</p>
                 </div>
@@ -363,7 +363,7 @@
                     src="assets/img/team-fyaupi-400.webp"
                     srcset="assets/img/team-fyaupi-400.webp 400w, assets/img/team-fyaupi-800.webp 800w"
                     sizes="(min-width: 1024px) 18vw, (min-width: 768px) 28vw, 7rem"
-                    alt="Fyaupi Guthrie Mwenelupembe, web developer"
+                    alt="Fyaupi Guthrie Mwenelupembe, developer"
                     width="400"
                     height="500"
                     loading="lazy"
@@ -372,10 +372,10 @@
                 </picture>
                 <div class="sv-team__text">
                   <p class="sv-team__name">Fyaupi Guthrie Mwenelupembe</p>
-                  <p class="sv-team__role">Web developer</p>
+                  <p class="sv-team__role">Developer</p>
                   <p class="sv-team__does">
-                    Electronics and computer engineering, with a big interest in software and
-                    embedded systems. He likes turning ideas into things that work.
+                    Electronics and Computer Engineer with a big interest in software and embedded
+                    systems. He likes turning ideas into things that work.
                   </p>
                 </div>
               </li>
@@ -1300,8 +1300,8 @@
 
         <div class="sv-contact__formwrap" data-reveal>
           <!-- The form posts to Web3Forms. js/core/form.js sends it with fetch; without scripts the
-               browser posts it directly. Paste the free Web3Forms access key into the hidden
-               "access_key" field below (the key is public by design). Until then the form cannot send.
+               browser posts it directly. The Web3Forms access key is in the hidden "access_key" field below
+               (public by design). To change it, see docs/09-CHANGE-WEB3FORMS-KEY.md.
                data-whatsapp is the WhatsApp number without + or a leading 0. -->
           <form
             class="sv-form"
@@ -1315,7 +1315,7 @@
             <h3 id="form-title" class="sv-form__title">Tell us about your business</h3>
             <p class="sv-form__note" role="status" data-form-note></p>
 
-            <input type="hidden" name="access_key" value="" />
+            <input type="hidden" name="access_key" value="0c9c3c59-5650-4162-a739-cc6b2b4e76fe" />
             <input type="hidden" name="subject" value="New quote request from the website" />
             <input type="hidden" name="from_name" value="Saviour Digital Solutions website" />
 
@@ -1535,17 +1535,62 @@
       </section>
     </main>
 
-    <footer class="sv-footer">
-      <p class="sv-footer__name">Saviour Digital Solutions, Blantyre, Malawi</p>
-      <ul class="sv-footer__links">
-        <li><a href="#services">Services</a></li>
-        <li><a href="#packages">Packages</a></li>
-        <li><a href="#faq">Questions</a></li>
-        <li><a href="#contact">Contact</a></li>
-        <li><a href="tel:+265886023482">+265 886 02 34 82</a></li>
-        <li><a href="mailto:saviourkumalawi@gmail.com">saviourkumalawi@gmail.com</a></li>
-        <li><a href="privacy.html">Privacy policy</a></li>
-      </ul>
+    <footer class="sv-footer" data-footer>
+      <div class="sv-footer__body">
+        <p class="sv-footer__tag">
+          Websites, data collection and digital marketing, made in Blantyre, Malawi.
+        </p>
+
+        <nav class="sv-footer__col" aria-labelledby="footer-explore">
+          <h2 id="footer-explore" class="sv-footer__title">Explore</h2>
+          <ul class="sv-footer__list">
+            <li><a href="#about">About</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#packages">Packages</a></li>
+            <li><a href="#showcase">Showcase</a></li>
+            <li><a href="#why">Why us</a></li>
+            <li><a href="#faq">Questions</a></li>
+          </ul>
+        </nav>
+
+        <div class="sv-footer__col">
+          <h2 class="sv-footer__title">Talk to us</h2>
+          <ul class="sv-footer__list">
+            <li>
+              <a
+                href="https://wa.me/265886023482?text=Hello%20Saviour%20Digital%20Solutions%2C%20I%27d%20like%20a%20quote."
+              >
+                WhatsApp us
+              </a>
+            </li>
+            <li><a href="tel:+265886023482">+265 886 02 34 82</a></li>
+            <li><a href="mailto:saviourkumalawi@gmail.com">saviourkumalawi@gmail.com</a></li>
+            <li><a href="#contact">Ask for a quote</a></li>
+          </ul>
+        </div>
+
+        <div class="sv-footer__col">
+          <h2 class="sv-footer__title">Find us</h2>
+          <p class="sv-footer__text">Blantyre, Malawi</p>
+          <p class="sv-footer__text">Open 7:30 am to 4:30 pm</p>
+        </div>
+      </div>
+
+      <p class="sv-footer__wordmark" data-footer-wordmark>
+        <span class="sv-footer__word">Saviour</span>
+        <span class="sv-footer__word">Digital Solutions</span>
+      </p>
+
+      <div class="sv-footer__bar">
+        <p class="sv-footer__copy">&copy; 2026 Saviour Digital Solutions</p>
+        <a class="sv-footer__legal" href="privacy.html">Privacy policy</a>
+        <a class="sv-footer__up" href="#home">
+          Back to top
+          <svg class="sv-icon" aria-hidden="true">
+            <use href="assets/icons/sprite.svg#arrow-right"></use>
+          </svg>
+        </a>
+      </div>
     </footer>
 
     <nav class="sv-action" aria-label="Quick contact" data-action-bar>

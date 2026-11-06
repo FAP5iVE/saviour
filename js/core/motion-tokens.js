@@ -45,6 +45,11 @@ export const MOTION = Object.freeze({
     ruleDuration: 0.8, // seconds the featured top rule takes to draw
   }),
 
+  // Footer (desktop): the wordmark rises out from behind the bottom bar
+  footer: Object.freeze({
+    drift: 28, // yPercent the wordmark starts below its place
+  }),
+
   // Showcase, why and FAQ (phase 4)
   showcase: Object.freeze({
     scrub: 1, // seconds the horizontal track takes to catch up with the scroll (desktop pin)

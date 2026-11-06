@@ -9,7 +9,7 @@ now and then: if a label differs, look for the closest one and check the host's 
 | Item | Where it goes | Status on 6 Nov |
 |---|---|---|
 | Domain name (for example `saviourdigital.mw`, a bare name with no `https://`) | `npm run launch:fill` | Not chosen yet |
-| Web3Forms access key (free at web3forms.com, made with the email that should receive requests) | `npm run launch:fill` | Not made yet |
+| Web3Forms access key (free at web3forms.com, made with the email that should receive requests) | `npm run launch:fill` | Done 6 Nov 2026, the key is in `index.html`. To change it later see `docs/09-CHANGE-WEB3FORMS-KEY.md` |
 | GitHub account (or skip it and use the drag-and-drop route in step 4B) | Cloudflare Pages | Owner |
 | Street address, days for the 7:30 to 4:30 hours, real social links | Contact block, JSON-LD (`streetAddress`, `openingHours`, `sameAs`), Google Business Profile | Not supplied. Leave them off the page until real |
 
