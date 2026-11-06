@@ -815,7 +815,9 @@ a {
 }
 
 /* The mini-site frame. Everything inside is sized in em from a font size that follows the frame's
-   width (container query units), so a mini-site looks the same on a phone and on a big screen. */
+   width (container query units), so a mini-site looks the same on a phone and on a big screen.
+   Each mini-site has its own layout, type treatment and palette (the --demo-* tokens), so the six
+   do not look like one template. They are drawings built in code, hidden from screen readers. */
 .sv-demo__screen {
   position: relative;
   overflow: hidden;
@@ -827,15 +829,12 @@ a {
 
 .sv-mini {
   --mini-pad: 1.4em;
-  --mini-rule: var(--rule);
-  --mini-tile: var(--blue-tint);
   position: absolute;
   inset: 0;
   display: flex;
   flex-direction: column;
-  gap: 0.6em;
-  padding: 0 var(--mini-pad) 1em;
   overflow: hidden;
+  padding: 0 var(--mini-pad);
   background: var(--white);
   color: var(--ink);
   font-size: var(--text-small);
@@ -848,33 +847,12 @@ a {
   }
 }
 
-.sv-mini__bar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.8em;
-  margin: 0 calc(var(--mini-pad) * -1);
-  padding: 0.8em var(--mini-pad);
-  border-bottom: 1px solid var(--mini-rule);
-}
-
-.sv-mini__brand {
-  font-family: var(--font-display);
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
-
-.sv-mini__links {
-  display: flex;
-  gap: 0.6em;
-}
-
 /* Grey bars stand in for text that the real site would fill in (prices, hours, addresses). */
 .sv-skel {
   display: block;
   height: 0.55em;
   background: currentColor;
-  opacity: 0.16;
+  opacity: 0.2;
 }
 
 .sv-skel--s {
@@ -889,121 +867,594 @@ a {
   width: 8em;
 }
 
-.sv-mini__hero {
-  display: grid;
-  justify-items: start;
+.sv-mini__links {
+  display: flex;
   gap: 0.6em;
 }
 
-.sv-mini__title {
-  max-width: 12em;
+.sv-mini__brand {
   font-family: var(--font-display);
-  font-size: 1.7em;
   font-weight: 600;
-  line-height: 1.02;
+  letter-spacing: -0.01em;
+}
+
+/* Clash Display with tight tracking closes up word gaps, so the mini-site titles open them again. */
+.sv-mini__brand,
+.sv-school__title,
+.sv-salon__title,
+.sv-hw__title,
+.sv-resto__title,
+.sv-agro__title,
+.sv-agro__brand,
+.sv-tutor__title {
+  word-spacing: 0.14em;
+}
+
+/* 1. School (the live SMS Malawi project): navy, a photo-led hero, four quick links. */
+.sv-mini--school {
+  gap: 0;
+  background: var(--white);
+}
+
+.sv-school__top {
+  margin: 0 calc(var(--mini-pad) * -1);
+  padding: 0.35em var(--mini-pad);
+  background: var(--demo-school-soft);
+  color: var(--white);
+  font-size: 0.7em;
+  text-align: right;
+}
+
+.sv-school__nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 calc(var(--mini-pad) * -1);
+  padding: 0.7em var(--mini-pad);
+  background: var(--demo-school);
+  color: var(--white);
+}
+
+.sv-school__photo {
+  position: relative;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-start;
+  gap: 0.6em;
+  margin: 0 calc(var(--mini-pad) * -1);
+  padding: 1em var(--mini-pad);
+  overflow: hidden;
+  background: var(--demo-school-line);
+  color: var(--white);
+}
+
+/* A plain block shape that stands in for the campus photo. */
+.sv-school__hall {
+  position: absolute;
+  right: 10%;
+  bottom: 0;
+  width: 46%;
+  height: 56%;
+  background: var(--demo-school);
+  clip-path: polygon(0 100%, 0 38%, 50% 0, 100% 38%, 100% 100%);
+  opacity: 0.55;
+}
+
+.sv-school__title {
+  position: relative;
+  max-width: 11em;
+  font-family: var(--font-display);
+  font-size: 1.5em;
+  font-weight: 600;
+  line-height: 1.05;
   letter-spacing: -0.02em;
 }
 
-.sv-mini__btn {
-  display: inline-flex;
-  padding: 0.5em 0.9em;
-  background: var(--orange);
-  color: var(--ink);
-  font-size: 0.85em;
+.sv-school__btn {
+  position: relative;
+  padding: 0.45em 0.9em;
+  background: var(--white);
+  color: var(--demo-school);
+  font-size: 0.8em;
   font-weight: 600;
 }
 
-.sv-mini__rows {
+.sv-school__quick {
   display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.6em;
+  padding: 0.4em 0 0.7em;
+  background: var(--white);
 }
 
-.sv-mini__row {
+.sv-school__quick li {
+  padding: 0.6em 0 0;
+  border-top: 0.25em solid var(--demo-school);
+  color: var(--demo-school);
+  font-size: 0.72em;
+  font-weight: 600;
+}
+
+/* 2. Salon: soft blush, an arch and a circle, rounded buttons, light display type. */
+.sv-mini--salon {
+  gap: 0.9em;
+  padding-top: 1.1em;
+  padding-bottom: 1.1em;
+  background: var(--demo-salon-bg);
+  color: var(--demo-salon-ink);
+}
+
+.sv-salon__brand {
+  font-family: var(--font-display);
+  font-size: 0.8em;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.sv-salon__main {
+  flex: 1;
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  align-items: stretch;
+  gap: 1.2em;
+}
+
+.sv-salon__copy {
+  display: grid;
+  align-content: center;
+  justify-items: start;
+  gap: 0.8em;
+}
+
+.sv-salon__title {
+  font-family: var(--font-display);
+  font-size: 2em;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -0.03em;
+}
+
+.sv-salon__btn {
+  padding: 0.55em 1.1em;
+  border-radius: 99em;
+  background: var(--demo-salon-accent);
+  color: var(--white);
+  font-size: 0.8em;
+  font-weight: 600;
+}
+
+.sv-salon__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4em;
+}
+
+.sv-salon__chips li {
+  padding: 0.25em 0.7em;
+  border: 1px solid var(--demo-salon-accent);
+  border-radius: 99em;
+  font-size: 0.7em;
+}
+
+.sv-salon__art {
+  position: relative;
+}
+
+.sv-salon__arch {
+  position: absolute;
+  inset: 0 0 0 8%;
+  border-radius: 99em 99em 0 0;
+  background: var(--demo-salon-soft);
+}
+
+.sv-salon__dot {
+  position: absolute;
+  left: 0;
+  bottom: 12%;
+  width: 34%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--demo-salon-accent);
+}
+
+.sv-salon__foot {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  font-size: 0.72em;
+}
+
+/* 3. Hardware: hazard yellow and black, heavy capitals, a numbered grid with thick edges. */
+.sv-mini--hardware {
+  gap: 0;
+  padding: 0;
+  background: var(--demo-hw-yellow);
+  color: var(--demo-hw-ink);
+}
+
+.sv-hw__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8em;
+  padding: 0.65em var(--mini-pad);
+  background: var(--demo-hw-ink);
+  color: var(--demo-hw-yellow);
+}
+
+.sv-hw__brand {
+  font-family: var(--font-display);
+  font-size: 0.75em;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.sv-hw__ask {
+  padding: 0.25em 0.7em;
+  background: var(--demo-hw-yellow);
+  color: var(--demo-hw-ink);
+  font-size: 0.7em;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.sv-hw__title {
+  padding: 0.7em var(--mini-pad) 0.5em;
+  font-family: var(--font-display);
+  font-size: 2.1em;
+  font-weight: 600;
+  line-height: 0.92;
+  letter-spacing: -0.02em;
+  text-transform: uppercase;
+}
+
+.sv-hw__stripe {
+  height: 0.5em;
+  background: repeating-linear-gradient(
+    -45deg,
+    var(--demo-hw-ink) 0 0.5em,
+    var(--demo-hw-yellow) 0.5em 1em
+  );
+}
+
+.sv-hw__grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-rows: repeat(2, minmax(0, 1fr));
+  gap: 0.25em;
+  padding: 0.25em var(--mini-pad) 0;
+  background: var(--demo-hw-yellow);
+}
+
+.sv-hw__grid li {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 0.35em 0.5em;
+  background: var(--demo-hw-grey);
+  border: 0.15em solid var(--demo-hw-ink);
+  font-size: 0.7em;
+  font-weight: 700;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.sv-hw__grid b {
+  font-family: var(--font-display);
+  font-size: 1.7em;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.sv-hw__foot {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  padding: 0.5em var(--mini-pad);
+  font-size: 0.72em;
+  font-weight: 600;
+}
+
+/* 4. Restaurant: dark and warm, everything centred, a menu with dotted lines. */
+.sv-mini--restaurant {
+  align-items: center;
+  justify-content: center;
+  gap: 0.8em;
+  background: var(--demo-resto-bg);
+  color: var(--demo-resto-cream);
+  text-align: center;
+}
+
+.sv-resto__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.7em;
+  font-size: 0.7em;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--demo-resto-gold);
+}
+
+.sv-resto__brand::before,
+.sv-resto__brand::after {
+  content: '';
+  width: 2.4em;
+  height: 1px;
+  background: var(--demo-resto-gold);
+}
+
+.sv-resto__title {
+  font-family: var(--font-display);
+  font-size: 2.2em;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0.01em;
+}
+
+.sv-resto__menu {
+  display: grid;
+  width: 78%;
+  gap: 0.35em;
+}
+
+.sv-resto__menu li {
+  display: flex;
+  align-items: center;
+  gap: 0.5em;
+  font-size: 0.9em;
+}
+
+.sv-resto__menu i {
+  flex: 1;
+  border-bottom: 2px dotted var(--demo-resto-gold);
+  opacity: 0.6;
+}
+
+.sv-resto__btn {
+  padding: 0.45em 1.3em;
+  border: 1px solid var(--demo-resto-gold);
+  color: var(--demo-resto-gold);
+  font-size: 0.75em;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.sv-resto__foot {
+  display: flex;
+  gap: 1.6em;
+  font-size: 0.65em;
+  opacity: 0.75;
+}
+
+/* 5. Farm produce: a side column, and a season calendar in place of a list. */
+.sv-mini--agro {
+  flex-direction: row;
+  padding: 0;
+  background: var(--demo-agro-pale);
+  color: var(--demo-agro-deep);
+}
+
+.sv-agro__side {
+  flex: 0 0 31%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.9em;
+  padding: 1.2em 1em 1em calc(var(--bleed, 0px) + 1.1em);
+  background: var(--demo-agro-deep);
+  color: var(--demo-agro-pale);
+}
+
+.sv-agro__brand {
+  font-family: var(--font-display);
+  font-size: 1.1em;
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+.sv-agro__btn {
+  padding: 0.4em 0.8em;
+  background: var(--demo-agro-sun);
+  color: var(--demo-agro-deep);
+  font-size: 0.75em;
+  font-weight: 700;
+}
+
+.sv-agro__links {
+  display: grid;
+  gap: 0.5em;
+  margin-top: auto;
+}
+
+.sv-agro__main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8em;
+  padding: 1.2em calc(var(--bleed, 0px) + 1.1em) 1em 1.2em;
+}
+
+.sv-agro__title {
+  font-family: var(--font-display);
+  font-size: 1.5em;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.sv-agro__cal {
+  flex: 1;
+  display: grid;
+  align-content: space-between;
+  gap: 0.5em;
+  font-size: 0.75em;
+}
+
+.sv-agro__months,
+.sv-agro__line {
+  display: grid;
+  grid-template-columns: 6.2em minmax(0, 1fr);
+  align-items: center;
+}
+
+.sv-agro__months {
+  grid-template-columns: 6.2em repeat(12, minmax(0, 1fr));
+  font-size: 0.8em;
+  font-weight: 600;
+  text-align: center;
+  opacity: 0.7;
+}
+
+.sv-agro__months span:first-child {
+  grid-column: 2;
+}
+
+.sv-agro__bar {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  height: 1.3em;
+  background: color-mix(in srgb, var(--demo-agro-deep) 12%, transparent);
+}
+
+.sv-agro__on {
+  display: block;
+  background: var(--demo-agro-mid);
+}
+
+.sv-agro__on--a {
+  grid-column: 3 / 8;
+}
+
+.sv-agro__on--b {
+  grid-column: 5 / 10;
+}
+
+.sv-agro__on--c {
+  grid-column: 8 / 12;
+}
+
+.sv-agro__on--d {
+  grid-column: 1 / 5;
+}
+
+.sv-agro__on--e {
+  grid-column: 6 / 13;
+}
+
+.sv-agro__foot {
+  display: flex;
+  align-items: center;
+  gap: 0.8em;
+  margin-top: auto;
+  font-size: 0.72em;
+  font-weight: 600;
+}
+
+/* 6. Tutoring: squared paper, tabs, and a weekly timetable as the main thing on the page. */
+.sv-mini--tutoring {
+  gap: 0.7em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  background-color: var(--demo-tutor-paper);
+  background-image:
+    linear-gradient(var(--demo-tutor-grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--demo-tutor-grid) 1px, transparent 1px);
+  background-size: 1.4em 1.4em;
+  color: var(--ink);
+}
+
+.sv-tutor__head {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1em;
-  padding: 0.35em 0;
-  border-top: 1px solid var(--mini-rule);
-  font-size: 0.85em;
 }
 
-.sv-mini__tiles {
-  display: grid;
-  gap: 0.45em;
-}
-
-.sv-mini__tiles--3 {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.sv-mini__tile {
-  display: flex;
-  align-items: flex-end;
-  min-height: 2.2em;
-  padding: 0.4em;
-  background: var(--mini-tile);
-  font-size: 0.7em;
-  font-weight: 600;
-  line-height: 1.15;
-}
-
-.sv-mini__week {
-  display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-  gap: 0.35em;
-}
-
-.sv-mini__week span {
-  padding: 0.35em 0;
-  background: var(--mini-tile);
+.sv-tutor__tab {
+  padding: 0.35em 0.8em;
+  background: var(--blue);
+  color: var(--white);
   font-size: 0.75em;
   font-weight: 600;
-  text-align: center;
 }
 
-.sv-mini__foot {
+.sv-tutor__btn {
+  padding: 0.35em 0.8em;
+  border: 2px solid var(--ink);
+  font-size: 0.75em;
+  font-weight: 700;
+}
+
+.sv-tutor__title {
+  max-width: 10em;
+  font-family: var(--font-display);
+  font-size: 1.8em;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+
+.sv-tutor__table {
+  flex: 1;
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-rows: auto repeat(3, minmax(0, 1fr));
+  gap: 0.3em;
+  padding: 0.4em;
+  background: var(--white);
+  border: 2px solid var(--ink);
+}
+
+.sv-tutor__table > span:nth-child(-n + 5) {
+  font-size: 0.7em;
+  font-weight: 700;
+  text-align: center;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sv-tutor__slot {
+  display: flex;
+  align-items: center;
+  padding: 0 0.6em;
+  font-size: 0.7em;
+  font-weight: 700;
+}
+
+.sv-tutor__slot--a {
+  grid-row: 2;
+  grid-column: 1 / span 2;
+  background: var(--blue-tint);
+  border-left: 0.3em solid var(--blue);
+}
+
+.sv-tutor__slot--b {
+  grid-row: 3;
+  grid-column: 3 / span 2;
+  background: var(--orange-tint);
+  border-left: 0.3em solid var(--orange);
+}
+
+.sv-tutor__slot--c {
+  grid-row: 4;
+  grid-column: 2 / span 3;
+  background: var(--paper);
+  border-left: 0.3em solid var(--ink);
+}
+
+.sv-tutor__foot {
   display: flex;
   align-items: center;
   gap: 0.8em;
-  font-size: 0.75em;
-}
-
-/* One look per concept, from the palette tokens only. */
-.sv-mini--salon {
-  --mini-tile: var(--white);
-  background: var(--orange-tint);
-}
-
-.sv-mini--hardware .sv-mini__bar {
-  border-bottom: 0;
-  background: var(--blue-deep);
-  color: var(--white);
-}
-
-.sv-mini--restaurant {
-  --mini-rule: var(--rule-on-dark);
-  background: var(--blue-deep);
-  color: var(--white);
-}
-
-.sv-mini--agro {
-  --mini-tile: var(--white);
-  background: var(--blue-tint);
-}
-
-.sv-mini--agro .sv-mini__btn {
-  background: var(--blue);
-  color: var(--white);
-}
-
-.sv-mini--tutoring {
-  background: var(--paper);
-}
-
-.sv-mini--tutoring .sv-mini__bar {
-  border-bottom: 0;
-  background: var(--blue);
-  color: var(--white);
+  font-size: 0.72em;
+  font-weight: 600;
 }
 
 /* The words next to each mini-site. The label is always shown: these are not clients. */

@@ -1,4 +1,4 @@
-// Mobile showcase (Lane D): the five concept demos are a native swipe row (CSS scroll-snap, the
+// Mobile showcase (Lane D): the six showcase panels are a native swipe row (CSS scroll-snap, the
 // next panel peeks in at the edge). No pinning and no scroll hijacking. This file only adds the
 // dot indicators under the row and keeps the current dot in step with the swipe.
 //

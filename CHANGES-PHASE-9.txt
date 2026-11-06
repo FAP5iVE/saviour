@@ -1,0 +1,13 @@
+Phase 9 (showcase redesign, live project, analytics prep, Google guide), Fri 6 Nov 2026.
+Unzip over your copy, keeping the paths.
+
+SHOWCASE: six panels. SMS Malawi (live project, first) plus five concept demos, each with its own
+          layout and palette. index.html, css/base.css, css/tokens.css (--demo-* tokens), js/core/form.js.
+ANALYTICS: _headers (CSP allows Cloudflare Web Analytics) and privacy.html (one paragraph). Switch it on
+          in Cloudflare after launch.
+NEW:      docs/10-FIND-US-ON-GOOGLE-AND-ANALYTICS.md, CHANGES-PHASE-9.txt
+CHANGED:  index.html, css/base.css, css/tokens.css, js/core/form.js, js/*/showcase-*.js (comments),
+          _headers, privacy.html, docs/00, 03, 08, HANDOFF
+
+STILL NEEDED FROM YOU: the Facebook page address, a screenshot of SMS Malawi (optional), the domain,
+Lighthouse and a real-phone test.

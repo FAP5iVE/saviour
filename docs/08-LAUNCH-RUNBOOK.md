@@ -80,8 +80,7 @@ Done when: `https://yourdomain/` opens, the other form (www or bare) redirects t
 1. **Google Search Console:** add the site (a Domain property is verified with one DNS TXT record), then submit `https://yourdomain/sitemap.xml`.
 2. **Google Business Profile:** create or claim it for the Blantyre address, with the same name, phone and the site link. This needs the street address and opening days.
 3. **Uptime monitor:** a free monitor (for example UptimeRobot or Better Stack; check their current free limits) that checks the home page every 5 minutes and emails you.
-4. **Analytics (optional, decide first).** The privacy page says the site uses no analytics. If you turn on Cloudflare Web Analytics you must
-   (a) add the two allowed addresses listed in the comments at the top of `_headers`, (b) add one line to `privacy.html`, and (c) re-run `npm run csp:check`.
+4. **Analytics: Cloudflare Web Analytics (prepared in the repo, 6 Nov 2026).** The security headers and the privacy page already allow and describe it. It only counts visits once you switch it on in Cloudflare: see `docs/10-FIND-US-ON-GOOGLE-AND-ANALYTICS.md`.
 5. **Real social links** into the footer and JSON-LD `sameAs`, only for profiles that exist.
 
 ## 8. Rollback

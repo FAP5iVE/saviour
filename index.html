@@ -849,8 +849,8 @@
         <div class="sv-showcase__head">
           <h2 id="showcase-title" class="sv-section__title">Business showcase</h2>
           <p class="sv-showcase__lead" data-reveal>
-            Five concept demos, each built in code to show what a small-business site can do. None
-            of them is a real client.
+            One live project and five concept demos. The demos are built in code to show what a
+            small-business site can do. None of them is a real client.
           </p>
         </div>
 
@@ -858,32 +858,74 @@
           class="sv-showcase__viewport"
           data-showcase-viewport
           role="region"
-          aria-label="Concept demos. Scroll sideways to see all five."
+          aria-label="Live project and concept demos. Scroll sideways to see all six."
           tabindex="0"
         >
           <ul class="sv-showcase__track" data-showcase-track>
             <li class="sv-demo" data-showcase-panel>
-              <div class="sv-demo__screen" aria-hidden="true" data-cursor="view">
-                <div class="sv-mini sv-mini--salon" data-showcase-page>
-                  <div class="sv-mini__bar">
-                    <span class="sv-mini__brand">Hair and beauty studio</span>
-                    <span class="sv-mini__links">
-                      <span class="sv-skel sv-skel--s"></span><span class="sv-skel sv-skel--s"></span>
-                    </span>
+              <div class="sv-demo__screen" aria-hidden="true">
+                <div class="sv-mini sv-mini--school" data-showcase-page>
+                  <div class="sv-school__top"><span>Login Portal</span></div>
+                  <div class="sv-school__nav">
+                    <span class="sv-mini__brand">SMS Malawi</span>
+                    <span class="sv-mini__links"><span class="sv-skel sv-skel--s"></span><span class="sv-skel sv-skel--s"></span><span class="sv-skel sv-skel--s"></span></span>
                   </div>
-                  <div class="sv-mini__hero">
-                    <p class="sv-mini__title">Book your next visit on WhatsApp.</p>
-                    <span class="sv-mini__btn">Book on WhatsApp</span>
+                  <div class="sv-school__photo">
+                    <span class="sv-school__hall"></span>
+                    <p class="sv-school__title">Secondary education, Form 1 through MSCE.</p>
+                    <span class="sv-school__btn">Apply for Admission</span>
                   </div>
-                  <ul class="sv-mini__rows">
-                    <li class="sv-mini__row"><span>Braiding</span><span class="sv-skel sv-skel--m"></span></li>
-                    <li class="sv-mini__row"><span>Cut and style</span><span class="sv-skel sv-skel--m"></span></li>
-                    <li class="sv-mini__row"><span>Nails</span><span class="sv-skel sv-skel--m"></span></li>
+                  <ul class="sv-school__quick">
+                    <li>Admissions</li><li>Academics</li><li>News</li><li>Results</li>
                   </ul>
-                  <div class="sv-mini__tiles sv-mini__tiles--3">
-                    <span class="sv-mini__tile"></span><span class="sv-mini__tile"></span><span class="sv-mini__tile"></span>
+                </div>
+              </div>
+              <div class="sv-demo__text">
+                <p class="sv-demo__label">Live project, shown with demo data.</p>
+                <h3 class="sv-demo__name">SMS Malawi school management system</h3>
+                <p class="sv-demo__does">
+                  A website and management system for a secondary school, with an admissions form, an exam results page and a login portal for students and staff.
+                </p>
+                <ul class="sv-demo__features">
+                  <li>Admissions application</li>
+                  <li>Exam results page</li>
+                  <li>Student and staff login</li>
+                  <li>News and announcements</li>
+                  <li>Contact form and map</li>
+                </ul>
+                <a
+                  class="sv-link-quiet"
+                  href="https://sms-malawi.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Visit the live site<span class="sv-sr"> (SMS Malawi, opens in a new tab)</span>
+                  <svg class="sv-icon" aria-hidden="true">
+                    <use href="assets/icons/sprite.svg#arrow-right"></use>
+                  </svg>
+                </a>
+                <a class="sv-link-quiet" href="#contact" data-demo="school" data-demo-live>
+                  Ask for a site like this<span class="sv-sr"> (SMS Malawi school management system)</span>
+                  <svg class="sv-icon" aria-hidden="true">
+                    <use href="assets/icons/sprite.svg#arrow-right"></use>
+                  </svg>
+                </a>
+              </div>
+            </li>
+
+            <li class="sv-demo" data-showcase-panel>
+              <div class="sv-demo__screen" aria-hidden="true">
+                <div class="sv-mini sv-mini--salon" data-showcase-page>
+                  <span class="sv-salon__brand">Hair and beauty studio</span>
+                  <div class="sv-salon__main">
+                    <div class="sv-salon__copy">
+                      <p class="sv-salon__title">Book your next visit on WhatsApp.</p>
+                      <span class="sv-salon__btn">Book on WhatsApp</span>
+                      <ul class="sv-salon__chips"><li>Braiding</li><li>Cut and style</li><li>Nails</li></ul>
+                    </div>
+                    <div class="sv-salon__art"><span class="sv-salon__arch"></span><span class="sv-salon__dot"></span></div>
                   </div>
-                  <p class="sv-mini__foot"><span>Opening hours</span><span class="sv-skel sv-skel--l"></span></p>
+                  <p class="sv-salon__foot"><span>Opening hours</span><span class="sv-skel sv-skel--l"></span></p>
                 </div>
               </div>
               <div class="sv-demo__text">
@@ -908,27 +950,13 @@
             </li>
 
             <li class="sv-demo" data-showcase-panel>
-              <div class="sv-demo__screen" aria-hidden="true" data-cursor="view">
+              <div class="sv-demo__screen" aria-hidden="true">
                 <div class="sv-mini sv-mini--hardware" data-showcase-page>
-                  <div class="sv-mini__bar">
-                    <span class="sv-mini__brand">Hardware and building supplies</span>
-                    <span class="sv-mini__links">
-                      <span class="sv-skel sv-skel--s"></span><span class="sv-skel sv-skel--s"></span>
-                    </span>
-                  </div>
-                  <div class="sv-mini__hero">
-                    <p class="sv-mini__title">Ask for a price on WhatsApp.</p>
-                    <span class="sv-mini__btn">Ask for a price</span>
-                  </div>
-                  <div class="sv-mini__tiles sv-mini__tiles--3">
-                    <span class="sv-mini__tile"><span>Cement and sand</span></span>
-                    <span class="sv-mini__tile"><span>Roofing</span></span>
-                    <span class="sv-mini__tile"><span>Paint</span></span>
-                    <span class="sv-mini__tile"><span>Tools</span></span>
-                    <span class="sv-mini__tile"><span>Plumbing</span></span>
-                    <span class="sv-mini__tile"><span>Electrical</span></span>
-                  </div>
-                  <p class="sv-mini__foot"><span>Location and hours</span><span class="sv-skel sv-skel--l"></span></p>
+                  <div class="sv-hw__bar"><span class="sv-hw__brand">Hardware and building supplies</span><span class="sv-hw__ask">Ask for a price</span></div>
+                  <p class="sv-hw__title">Ask for a price on WhatsApp.</p>
+                  <span class="sv-hw__stripe"></span>
+                  <ul class="sv-hw__grid"><li><b>01</b>Cement and sand</li><li><b>02</b>Roofing</li><li><b>03</b>Paint</li><li><b>04</b>Tools</li><li><b>05</b>Plumbing</li><li><b>06</b>Electrical</li></ul>
+                  <p class="sv-hw__foot"><span>Location and hours</span><span class="sv-skel sv-skel--l"></span></p>
                 </div>
               </div>
               <div class="sv-demo__text">
@@ -952,31 +980,25 @@
             </li>
 
             <li class="sv-demo" data-showcase-panel>
-              <div class="sv-demo__screen" aria-hidden="true" data-cursor="view">
+              <div class="sv-demo__screen" aria-hidden="true">
                 <div class="sv-mini sv-mini--restaurant" data-showcase-page>
-                  <div class="sv-mini__bar">
-                    <span class="sv-mini__brand">Restaurant and takeaway</span>
-                    <span class="sv-mini__links">
-                      <span class="sv-skel sv-skel--s"></span><span class="sv-skel sv-skel--s"></span>
-                    </span>
-                  </div>
-                  <div class="sv-mini__hero">
-                    <p class="sv-mini__title">Order by WhatsApp.</p>
-                    <span class="sv-mini__btn">Order now</span>
-                  </div>
-                  <ul class="sv-mini__rows">
-                    <li class="sv-mini__row"><span>Starters</span><span class="sv-skel sv-skel--m"></span></li>
-                    <li class="sv-mini__row"><span>Mains</span><span class="sv-skel sv-skel--m"></span></li>
-                    <li class="sv-mini__row"><span>Drinks</span><span class="sv-skel sv-skel--m"></span></li>
+                  <p class="sv-resto__brand">Restaurant and takeaway</p>
+                  <p class="sv-resto__title">Order by WhatsApp.</p>
+                  <ul class="sv-resto__menu">
+                    <li><span>Starters</span><i></i><span class="sv-skel sv-skel--m"></span></li>
+                    <li><span>Mains</span><i></i><span class="sv-skel sv-skel--m"></span></li>
+                    <li><span>Drinks</span><i></i><span class="sv-skel sv-skel--m"></span></li>
                   </ul>
-                  <p class="sv-mini__foot"><span>Delivery area</span><span class="sv-skel sv-skel--l"></span></p>
-                  <p class="sv-mini__foot"><span>Opening hours</span><span class="sv-skel sv-skel--l"></span></p>
+                  <span class="sv-resto__btn">Order now</span>
+                  <p class="sv-resto__foot"><span>Delivery area</span><span>Opening hours</span></p>
                 </div>
               </div>
               <div class="sv-demo__text">
                 <p class="sv-demo__label">Concept demo, not a client.</p>
                 <h3 class="sv-demo__name">Restaurant and takeaway</h3>
-                <p class="sv-demo__does">A menu customers can read and order from by WhatsApp.</p>
+                <p class="sv-demo__does">
+                  A menu customers can read and order from by WhatsApp.
+                </p>
                 <ul class="sv-demo__features">
                   <li>Menu</li>
                   <li>Order by WhatsApp</li>
@@ -993,32 +1015,32 @@
             </li>
 
             <li class="sv-demo" data-showcase-panel>
-              <div class="sv-demo__screen" aria-hidden="true" data-cursor="view">
+              <div class="sv-demo__screen" aria-hidden="true">
                 <div class="sv-mini sv-mini--agro" data-showcase-page>
-                  <div class="sv-mini__bar">
-                    <span class="sv-mini__brand">Farm produce and agro-dealer</span>
-                    <span class="sv-mini__links">
-                      <span class="sv-skel sv-skel--s"></span><span class="sv-skel sv-skel--s"></span>
-                    </span>
+                  <div class="sv-agro__side">
+                    <span class="sv-agro__brand">Farm produce and agro-dealer</span>
+                    <span class="sv-agro__btn">Bulk enquiry</span>
+                    <span class="sv-agro__links"><span class="sv-skel sv-skel--s"></span><span class="sv-skel sv-skel--s"></span><span class="sv-skel sv-skel--s"></span></span>
                   </div>
-                  <div class="sv-mini__hero">
-                    <p class="sv-mini__title">Produce in season, ready to order.</p>
-                    <span class="sv-mini__btn">Bulk enquiry</span>
+                  <div class="sv-agro__main">
+                    <p class="sv-agro__title">Produce in season, ready to order.</p>
+                    <div class="sv-agro__cal">
+                      <p class="sv-agro__months"><span>J</span><span>F</span><span>M</span><span>A</span><span>M</span><span>J</span><span>J</span><span>A</span><span>S</span><span>O</span><span>N</span><span>D</span></p>
+                      <p class="sv-agro__line"><span>Maize</span><span class="sv-agro__bar"><i class="sv-agro__on sv-agro__on--a"></i></span></p>
+                      <p class="sv-agro__line"><span>Groundnuts</span><span class="sv-agro__bar"><i class="sv-agro__on sv-agro__on--b"></i></span></p>
+                      <p class="sv-agro__line"><span>Beans</span><span class="sv-agro__bar"><i class="sv-agro__on sv-agro__on--c"></i></span></p>
+                      <p class="sv-agro__line"><span>Tomatoes</span><span class="sv-agro__bar"><i class="sv-agro__on sv-agro__on--d"></i></span></p>
+                      <p class="sv-agro__line"><span>Cassava</span><span class="sv-agro__bar"><i class="sv-agro__on sv-agro__on--e"></i></span></p>
+                    </div>
+                    <p class="sv-agro__foot"><span>Delivery and collection</span><span class="sv-skel sv-skel--m"></span></p>
                   </div>
-                  <ul class="sv-mini__rows">
-                    <li class="sv-mini__row"><span>Maize</span><span class="sv-skel sv-skel--m"></span></li>
-                    <li class="sv-mini__row"><span>Groundnuts</span><span class="sv-skel sv-skel--m"></span></li>
-                    <li class="sv-mini__row"><span>Beans</span><span class="sv-skel sv-skel--m"></span></li>
-                  </ul>
-                  <p class="sv-mini__foot"><span>Delivery and collection</span><span class="sv-skel sv-skel--l"></span></p>
                 </div>
               </div>
               <div class="sv-demo__text">
                 <p class="sv-demo__label">Concept demo, not a client.</p>
                 <h3 class="sv-demo__name">Farm produce and agro-dealer</h3>
                 <p class="sv-demo__does">
-                  A product list that shows what is in season, with an enquiry form for bulk
-                  buyers.
+                  A product list that shows what is in season, with an enquiry form for bulk buyers.
                 </p>
                 <ul class="sv-demo__features">
                   <li>Product list with seasons</li>
@@ -1035,27 +1057,17 @@
             </li>
 
             <li class="sv-demo" data-showcase-panel>
-              <div class="sv-demo__screen" aria-hidden="true" data-cursor="view">
+              <div class="sv-demo__screen" aria-hidden="true">
                 <div class="sv-mini sv-mini--tutoring" data-showcase-page>
-                  <div class="sv-mini__bar">
-                    <span class="sv-mini__brand">Private tutoring and training</span>
-                    <span class="sv-mini__links">
-                      <span class="sv-skel sv-skel--s"></span><span class="sv-skel sv-skel--s"></span>
-                    </span>
+                  <div class="sv-tutor__head"><span class="sv-tutor__tab">Private tutoring and training</span><span class="sv-tutor__btn">Enrol</span></div>
+                  <p class="sv-tutor__title">Lessons that fit your week.</p>
+                  <div class="sv-tutor__table">
+                    <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span>
+                    <span class="sv-tutor__slot sv-tutor__slot--a">Mathematics</span>
+                    <span class="sv-tutor__slot sv-tutor__slot--b">English</span>
+                    <span class="sv-tutor__slot sv-tutor__slot--c">Computer skills</span>
                   </div>
-                  <div class="sv-mini__hero">
-                    <p class="sv-mini__title">Lessons that fit your week.</p>
-                    <span class="sv-mini__btn">Enrol</span>
-                  </div>
-                  <ul class="sv-mini__rows">
-                    <li class="sv-mini__row"><span>Mathematics</span><span class="sv-skel sv-skel--m"></span></li>
-                    <li class="sv-mini__row"><span>English</span><span class="sv-skel sv-skel--m"></span></li>
-                    <li class="sv-mini__row"><span>Computer skills</span><span class="sv-skel sv-skel--m"></span></li>
-                  </ul>
-                  <div class="sv-mini__week">
-                    <span>M</span><span>T</span><span>W</span><span>T</span><span>F</span>
-                  </div>
-                  <p class="sv-mini__foot"><span>Parent contact</span><span class="sv-skel sv-skel--l"></span></p>
+                  <p class="sv-tutor__foot"><span>Parent contact</span><span class="sv-skel sv-skel--l"></span></p>
                 </div>
               </div>
               <div class="sv-demo__text">

@@ -89,6 +89,29 @@
   /* Hero: flat blue-deep veil over the poster or video (no gradient) */
   --veil: var(--blue-deep);
   --veil-opacity: 0.62;
+
+  /* Concept-demo palettes (phase 9). These colour the mini-sites in the showcase, which stand in for
+     other businesses' sites. They are not part of our own palette. The school colours are the
+     brand colours of the SMS Malawi app (dark navy, navy and teal blue). */
+  --demo-school: #0b1d33;
+  --demo-school-soft: #2e86ab;
+  --demo-school-line: #1e3a5f;
+  --demo-salon-bg: #f8e7e0;
+  --demo-salon-ink: #3a1e1a;
+  --demo-salon-accent: #c4553b;
+  --demo-salon-soft: #edbbaa;
+  --demo-hw-yellow: #ffc20e;
+  --demo-hw-ink: #121212;
+  --demo-hw-grey: #efeee9;
+  --demo-resto-bg: #2b1210;
+  --demo-resto-cream: #f5e8d4;
+  --demo-resto-gold: #d9a441;
+  --demo-agro-deep: #24512f;
+  --demo-agro-pale: #eef2de;
+  --demo-agro-mid: #7daa5b;
+  --demo-agro-sun: #e3a72f;
+  --demo-tutor-paper: #fffcef;
+  --demo-tutor-grid: #d6e2fa;
 }
 
 @media (min-width: 1024px) {

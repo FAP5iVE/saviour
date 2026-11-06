@@ -15,6 +15,23 @@ Template:
 
 Also list here every item still marked `[TBC]` or `[DRAFT-EDIT]` that the owner must supply.
 
+## Update 6 Nov 2026 (evening): phase 9 (showcase redesign, live project, analytics, Google guide)
+
+**Done:**
+- **Showcase redesigned.** The five concept demos no longer share one template. Each has its own layout, type treatment and palette: salon (blush, arch and circle, rounded buttons), hardware (hazard yellow and black, numbered grid), restaurant (dark, centred, dotted menu), farm produce (side column and a season calendar), tutoring (squared paper and a weekly timetable). Still HTML and CSS only, no images, hidden from screen readers, "Concept demo, not a client." on each. Colours come from new `--demo-*` tokens in `tokens.css` (they colour the pretend client sites, not ours). CSS is in `css/base.css`, block "The mini-site frame".
+- **Live project added, first in the row: SMS Malawi** (https://sms-malawi.vercel.app/), labelled "Live project." with a "Visit the live site" link (new tab, `rel="noopener noreferrer"`) and its own "Ask for a site like this" button that pre-fills the form ("I would like a site like the SMS Malawi school website."; `data-demo-live` in `form.js`). The copy uses only what the live page shows. The panel picture is a **drawing** in the school's navy (the live site's theme colour), because this environment could not open the site to screenshot it. The showcase now has six panels; the lead text, aria-label, progress dots and pin all follow.
+- **Privacy-friendly analytics prepared:** Cloudflare Web Analytics. `_headers` CSP allows `static.cloudflareinsights.com` (script) and `cloudflareinsights.com` (connect); `privacy.html` "Cookies" paragraph now says visits are counted without cookies. Nothing is added to the page; it only counts once the owner switches it on in Cloudflare (Pages, Metrics, Web Analytics). If it is never switched on, the privacy page overstates, so switch it on at launch or revert both changes.
+- **New guide:** `docs/10-FIND-US-ON-GOOGLE-AND-ANALYTICS.md` (Google Business Profile, Search Console, analytics, Facebook). `docs/08` item 4 points to it.
+
+**Checked in Chromium:** all six panels at 375 and 1440 px (contact sheets); desktop pin runs through all six (pin distance 4598 px), progress line fills; mode swap 1400, 375, 1400, 900, 1400 (3 spacers on desktop, 0 on mobile, no sideways scroll); 6 progress dots on phones; every showcase link 44 px or more; no console errors; the live-project button pre-fills the form. `npm run qa`: 0 failures (3 launch warnings). `npm run csp:check`: OK. **Not run:** Lighthouse after the showcase change (the new CSS adds a few KB), real phone, Prettier.
+
+**SMS Malawi follow-up (6 Nov 2026, 23:00):** the live site could not be opened from this environment (the proxy refuses vercel.app, 403), so there is still **no real screenshot**. The public GitHub repo `FAP5iVE/sms-malawi` cloned, but it is a Next.js app that needs a package install, a database and keys, which this session cannot do. The login given in chat was **not used**. What was learned from the repo: it is a school management system by 5iveStack Labs, shown with a demo school ("Chikangawa Hills Academy") and demo data; the hero photo (students in uniform) looks AI-generated, so it is **not** used on this site. The drawing now uses the app's real brand colours (`#1e3a5f` navy, `#2e86ab` teal blue) and the panel says "Live project, shown with demo data." To get a real picture: send 1 or 2 screenshots of the public home page (not the admin area), and Claude will compress them to WebP and put them in the panel. The password shared in chat should be changed.
+
+**Owner to do:**
+1. **Facebook:** send the page's full web address. It goes in the footer and the JSON-LD `sameAs`. It is **not** added yet because no address was supplied and none can be guessed.
+2. **SMS Malawi:** send a real screenshot (and permission to show it) if you want the drawing replaced; confirm the "5iveStack Labs" credit on that site is fine; confirm the exam results page has data before relying on it as proof (it showed "Data unavailable" when the page was read).
+3. After launch: do `docs/10` (Google Business Profile, Search Console, switch on analytics).
+
 ## Update 6 Nov 2026 (night): phase 8 (owner corrections and footer)
 
 **Done (owner's requests, no new section):**

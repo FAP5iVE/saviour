@@ -118,9 +118,11 @@ Draft terms to settle `[DRAFT-EDIT]`:
 
 **What goes on the public site until you confirm:** only "Pay in instalments. We agree a payment plan in your written quote." The numbers above live in your quote, not on the page.
 
-## 6. Business showcase: five concept demos
+## 6. Business showcase: one live project and five concept demos
 
-Always labelled **"Concept demo, not a client."** Use generic descriptors, not invented business names, so we never clash with a real Malawian business.
+**Live project (added 6 Nov 2026):** SMS Malawi, a school management system and website (by 5iveStack Labs, shown with a demo school) at https://sms-malawi.vercel.app/, labelled "Live project, shown with demo data." and shown first. Its copy lists only what the live page shows (admissions application, exam results page, student and staff login, news and announcements, contact form and map). The picture beside it is a drawing in the school's navy, not a screenshot. The live site's footer credits "5iveStack Labs"; the owner should confirm that is fine next to the Saviour Digital Solutions name.
+
+The five concept demos are always labelled **"Concept demo, not a client."** Use generic descriptors, not invented business names, so we never clash with a real Malawian business.
 
 | # | Concept | Features it demonstrates |
 |---|---|---|

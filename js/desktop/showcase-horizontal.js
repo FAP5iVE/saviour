@@ -1,4 +1,4 @@
-// Desktop showcase (Lane D): the section pins to the screen and the five concept demos slide
+// Desktop showcase (Lane D): the section pins to the screen and the six showcase panels slide
 // sideways as you scroll down. A thin line fills as you go, and the mini-site inside each panel
 // drifts a few pixels the other way (a small parallax). Transform only.
 //

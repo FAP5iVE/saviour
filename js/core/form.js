@@ -329,7 +329,14 @@ export function initForm() {
 
   function chooseDemo(slug, link) {
     const name = link.closest('.sv-demo__text')?.querySelector('.sv-demo__name')?.textContent;
-    if (name) fillMessage(`I would like a site like the ${lowerFirst(tidy(name))} concept.`);
+    const live = link.hasAttribute('data-demo-live'); // a real project, not a concept
+    if (name) {
+      fillMessage(
+        live
+          ? `I would like a site like the ${tidy(name)}.`
+          : `I would like a site like the ${lowerFirst(tidy(name))} concept.`,
+      );
+    }
     setSource(`demo:${slug}`);
     setNote('We added a line to your message. Change it if you like.');
   }
