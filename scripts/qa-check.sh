@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Saviour Digital Solutions: QA check for the static site.
-# Usage:  bash scripts/qa-check.sh [project-root]
+# Usage:  bash scripts/qa-check.sh [project-root] [--launch]
 # Exit code 0 = no failures (warnings allowed). Exit code 1 = at least one failure.
 
 ROOT="${1:-.}"
@@ -9,7 +9,7 @@ export LC_ALL=C.UTF-8
 FAILS=0
 WARNS=0
 
-EXCLUDES=(--exclude-dir=vendor --exclude-dir=node_modules --exclude-dir=docs --exclude-dir=.git --exclude-dir=scripts)
+EXCLUDES=(--exclude-dir=vendor --exclude-dir=node_modules --exclude-dir=docs --exclude-dir=.git --exclude-dir=scripts --exclude-dir=dist)
 
 fail() { echo "FAIL: $1"; FAILS=$((FAILS+1)); }
 warn() { echo "WARN: $1"; WARNS=$((WARNS+1)); }
@@ -115,14 +115,21 @@ if [ -f "$ROOT/index.html" ]; then
   grep -qiE 'name=["'"'"']description["'"'"']' "$ROOT/index.html" || warn 'index.html: missing meta description'
 fi
 
-# 13. Launch gates. These are warnings while the owner's details are missing. On launch day,
-#     change warn to fail here (see docs/HANDOFF.md, "Before launch").
+# 13. Launch gates. Warnings while the owner's details are missing (so everyday runs stay at 0
+#     failures). Run  bash scripts/qa-check.sh . --launch  (or  npm run qa:launch)  on launch day:
+#     the same checks then fail, and the real domain and the robots.txt Sitemap line are required.
+LAUNCH_LEVEL=warn
+{ [ "${LAUNCH:-0}" = "1" ] || [ "${2:-}" = "--launch" ]; } && LAUNCH_LEVEL=fail
 if [ -f "$ROOT/index.html" ]; then
   grep -qE 'name="access_key"[[:space:]]+value="[^"]+"' "$ROOT/index.html" \
-    || warn 'Contact form: the Web3Forms access_key in index.html is empty, so the form cannot send yet'
+    || "$LAUNCH_LEVEL" 'Contact form: the Web3Forms access_key in index.html is empty, so the form cannot send yet'
 fi
-run_grep warn 'REPLACE-WITH-DOMAIN is still in the site files (set the real domain before launch)' \
+run_grep "$LAUNCH_LEVEL" 'REPLACE-WITH-DOMAIN is still in the site files (set the real domain before launch)' \
   --include='*.html' --include='*.xml' --include='*.txt' -e 'REPLACE-WITH-DOMAIN'
+if [ -f "$ROOT/robots.txt" ]; then
+  grep -qE '^Sitemap:[[:space:]]*https://[^[:space:]]+/sitemap\.xml' "$ROOT/robots.txt" \
+    || "$LAUNCH_LEVEL" 'robots.txt has no active "Sitemap: https://<domain>/sitemap.xml" line'
+fi
 
 echo
 echo "Result: $FAILS failure(s), $WARNS warning(s)."

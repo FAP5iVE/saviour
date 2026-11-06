@@ -130,3 +130,11 @@ With reduced motion: no loader, no Lenis, no pinning, no parallax, no scrubbing,
 - [ ] Back/forward and anchor-link jumps land correctly
 - [ ] Video pauses off-screen; no sound; `playsinline` set
 - [ ] No console errors; no layout shift above 0.1 CLS
+
+## 11. As built (phase 6, 6 Nov 2026)
+
+- **Loader:** `js/core/loader.js`. Two blue outlines draw (DrawSVG), fill, the finished `favicon.svg` fades in over them, a paper curtain slides up. About 1.25 s desktop, 1.0 s phone. First visit of a session; never with reduced motion. Timings in `MOTION.loader`.
+- **Folds:** `js/desktop/fold.js`. Fold 1 is Hero to About. **Fold 2 is FAQ to Contact** (the FAQ sits between Why and Contact on the page). Both use `pin: true, pinSpacing: false` and scrub; the FAQ is pinned by its bottom edge. Phones fade and rise (`data-reveal`) instead.
+- **Cursor and magnetic button:** `js/desktop/cursor.js`, `js/desktop/magnetic.js`. Fine pointer, desktop layout, no reduced motion. The pull uses the `translate` property through `--mx`/`--my` so it never fights the button's `transform`.
+- **Refresh:** `js/core/refresh.js` measures again after fonts and the page `load`.
+- **Not built:** footer wordmark drift.

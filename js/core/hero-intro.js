@@ -9,6 +9,7 @@
 
 import { gsap, SplitText } from '../../assets/vendor/vendor.js';
 import { prefersReducedMotion } from './env.js';
+import { introGate } from './loader.js';
 import { MOTION } from './motion-tokens.js';
 
 const DONE_CLASS = 'sv-intro-done';
@@ -32,7 +33,8 @@ export function initHeroIntro() {
   const ctx = gsap.context(() => {});
 
   // Lines are measured after the fonts load, otherwise they would break in the wrong places.
-  const ready = document.fonts?.ready ?? Promise.resolve();
+  // On a first visit the entrance also waits for the loader curtain to start clearing.
+  const ready = Promise.all([document.fonts?.ready ?? Promise.resolve(), introGate()]);
   ready.then(() => {
     if (cancelled) return;
     ctx.add(() => {

@@ -74,12 +74,12 @@ Read these plan files in `docs/` (or the plan folder) before you write code. Do 
 | Lane | Owns (only this lane edits these) |
 |---|---|
 | **A. Foundation** | `css/tokens.css`, `css/base.css`, `js/boot.js`, `js/core/env.js`, `js/core/motion-tokens.js`, `index.html` skeleton and head/meta, `_headers`, `robots.txt`, `sitemap.xml` |
-| **B. Nav, hero, loader, fold** | nav and hero markup blocks, `js/core/nav.js`, `js/core/hero-video.js`, `js/desktop/fold.js`, `js/desktop/smooth-scroll.js`, `js/mobile/menu-sheet.js`, `js/mobile/action-bar.js`, `js/core/hero-intro.js`, `js/desktop/header-scroll.js`, `js/desktop/hero-scroll.js`, `js/desktop/section-rail.js` |
+| **B. Nav, hero, loader, fold** | nav and hero markup blocks, `js/core/nav.js`, `js/core/hero-video.js`, `js/desktop/fold.js`, `js/desktop/smooth-scroll.js`, `js/mobile/menu-sheet.js`, `js/mobile/action-bar.js`, `js/core/hero-intro.js`, `js/desktop/header-scroll.js`, `js/core/loader.js`, `js/core/refresh.js`, `js/desktop/cursor.js`, `js/desktop/magnetic.js`, `js/desktop/section-rail.js` |
 | **C. About, team, services, packages** | those markup blocks, `js/desktop/scrub-text.js`, `js/desktop/services-hover.js`, `js/mobile/services-accordion.js` |
 | **D. Showcase, why, FAQ** | those markup blocks, `js/desktop/showcase-horizontal.js`, `js/mobile/showcase-swipe.js` |
 | **E. Contact, form, privacy, SEO** | contact block, `js/core/form.js`, `privacy.html`, `404.html`, JSON-LD, meta |
 | **F. Layout CSS (per mode)** | `css/desktop.css` and `css/mobile.css`, split by clearly commented `/* === SECTION: name === */` blocks so lanes don't collide |
-| **G. QA and release** | `scripts/qa-check.sh`, Lighthouse reports, deploy config |
+| **G. QA and release** | `scripts/qa-check.sh`, `scripts/launch-fill.mjs`, Lighthouse reports, deploy config |
 
 If you need a change in a file you don't own, **don't edit it**. Write the request in `docs/HANDOFF.md` (what, why, exact selector or function), and continue.
 
@@ -166,7 +166,7 @@ Custom inline SVG icons only. AVIF with WebP fallback, `srcset`, explicit `width
    ```bash
    bash <path-to-this-skill>/scripts/qa-check.sh .
    ```
-   It must exit 0. It catches the main banned words, not every one (for example "journey" as a metaphor); read the copy yourself against section 8 as well. It checks: dead links, empty links, emoji, banned words, lorem ipsum, leftover `[TBC]`, `[DRAFT-EDIT]` or TODO, images without alt, CDN tags, `console.log`, core-imports-mode violations, hard-coded hex colours outside tokens, missing `lang` and viewport. Warnings need a reason in your notes; failures must be fixed.
+   It must exit 0. It catches the main banned words, not every one (for example "journey" as a metaphor); read the copy yourself against section 8 as well. It checks: dead links, empty links, emoji, banned words, lorem ipsum, leftover `[TBC]`, `[DRAFT-EDIT]` or TODO, images without alt, CDN tags, `console.log`, core-imports-mode violations, hard-coded hex colours outside tokens, missing `lang` and viewport. Warnings need a reason in your notes; failures must be fixed. On launch day run it as `bash scripts/qa-check.sh . --launch` (`npm run qa:launch`): the empty Web3Forms key, the leftover domain placeholder and a missing `Sitemap:` line in `robots.txt` then fail instead of warn. Fill them with `npm run launch:fill`.
 2. Open the page at 375 px, 768 px and 1440 px. Look at it. Scroll all the way. Resize across 1024 px.
 3. Run Lighthouse (mobile) and record the numbers against the gates above.
 4. Test the form end to end (a real submission arrives) and every `tel:`, `mailto:` and WhatsApp link.

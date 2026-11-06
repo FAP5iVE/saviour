@@ -59,6 +59,8 @@
   --z-sheet: 40;
   --z-action: 45;
   --z-header: 50;
+  --z-loader: 60;
+  --z-cursor: 70;
 
   /* Shape and motion (CSS side; JS durations live in js/core/motion-tokens.js) */
   --radius: 0.25rem;
@@ -72,6 +74,16 @@
   --t-reveal: 700ms;
   --t-fade-out: 210ms; /* exits run at about 70% of the entrance */
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Motion pass (phase 6): loader and custom cursor.
+     --logo-blue repeats the blue of assets/img/favicon.svg so the loader outline matches the logo
+     file exactly. Change it when the final logo lands. */
+  --logo-blue: #0047ab;
+  --loader-mark: clamp(6rem, 4rem + 8vw, 9rem);
+  --cursor-dot: 0.5rem;
+  --cursor-ring: 2.25rem;
+  --cursor-line: 1.5px;
+  --cursor-label: 0.8125rem;
 
   /* Hero: flat blue-deep veil over the poster or video (no gradient) */
   --veil: var(--blue-deep);

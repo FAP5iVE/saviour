@@ -18,7 +18,9 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "qa": "bash scripts/qa-check.sh .",
+    "qa:launch": "bash scripts/qa-check.sh . --launch",
     "csp:check": "node scripts/csp-check.mjs",
+    "launch:fill": "node scripts/launch-fill.mjs",
     "check": "npm run lint && npm run csp:check && npm run qa",
     "lighthouse": "npx --yes lighthouse http://localhost:3000 --form-factor=mobile --only-categories=performance,accessibility,best-practices,seo --view",
     "deps:outdated": "npm outdated"

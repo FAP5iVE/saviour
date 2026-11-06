@@ -8,7 +8,7 @@
     </title>
     <meta
       name="description"
-      content="Saviour Digital Solutions build digital footprint for small businesses and new entrepreneurs in Blantyre, Malawi."
+      content="Websites, data collection and digital marketing for small businesses and new entrepreneurs in Blantyre, Malawi. Request a quote."
     />
     <meta name="theme-color" content="#FAF9F6" />
 
@@ -29,7 +29,7 @@
     />
     <meta
       property="og:description"
-      content="Saviour Digital Solutions build digital footprint for small businesses and new entrepreneurs in Blantyre, Malawi."
+      content="Websites, data collection and digital marketing for small businesses and new entrepreneurs in Blantyre, Malawi. Request a quote."
     />
     <meta property="og:image" content="https://REPLACE-WITH-DOMAIN/assets/img/og-image.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
@@ -40,8 +40,8 @@
     <meta name="twitter:image" content="https://REPLACE-WITH-DOMAIN/assets/img/og-image.jpg" />
 
     <!-- Business data for search engines (schema.org). Only facts already on the page: name, phone,
-         town and country. Add "email", "sameAs" (real social profiles only), a street address and
-         "openingHours" here when the owner supplies them. It is a data block, not a running script,
+         email, town and country. Add "sameAs" (real social profiles only), a street address and
+         "openingHours" (needs the days as well as the times) here when the owner supplies them. It is a data block, not a running script,
          so the Content-Security-Policy does not need a hash for it. -->
     <script type="application/ld+json">
       {
@@ -52,8 +52,9 @@
         "url": "https://REPLACE-WITH-DOMAIN/",
         "logo": "https://REPLACE-WITH-DOMAIN/assets/img/logo.svg",
         "image": "https://REPLACE-WITH-DOMAIN/assets/img/og-image.jpg",
-        "description": "Saviour Digital Solutions build digital footprint for small businesses and new entrepreneurs in Blantyre, Malawi.",
+        "description": "Websites, data collection and digital marketing for small businesses and new entrepreneurs in Blantyre, Malawi. Request a quote.",
         "telephone": "+265886023482",
+        "email": "saviourkumalawi@gmail.com",
         "address": {
           "@type": "PostalAddress",
           "addressLocality": "Blantyre",
@@ -63,10 +64,12 @@
       }
     </script>
 
-    <!-- The script below adds the "js" class. It is the ONLY inline script that runs on the site.
-         Its hash is in _headers. If you edit it, run: npm run csp:check -->
+    <!-- The script below adds the "js" class, and the "sv-loading" class on the first visit of a
+         session (so the loader covers the page from the first paint and a returning visitor never
+         sees it flash). Reduced motion never gets the loader. It is the ONLY inline script that
+         runs on the site. Its hash is in _headers. If you edit it, run: npm run csp:check -->
     <!-- prettier-ignore -->
-    <script>document.documentElement.classList.add('js');</script>
+    <script>document.documentElement.classList.add('js');try{if(!sessionStorage.getItem('sv-seen')){sessionStorage.setItem('sv-seen','1');if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('sv-loading');}}catch(e){}</script>
 
     <link
       rel="preload"
@@ -91,6 +94,35 @@
     <script type="module" src="js/boot.js"></script>
   </head>
   <body>
+    <!-- Loader: shown only when the "sv-loading" class is on <html> (first visit, no reduced
+         motion). js/core/loader.js draws the mark, lifts the curtain and removes this block.
+         The mark repeats assets/img/favicon.svg: two blue shapes drawn as outlines, then the
+         finished logo fades in over them. -->
+    <div class="sv-loader" aria-hidden="true" data-loader>
+      <div class="sv-loader__mark" data-loader-mark>
+        <svg class="sv-loader__svg" viewBox="121 64 220 220" focusable="false" data-loader-svg>
+          <path
+            class="sv-loader__shape"
+            data-loader-shape
+            d="M259.00 112.37A14.40 14.40 0 0 1 283.71 102.31L321.62 141.16A39.00 39.00 0 0 1 321.62 195.64L283.71 234.49A14.40 14.40 0 0 1 259.00 224.43Z"
+          />
+          <path
+            class="sv-loader__shape"
+            data-loader-shape
+            d="M203.00 224.43A14.40 14.40 0 0 1 178.29 234.49L140.38 195.64A39.00 39.00 0 0 1 140.38 141.16L178.29 102.31A14.40 14.40 0 0 1 203.00 112.37Z"
+          />
+        </svg>
+        <img
+          class="sv-loader__logo"
+          src="assets/img/favicon.svg"
+          alt=""
+          width="220"
+          height="220"
+          data-loader-logo
+        />
+      </div>
+    </div>
+
     <a class="sv-skip" href="#main">Skip to content</a>
 
     <header class="sv-header" data-header>
@@ -211,7 +243,7 @@
       </section>
 
       <section id="about" class="sv-section sv-about" aria-labelledby="about-title">
-        <div class="sv-about__head">
+        <div class="sv-about__head" data-reveal>
           <h2 id="about-title" class="sv-section__title">About us</h2>
         </div>
 
@@ -266,15 +298,18 @@
           <div class="sv-about__who" data-reveal>
             <h3 class="sv-about__who-title">Who we are</h3>
             <p>
-              Saviour Digital Solutions is a team in Blantyre. We build websites and digital
-              services for small businesses and new entrepreneurs.
+              Saviour Digital Solutions is a new team in Blantyre. We build websites, do data
+              collection and help businesses get noticed online, mainly for small businesses and new
+              entrepreneurs. We are also glad to work with individuals, start-ups, NGOs and other
+              organisations.
             </p>
             <h3 class="sv-about__who-title sv-about__who-title--next">How we started</h3>
             <p>
-              It began with a lesson in digital and entrepreneurship skills from Rynberg Stacks.
-              That lesson sparked a hunger to learn more, and to turn what we learned into
-              something bigger: a business that gives clients the best all-round digital solutions
-              we can, right here in Blantyre.
+              Our founder, Saviour Banda, took part in the Zantchito Entrepreneurship Incubation
+              Programme, which covered business development and managing money. One lesson, in
+              digital and entrepreneurship skills from Rynberg Stacks, sparked a hunger to learn
+              more, and to turn what we learned into something bigger: a business that gives
+              clients the best all-round digital solutions we can, right here in Blantyre.
             </p>
             <p>
               Yes, the name is a pun. It is also our founder's name, so there was no getting out of
@@ -338,6 +373,10 @@
                 <div class="sv-team__text">
                   <p class="sv-team__name">Fyaupi Guthrie Mwenelupembe</p>
                   <p class="sv-team__role">Web developer</p>
+                  <p class="sv-team__does">
+                    Electronics and computer engineering, with a big interest in software and
+                    embedded systems. He likes turning ideas into things that work.
+                  </p>
                 </div>
               </li>
               <li class="sv-team__person" data-reveal data-team-person>
@@ -1217,7 +1256,7 @@
       </section>
 
       <section id="contact" class="sv-section sv-contact" aria-labelledby="contact-title">
-        <div class="sv-contact__intro">
+        <div class="sv-contact__intro" data-reveal>
           <h2 id="contact-title" class="sv-section__title">Request a quote</h2>
           <p class="sv-contact__lead">
             Fill in the form and we will reply on WhatsApp or by email. Prefer to talk? Message us
@@ -1243,11 +1282,23 @@
                 +265 886 02 34 82
               </a>
             </li>
+            <li>
+              <a class="sv-link-quiet" href="mailto:saviourkumalawi@gmail.com">
+                <svg class="sv-icon" aria-hidden="true">
+                  <use href="assets/icons/sprite.svg#mail"></use>
+                </svg>
+                saviourkumalawi@gmail.com
+              </a>
+            </li>
+            <li class="sv-contact__hours">
+              Open 7:30 am to 4:30 pm. You can still reach us by phone, WhatsApp or email at any
+              time.
+            </li>
           </ul>
           <p class="sv-contact__copied" role="status" data-copy-status></p>
         </div>
 
-        <div class="sv-contact__formwrap">
+        <div class="sv-contact__formwrap" data-reveal>
           <!-- The form posts to Web3Forms. js/core/form.js sends it with fetch; without scripts the
                browser posts it directly. Paste the free Web3Forms access key into the hidden
                "access_key" field below (the key is public by design). Until then the form cannot send.
@@ -1442,8 +1493,8 @@
 
             <div class="sv-form__fail" data-form-fail hidden>
               <p class="sv-form__fail-text" tabindex="-1">
-                Sorry, that didn't send. Please message us on WhatsApp or call us on +265 886 02 34
-                82.
+                Sorry, that didn't send. Please message us on WhatsApp, call us on +265 886 02 34 82
+                or email saviourkumalawi@gmail.com.
               </p>
               <p class="sv-form__fail-links">
                 <a
@@ -1460,6 +1511,12 @@
                   Call +265 886 02 34 82
                   <svg class="sv-icon" aria-hidden="true">
                     <use href="assets/icons/sprite.svg#phone"></use>
+                  </svg>
+                </a>
+                <a class="sv-link-quiet" href="mailto:saviourkumalawi@gmail.com">
+                  Email us
+                  <svg class="sv-icon" aria-hidden="true">
+                    <use href="assets/icons/sprite.svg#mail"></use>
                   </svg>
                 </a>
               </p>
@@ -1486,6 +1543,7 @@
         <li><a href="#faq">Questions</a></li>
         <li><a href="#contact">Contact</a></li>
         <li><a href="tel:+265886023482">+265 886 02 34 82</a></li>
+        <li><a href="mailto:saviourkumalawi@gmail.com">saviourkumalawi@gmail.com</a></li>
         <li><a href="privacy.html">Privacy policy</a></li>
       </ul>
     </footer>

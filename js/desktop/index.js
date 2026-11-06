@@ -1,5 +1,5 @@
 // Desktop mode (1024px and up). GSAP, plus Lenis smooth scroll for mouse users.
-// Add features as separate files in this folder (fold.js, scrub-text.js, ...) and call them from init().
+// Add features as separate files in this folder (fold.js, cursor.js, scrub-text.js, ...) and call them from init().
 // Features that create ScrollTriggers either do it inside the gsap.context below, so ctx.revert()
 // removes them, or make their own gsap.context and return a cleanup that reverts it (phase 3 files).
 // Each feature may also return a cleanup function for DOM changes and listeners.
@@ -10,11 +10,15 @@ import { initHeroIntro } from '../core/hero-intro.js';
 import { initFaq } from '../core/faq.js';
 import { initForm } from '../core/form.js';
 import { initHeroVideo } from '../core/hero-video.js';
+import { initLoader } from '../core/loader.js';
 import { initNav } from '../core/nav.js';
+import { refreshWhenReady } from '../core/refresh.js';
 import { initWhyReveal } from '../core/why-reveal.js';
 import { initHeaderScroll } from './header-scroll.js';
 import { initCountUp } from './count-up.js';
-import { initHeroScroll } from './hero-scroll.js';
+import { initCursor } from './cursor.js';
+import { initFolds } from './fold.js';
+import { initMagnetic } from './magnetic.js';
 import { initPackagesRise } from './packages-rise.js';
 import { initScrubText } from './scrub-text.js';
 import { initSectionRail } from './section-rail.js';
@@ -39,11 +43,11 @@ export function init() {
   ctx = gsap.context(() => {
     cleanups.push(initHeaderScroll({ allowHide: !reduced }));
     cleanups.push(initSectionRail());
-    if (!reduced) initHeroScroll();
     // Section animations are added here, one file per feature.
   });
 
   cleanups.push(
+    initLoader(), // first visit only; must come before the hero entrance, which waits for it
     initNav({ scrollTo: smooth?.scrollTo }), // Lenis when it runs, native smooth scroll otherwise
     initHeroVideo(),
     initHeroIntro(),
@@ -57,13 +61,19 @@ export function init() {
     cleanups.push(initScrubText(), initCountUp(), initTeamReveal(), initPackagesRise());
   }
 
+  // Phase 6 motion pass: the two folds (Hero to About, FAQ to Contact; they also hold the hero's
+  // scroll effect), the custom cursor and the magnetic button. The folds pin and scrub, so reduced
+  // motion skips them. The cursor and the magnetic button check for a mouse themselves.
+  if (!reduced) cleanups.push(initFolds());
+  cleanups.push(initCursor(), initMagnetic());
+
   // Showcase, why and FAQ (phase 4). The pinned showcase goes after the sections above it, so
   // its pin spacing is counted in the right order. With reduced motion the showcase stays a
   // plain sideways scroll row and the statements are simply visible.
   if (!reduced) cleanups.push(initShowcaseHorizontal(), initWhyReveal());
 
-  // Positions depend on font metrics, so measure again once fonts are ready.
-  document.fonts?.ready.then(() => ScrollTrigger.refresh());
+  // Positions depend on font metrics and images, so measure again once they are ready.
+  cleanups.push(refreshWhenReady());
 }
 
 export function destroy() {

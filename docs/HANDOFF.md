@@ -15,6 +15,101 @@ Template:
 
 Also list here every item still marked `[TBC]` or `[DRAFT-EDIT]` that the owner must supply.
 
+## Update 6 Nov 2026 (evening): phase 7 (QA and launch, Lane G)
+
+**What was done:** every check that can run offline, a launch runbook (`docs/08-LAUNCH-RUNBOOK.md`), a one-command fill-in for the domain and form key (`scripts/launch-fill.mjs`), and a launch mode for the QA script. **No site code, copy or CSS was changed.** The site is not deployed: that needs the owner's accounts.
+
+### Changed (Lane G files only)
+- `scripts/qa-check.sh` (both copies): `bash scripts/qa-check.sh . --launch` (or `npm run qa:launch`) turns the three launch gates into failures: empty Web3Forms key, `REPLACE-WITH-DOMAIN` left in html, xml or txt, and no live `Sitemap:` line in `robots.txt`. Normal runs still warn only. `dist/` is now excluded from the scan.
+- `scripts/launch-fill.mjs` (new): `npm run launch:fill -- --domain <bare domain> --key <Web3Forms key>`. Validates both, fills them in, leaves the CSP hash intact, safe to run twice. Tested on a copy: after it, `qa:launch` has 0 failures and a mocked form submission carries the key.
+- `package.json`: two new scripts only (`qa:launch`, `launch:fill`).
+- `docs/08-LAUNCH-RUNBOOK.md` (new), `docs/07` (phase 7 block), `docs/05` (checklist status), `docs/00` (file table), lane tables in `AGENTS.md`, `SKILL.md` and `.claude/skills/.../SKILL.md` (Lane G row lists `launch-fill.mjs`).
+
+### Open items for the owner or the next session
+1. **ESLint version bug is NOT fixed in the zip** (as the phase 6 note asked). `package.json` says `"eslint": "^4.0.0"` and the lock file pins 4.0.0; `eslint.config.js` is a flat config. Run `npm install --save-dev eslint@9` on a computer with internet and commit both files. Not done here on purpose: editing `package.json` without regenerating the lock would make `npm ci` (which Cloudflare Pages runs) fail. Until then `npm run lint` and `npm run check` fail at the lint step; `npm run qa` and `npm run csp:check` work.
+2. **Desktop CLS from fold 2 (found in this pass).** When the FAQ pin releases (scroll about 12,800 px at 1440 wide), Chrome records one layout shift of 0.742 (`#faq` and `.sv-fold-dim`). It repeats at every scroll speed tested. Nothing visibly jumps: the FAQ moves about 12 px and is already covered by Contact. Cause: GSAP switches the pinned FAQ from `position: fixed` to `position: relative` plus a `translateY(900px)` transform, and Chrome's shift tracker ignores the transform but sees the layout position change. The hero pin does not do it because its fixed position and flow position are both `top: 0`. Phones have no pins and measured 0. Lighthouse does not scroll, so it will not report it. It matters only for desktop field data (Core Web Vitals). Options, cheapest first: (a) accept and note it; (b) replace the FAQ pin with `position: sticky` (top = viewport height minus FAQ height, set on each refresh) and trigger the scrub from `#contact` (`start: 'top bottom'`), which removes the position switch, but `nav.js` `anchorFor()` then measures a stuck FAQ and would need to use the section's flow position (it currently relies on `.pin-spacer`); (c) drop fold 2 (the cut list in docs/05 puts it first). Not attempted at launch.
+3. **Total blocking time on a throttled phone is about 700 ms** (slow 4G, 4x CPU, 375 px): a 362 ms task at 1.3 s and a 316 ms task at 3.5 s, causes not traced. Probably the largest drag on the Lighthouse performance score. Profile with Chrome DevTools Performance on a real phone. Cheapest known lever from phase 6: shorten or skip the loader (`MOTION.loader`), then check what `boot.js` loads before first paint.
+4. **Desktop LCP is the hero lead paragraph (about 1.9 s on a fast connection)**, because the text waits for the loader curtain (`introGate()`). On a phone the LCP is the hero picture (about 0.3 s unthrottled, 2.0 s throttled). On a slow desktop connection the LCP gate could be missed because of the loader.
+5. **Keyboard wrap-around:** after the last link (Privacy policy) the next Tab goes to the Skip link and Lenis glides the page back to the top over about 1.5 s, so for that moment the focused Skip link is off screen. Harmless; call `lenis.scrollTo(0, { immediate: true })` on `focusin` of `.sv-skip` if it bothers anyone.
+6. **Back/forward lands about 60 px away from where a click landed** for `#services` (3267 against 3327). Same section, still on screen. Left alone.
+7. **Everything in "Owner to supply before launch" in the phase 5 entry below is still open**: Web3Forms key, domain, street address, opening days, social links, retention period. Also still open from earlier entries: instalment terms, timelines, how a finished site goes live, photos, logo, the "Owner to confirm" lists.
+
+### Checked in Chromium (Playwright, 6 Nov 2026), served from `dist/` with the real `_headers` applied
+- **Console and CSP:** no errors or warnings at 375, 768, 1024 and 1440 px, including a full scroll. No CSP violations.
+- **Layout:** no sideways scroll at any of the four widths. Resize 1400, 375, 1400, 800, 1280, 1023, 1024 px: correct mode each time (1023 mobile, 1024 desktop); desktop always has 3 pin spacers, 1 cursor, 1 dim layer, 1 rail; mobile has none; 9 services buttons each time.
+- **Weight (uncompressed, served by a plain static server):** first load without video 360 to 470 KB; video 1.3 MB (phone) or 3.5 MB (desktop) after `load`. Inside the 1 MB gate; the video is outside "first load" by design.
+- **Throttled phone (slow 4G, 4x CPU):** FCP and LCP 2.04 s, CLS 0 (see items 3 and 4 above for TBT).
+- **Links:** 35 anchors all resolve; 2 external source links have `noopener noreferrer`; `tel:+265886023482`, `mailto:saviourkumalawi@gmail.com`, WhatsApp `wa.me/265886023482` with encoded message; `/privacy.html` 200; unknown paths return the 404 page with its CSS and icons.
+- **Semantics:** one `h1`, headings in order (h2 sections, h3 items), `lang="en"`, all fields labelled, every image has an `alt` attribute (the poster and loader logo are `alt=""`, decorative).
+- **Tap targets at 375 px:** every control is 44 px or more in hit area. The accordion buttons measure 22 px tall alone, but their `::after` covers the whole row (74 to 177 px). Checkbox labels are 44 px.
+- **Keyboard:** 69 tab stops in a sensible order, skip link first; every stop scrolls into view; focus ring present (accordion rings are drawn on the button's `::after`, so a check of the button's own outline reports "none" falsely).
+- **Reduced motion:** no loader, no pin spacers, no cursor, video blocked with `blocked:reduced-motion`, nothing faint after scrolling the whole page.
+- **No JavaScript:** headline visible, loader hidden, every FAQ and service answer open, no sideways scroll.
+- **Form (mocked Web3Forms, key filled by `launch-fill`):** one POST on desktop and on a 375 px phone, with the key and consent in the body, success state shown, no CSP errors. A real delivery was not tested.
+- **History:** nav clicks write the hash; Back and Forward return to the same sections (desktop and phone).
+- **Contrast:** the orange current link in the phone menu is on `--blue-deep` at 4.86:1 (AA). The QA "orange text" warning is a false positive for that rule.
+- **Share assets:** `og-image.jpg` is 1200 x 630 and 58 KB; `apple-touch-icon.png` 180 x 180; icons linked from `assets/img/`.
+
+### Not run (cannot run here)
+`npm run lint` and `npm run format:check` (no ESLint 9 or Prettier offline), Lighthouse, a real phone (low-end Android, iPhone), Safari and Firefox, a screen reader, a real Web3Forms delivery, the deploy itself, Search Console, Business Profile, uptime monitor.
+
+## Update 6 Nov 2026: phase 6 (motion pass) and the open hand-off requests
+
+**What was built (Lane B and the motion pass):** loader, two folds, custom cursor, magnetic button, and the nav, deep-link, services and action-bar fixes. Details in `docs/07` section 1 (phase 6 block).
+
+### Requests closed in this pass (all status: done)
+- **[Lane D to Lane B] Nav links to a pinned section:** fixed in `js/core/nav.js` (`anchorFor()` measures the `.pin-spacer` wrapper). This covers the showcase and both folds, and it also fixes the deep link on load.
+- **[Lane C to Lane B / A] Deep links on desktop and phone:** fixed (`nav.js` jumps after fonts and the first measure; `smooth-scroll.js` calls `lenis.resize()` first, because Lenis learns the new page height a frame late). Links land 80 px above the section, the same as a click (the header offset, `scroll-padding-top`).
+- **[Lane D to Lane C] Services row 1 grows after the triggers are measured:** fixed by opening row 1 with the CSS transition switched off for that moment (`services-hover.js`). Token `MOTION.services.refreshDelay` added (used by the existing toggle refresh).
+- **[Lane E to motion pass] Mobile action bar over the form:** hides while `#contact` is on screen (`action-bar.js`).
+- **[Lane B to motion pass] Hero scroll effect merged with fold 1:** `js/desktop/hero-scroll.js` is deleted; its effect lives in `js/desktop/fold.js`. Lane tables in `AGENTS.md`, `SKILL.md` and `.claude/skills/.../SKILL.md` updated.
+- **[Lane C to Lane B] Fold 1 and the About scrub start:** checked. About's scrub text starts after the fold (the hero pin is one screen; scrub starts when About is on screen).
+- **[Lane D to Lane F / motion pass] `data-cursor="view"` hook:** used by `cursor.js`.
+
+### Files outside the motion pass's lane that were changed (for the lane owners to review)
+- **Lane A:** `index.html` (inline script now also sets `sv-loading`; loader block after `<body>`; `data-reveal` added to `.sv-about__head`, `.sv-contact__intro`, `.sv-contact__formwrap` for the phone fade), `_headers` (new inline-script hash), `css/tokens.css` (`--z-loader`, `--z-cursor`, `--logo-blue`, `--loader-mark`, `--cursor-dot`, `--cursor-ring`, `--cursor-line`, `--cursor-label`), `js/core/motion-tokens.js` (groups `loader`, `fold`, `cursor`, `magnetic`; `services.refreshDelay`).
+- **Lane F:** `css/base.css` (block "Shared components: loader"), `css/desktop.css` (blocks "folds" and "custom cursor and magnetic button"; `.sv-about`, `.sv-contact` z-index; `.sv-faq` `position: relative`; light sections now have an explicit background through a zero-specificity `:where()` rule).
+- **Lane C:** `js/desktop/services-hover.js` (one change, above).
+
+### Decisions
+- **Fold 2 is FAQ to Contact, not Why to Contact.** The page order is Why, FAQ, Contact, so Why is not next to Contact. Contact slides over the section just before it. If the owner wants the charcoal Why involved, the cheapest honest option is to move the FAQ above Why in `index.html` (a content-order decision for Lane D) and change `under` in `foldContact()` to `#why`.
+- **Loader length** is about 1.25 s on desktop and 1.0 s on a phone (docs/01 says at most 1.2 s, docs/04 says "about 0.9 s" for the drawing). Numbers are in `MOTION.loader`. It is the first thing to cut if Lighthouse Speed Index suffers, since Lighthouse always sees a first visit.
+- **Loader repeat rule:** once per browser session (`sessionStorage` key `sv-seen`); blocked storage means no loader.
+- **Hero fold shrinks the whole hero (0.96) with a dark backdrop,** not only the text, so the picture and text move together.
+- **Footer wordmark drift (docs/04 section 7) not built:** there is no wordmark in the footer; adding one is a design decision.
+
+### Notes for Lane G (QA and launch)
+- **`package.json` has `"eslint": "^4.0.0"` and `package-lock.json` locks eslint 4.0.0,** but `eslint.config.js` is a flat config and `@eslint/js` is ^9. ESLint 4 cannot read flat config, so `npm run lint` will fail after `npm install`. Set eslint to `^9` (same line as `@eslint/js`), run `npm install` to refresh the lock file. Not changed here because the lock file cannot be regenerated offline.
+- Test on a real phone and run Lighthouse mobile with the loader on (first visit). Watch LCP and Speed Index. The hero picture is the LCP element and paints under the loader.
+- Back and forward buttons after anchor clicks were not tested.
+- Keyboard: tab through the page while the FAQ fold and hero fold are active (focus inside a pinned section that is covered scrolls normally).
+
+## Update 5 Nov 2026 (copy correction session): founding story brief, email, hours, Fyaupi bio
+
+Text-only pass. No new section, no new files, no phase work started.
+
+**Adopted from the owner's founding-story brief**
+- Zantchito Entrepreneurship Incubation Programme, and that the founder took part in it (answers the old open question "who was taught": the founder, Saviour Banda). The programme also covered business development and managing money.
+- The business is new and still starting out, so "Who we are" now says "a new team" and the page makes no claim of finished client work. The showcase stays labelled as concept demos.
+- Individuals, start-ups, NGOs and other organisations are named as welcome, while small businesses and new entrepreneurs stay the focus.
+- Meta description (page, og and JSON-LD, all three kept identical) rewritten. The old one read "Saviour Digital Solutions build digital footprint...", which was ungrammatical.
+
+**Not adopted, and why**
+- The long vision and mission text, the "Our Commitment" paragraph and the sector list (retail, agriculture, hospitality...): generic wording, and the sector list is a claim of reach the business has not earned yet. No vision or mission section was added (a new section needs the owner's approval).
+- "Digital Business Solutions" as a sixth service: too vague to quote on. The nine services already cover the brief's five (website, data collection, marketing, maintenance and support).
+- Data collection: the page already separates online forms and surveys from physical data collection, so the brief's suggested split is covered. Left unchanged.
+- Phrases such as "embrace digital technology", "data-driven", "empowering", "technology should connect people to possibilities": filler, and "empower" is on the banned list.
+
+**Owner details now on the page**
+- Email saviourkumalawi@gmail.com: contact block, form failure message (text and link), footer, privacy page (two places), JSON-LD `email`.
+- Hours: "Open 7:30 am to 4:30 pm. You can still reach us by phone, WhatsApp or email at any time." in the contact block. JSON-LD `openingHours` was **not** added: it needs the days of the week, and none were given.
+- Fyaupi's bio shortened to two plain sentences in his team card (`.sv-team__does`). The full supplied bio was too long for a three-column card and leaned on "enthusiast" and "innovative technology".
+
+**Owner to confirm**
+1. Was the Rynberg Stacks lesson part of the Zantchito programme? The About text now reads as if it was.
+2. Which days the 7:30 to 4:30 hours apply to (Monday to Friday? Saturday?), so the days can be added to the page and JSON-LD.
+3. The "Owner to supply" item 3 below (email address) is done. Phone, WhatsApp and email are all in place; Web3Forms key and domain are still open.
+
 ## Update 5 Nov 2026 (later): phase 5 (contact, form, privacy, SEO)
 
 **What was built (Lane E):** the `#contact` section (WhatsApp button, phone link, quote form), `js/core/form.js`, `privacy.html`, `404.html`, JSON-LD, canonical and `og:url`, the footer privacy and phone links, and a sitemap entry for `/privacy`.

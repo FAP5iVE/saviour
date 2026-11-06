@@ -7,7 +7,7 @@ import { allowPointerExtras } from '../core/env.js';
 import { MOTION } from '../core/motion-tokens.js';
 
 /**
- * @returns {null | { lenis: Lenis, scrollTo: (target: Element) => void, destroy: () => void }}
+ * @returns {null | { lenis: Lenis, scrollTo: (target: Element, options?: { immediate?: boolean }) => void, destroy: () => void }}
  */
 export function initSmoothScroll() {
   if (!allowPointerExtras()) return null;
@@ -22,8 +22,12 @@ export function initSmoothScroll() {
 
   return {
     lenis,
-    scrollTo(target) {
-      lenis.scrollTo(target, { offset: 0, duration: MOTION.duration.page });
+    scrollTo(target, { immediate = false } = {}) {
+      // Lenis learns the page height from a ResizeObserver, which is a frame behind when pin
+      // spacing was just added. Without this a jump to a section below the showcase is clamped
+      // to the old, shorter page.
+      lenis.resize();
+      lenis.scrollTo(target, { offset: 0, duration: MOTION.duration.page, immediate });
     },
     destroy() {
       gsap.ticker.remove(tick);

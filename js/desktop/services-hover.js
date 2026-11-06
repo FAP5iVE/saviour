@@ -44,15 +44,22 @@ export function initServicesHover() {
 
   // Rows moving makes the page below them move, so measure the scroll triggers again afterwards.
   let refreshTimer = 0;
+  // Row 1 is opened at start-up. Do it with the CSS transitions switched off for that one moment,
+  // so the page below it grows at once, before the scroll triggers are measured, and not over
+  // 300 ms afterwards (which put deep links and pinned sections about 240 px out of place).
+  const panels = list.querySelectorAll('.sv-svc__panel');
+  panels.forEach((panel) => panel.style.setProperty('transition', 'none'));
   const accordion = initAccordion(list, {
     single: true,
     openFirst: true,
     onToggle: (item, isOpen) => {
       if (isOpen) drawIcon(item);
       clearTimeout(refreshTimer);
-      refreshTimer = setTimeout(() => ScrollTrigger.refresh(), 400);
+      refreshTimer = setTimeout(() => ScrollTrigger.refresh(), MOTION.services.refreshDelay);
     },
   });
+  void list.offsetHeight; // apply the open state now, with no transition
+  panels.forEach((panel) => panel.style.removeProperty('transition'));
 
   // Hover intent: mouse only (a fine pointer), never touch. Opening one row moves the rows
   // below it, and scrolling moves rows under a still mouse. Both make the browser report a

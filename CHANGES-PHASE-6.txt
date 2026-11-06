@@ -1,0 +1,11 @@
+Phase 6 (motion pass), Fri 6 Nov 2026. Copy these files over the project, keeping the paths.
+
+DELETE: js/desktop/hero-scroll.js   (merged into js/desktop/fold.js)
+
+NEW:     js/core/loader.js, js/core/refresh.js, js/desktop/cursor.js, js/desktop/fold.js, js/desktop/magnetic.js
+CHANGED: index.html, _headers, css/base.css, css/desktop.css, css/tokens.css,
+         js/core/hero-intro.js, js/core/motion-tokens.js, js/core/nav.js,
+         js/desktop/index.js, js/desktop/services-hover.js, js/desktop/smooth-scroll.js,
+         js/mobile/action-bar.js, js/mobile/index.js,
+         docs/04-motion-spec.md, docs/07-HANDOVER-AND-DOWNLOADS.md, docs/HANDOFF.md,
+         AGENTS.md, SKILL.md, .claude/skills/saviour-digital-site-builder/SKILL.md

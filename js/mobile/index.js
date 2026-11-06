@@ -8,7 +8,9 @@ import { initHeroIntro } from '../core/hero-intro.js';
 import { initFaq } from '../core/faq.js';
 import { initForm } from '../core/form.js';
 import { initHeroVideo } from '../core/hero-video.js';
+import { initLoader } from '../core/loader.js';
 import { initNav } from '../core/nav.js';
+import { refreshWhenReady } from '../core/refresh.js';
 import { initWhyReveal } from '../core/why-reveal.js';
 import { initActionBar } from './action-bar.js';
 import { initMenuSheet } from './menu-sheet.js';
@@ -29,6 +31,7 @@ export function init() {
   });
 
   cleanups.push(
+    initLoader(), // first visit only; must come before the hero entrance, which waits for it
     initNav(), // native smooth scroll
     initMenuSheet(),
     initActionBar(),
@@ -44,8 +47,8 @@ export function init() {
   // cleans itself up.
   if (!prefersReducedMotion()) cleanups.push(initReveal(), initWhyReveal());
 
-  // Positions depend on font metrics, so measure again once fonts are ready.
-  document.fonts?.ready.then(() => ScrollTrigger.refresh());
+  // Positions depend on font metrics and images, so measure again once they are ready.
+  cleanups.push(refreshWhenReady());
 }
 
 export function destroy() {

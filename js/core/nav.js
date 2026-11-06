@@ -6,13 +6,27 @@
 // Desktop passes its own scrollTo (Lenis). Mobile passes nothing and uses native smooth scrolling.
 // This file must not import from desktop/ or mobile/.
 
+import { ScrollTrigger } from '../../assets/vendor/vendor.js';
 import { prefersReducedMotion } from './env.js';
 
 // Sections that have no link of their own light up their parent's link.
 const PARENT_LINK = { packages: 'services' };
 
+let deepLinkDone = false; // the address-bar hash is honoured once per page load
+
 /**
- * @param {{ scrollTo?: (target: Element) => void }} [options]
+ * Where a section really belongs in the page. A section pinned by ScrollTrigger (the hero fold,
+ * the showcase, the FAQ fold) sits inside a "pin-spacer" wrapper that keeps its place in the page,
+ * while the section itself can be fixed to the screen. Measuring the section would then land on
+ * the end of the pin (the showcase's last panel) or on the wrong screen, so measure the wrapper.
+ */
+function anchorFor(target) {
+  const parent = target.parentElement;
+  return parent?.classList.contains('pin-spacer') ? parent : target;
+}
+
+/**
+ * @param {{ scrollTo?: (target: Element, options?: { immediate?: boolean }) => void }} [options]
  * @returns {() => void} cleanup
  */
 export function initNav({ scrollTo } = {}) {
@@ -51,12 +65,13 @@ export function initNav({ scrollTo } = {}) {
     target.focus({ preventScroll: true });
   }
 
-  function goTo(target) {
+  function goTo(target, { immediate = false } = {}) {
+    const anchor = anchorFor(target);
     if (scrollTo) {
-      scrollTo(target);
+      scrollTo(anchor, { immediate });
     } else {
-      target.scrollIntoView({
-        behavior: prefersReducedMotion() ? 'auto' : 'smooth',
+      anchor.scrollIntoView({
+        behavior: immediate ? 'instant' : prefersReducedMotion() ? 'auto' : 'smooth',
         block: 'start',
       });
     }
@@ -83,7 +98,27 @@ export function initNav({ scrollTo } = {}) {
 
   document.addEventListener('click', onClick);
 
+  // 3. A link that ends in a section (index.html#packages, from WhatsApp or a social post).
+  // The browser jumps before the scripts have added pin spacing and before the fonts arrive, so
+  // it lands in the wrong place. Once the page has been measured, go to the section again.
+  let cancelled = false;
+  if (!deepLinkDone && window.location.hash.length > 1) {
+    deepLinkDone = true;
+    (document.fonts?.ready ?? Promise.resolve()).then(() => {
+      requestAnimationFrame(() => {
+        if (cancelled) return;
+        const target = document.getElementById(decodeURIComponent(window.location.hash.slice(1)));
+        if (!target) return;
+        ScrollTrigger.refresh();
+        goTo(target, { immediate: true });
+      });
+    });
+  } else {
+    deepLinkDone = true;
+  }
+
   return function destroy() {
+    cancelled = true;
     document.removeEventListener('click', onClick);
     observer.disconnect();
     links.forEach((link) => link.removeAttribute('aria-current'));

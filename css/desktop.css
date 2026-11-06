@@ -149,9 +149,10 @@ html.lenis body {
 
 /* === SECTION: about (phase 3) === */
 /* Title on the left, statement and facts on the right. The solid background lets the next
-   fold (Hero to About) slide over the hero later without showing it through. */
+   fold (Hero to About, js/desktop/fold.js) slide over the pinned hero without showing it through. */
 .sv-about {
   position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--space-3);
@@ -387,6 +388,7 @@ html.lenis body {
 
 /* === SECTION: faq (phase 4) === */
 .sv-faq {
+  position: relative; /* holds the dim layer that fold 2 adds */
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--space-3);
@@ -410,6 +412,8 @@ html.lenis body {
 /* Same two-column rhythm as the FAQ: title and quick ways to reach us stay in view while the
    form scrolls. */
 .sv-contact {
+  position: relative;
+  z-index: 1; /* slides over the pinned FAQ (fold 2, js/desktop/fold.js) */
   display: grid;
   grid-template-columns: repeat(12, minmax(0, 1fr));
   column-gap: var(--space-3);
@@ -441,6 +445,73 @@ html.lenis body {
    column does not jump. */
 .sv-contact__copied {
   min-height: 1.5em;
+}
+
+/* === SECTION: custom cursor and magnetic button (js/desktop/cursor.js, magnetic.js) === */
+/* The ordinary cursor is hidden only once the custom one is on screen (html.sv-cursor-on), and
+   comes back whenever the custom one hides (over fields, while selecting text). */
+html.sv-cursor-on:not(.sv-cursor-native),
+html.sv-cursor-on:not(.sv-cursor-native) * {
+  cursor: none !important;
+}
+
+.sv-cursor {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-cursor);
+  pointer-events: none;
+  opacity: 0;
+}
+
+.sv-cursor__ring,
+.sv-cursor__dot {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.sv-cursor__dot {
+  width: var(--cursor-dot);
+  height: var(--cursor-dot);
+  border-radius: 50%;
+  background: var(--orange);
+}
+
+.sv-cursor__ring {
+  display: grid;
+  place-items: center;
+  width: var(--cursor-ring);
+  height: var(--cursor-ring);
+}
+
+.sv-cursor__disc {
+  position: absolute;
+  inset: 0;
+  border: var(--cursor-line) solid var(--orange);
+  border-radius: 50%;
+  transition: background-color var(--t-micro) var(--ease-out);
+}
+
+/* Over the showcase screens the ring becomes an orange disc with a charcoal label (5.86:1). */
+.sv-cursor[data-state='disc'] .sv-cursor__disc {
+  background: var(--orange);
+}
+
+.sv-cursor__label {
+  position: relative;
+  color: var(--ink);
+  font-size: var(--cursor-label);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  opacity: 0;
+}
+
+/* The pull is two variables written by magnetic.js. The individual "translate" property sits
+   beside the button's own transform (the press scale), so the two never fight. */
+[data-magnetic] {
+  translate: var(--mx, 0) var(--my, 0);
 }
 
 /* === SECTION: section rail (built by js/desktop/section-rail.js) === */
@@ -533,6 +604,26 @@ html.lenis body {
 /* === SECTION: action bar (phones only) === */
 .sv-action {
   display: none;
+}
+
+/* === SECTION: folds (js/desktop/fold.js) === */
+/* While a fold runs, the shrinking section leaves thin strips around it. A dark page behind makes
+   them read as depth. Every light section has its own background so nothing shows through. */
+html[data-folding] body {
+  background: var(--ink);
+}
+
+:where(.sv-section:not(.sv-section--dark)) {
+  background: var(--bg);
+}
+
+.sv-fold-dim {
+  position: absolute;
+  inset: 0;
+  z-index: 5;
+  background: var(--ink);
+  opacity: 0;
+  pointer-events: none;
 }
 
 /* === SECTION: generic === */

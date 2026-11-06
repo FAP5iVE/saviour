@@ -79,3 +79,8 @@ If time runs short, cut in this order: Fold 2 → custom cursor → loader → h
 - [ ] Uptime monitor on
 - [ ] Share image and favicon display correctly when sharing the link on WhatsApp
 - [ ] Rollback point noted
+
+### Status on Fri 6 Nov 2026 (phase 7)
+
+Done and tested here (Chromium): QA script clean (0 failures), contact details real and wired (form tested with a mocked Web3Forms), privacy page and consent line present, no `[TBC]`, no `href="#"`, no emoji, share image 1200 x 630 and 58 KB, favicon set present, 404 page.
+Needs the owner, on launch day: domain live over HTTPS and www redirect, Web3Forms key, real-device test, Lighthouse run saved, Search Console, Business Profile (needs street address and opening days), analytics decision, uptime monitor, rollback point (the runbook sets a `v1.0-launch` tag). Steps in `docs/08-LAUNCH-RUNBOOK.md`.

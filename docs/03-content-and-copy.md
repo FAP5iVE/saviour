@@ -162,9 +162,9 @@ Hidden until real. How to collect: ask any real early client (or a pilot client 
 ## 10. Contact block (placeholders until provided)
 
 - WhatsApp / phone: `+265 [TBC]`
-- Email: `[TBC]`
+- Email: saviourkumalawi@gmail.com (live 5 Nov 2026)
 - Address: `[TBC], Blantyre, Malawi`
-- Hours: `[TBC]` (standard working hours)
+- Hours: open 7:30 am to 4:30 pm; reachable by phone, WhatsApp and email at any time (live 5 Nov 2026). Days of the week `[TBC]`
 - Socials: only those that exist, with real URLs `[TBC]`
 
 ## 11. Microcopy

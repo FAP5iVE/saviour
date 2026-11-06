@@ -1,0 +1,12 @@
+Phase 7 (QA and launch preparation, Lane G), Fri 6 Nov 2026. This zip is the whole project:
+unzip it over your copy, keeping the paths. No site code, CSS or copy changed in this phase.
+
+NEW:     scripts/launch-fill.mjs, docs/08-LAUNCH-RUNBOOK.md, CHANGES-PHASE-7.txt
+CHANGED: scripts/qa-check.sh and .claude/skills/saviour-digital-site-builder/scripts/qa-check.sh
+           (new --launch mode; dist/ excluded from the scan),
+         package.json (two new scripts only: qa:launch, launch:fill),
+         docs/HANDOFF.md, docs/07-HANDOVER-AND-DOWNLOADS.md, docs/05-roadmap-schedule-risks.md,
+         docs/00-START-HERE.md, AGENTS.md, SKILL.md, .claude/skills/saviour-digital-site-builder/SKILL.md
+
+NOT DONE (needs you): deploy, domain, Web3Forms key, ESLint fix (npm install --save-dev eslint@9,
+needs internet), Lighthouse, real-phone test. Steps are in docs/08-LAUNCH-RUNBOOK.md.

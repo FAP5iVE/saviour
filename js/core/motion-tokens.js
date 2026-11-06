@@ -16,7 +16,7 @@ export const MOTION = Object.freeze({
   stagger: 0.08,
   start: 'top 85%', // default ScrollTrigger start for reveals
 
-  // Hero (js/core/hero-intro.js, js/desktop/hero-scroll.js)
+  // Hero (js/core/hero-intro.js, and the hero part of js/desktop/fold.js)
   hero: Object.freeze({
     lineOffset: 110, // yPercent the headline lines start from (hidden under their mask)
     riseOffset: 24, // px the lead and buttons rise from
@@ -38,6 +38,7 @@ export const MOTION = Object.freeze({
     hoverIntent: 140, // ms the pointer must rest on a row before it opens (desktop)
     drawDuration: 0.7, // seconds the service icon takes to draw
     drawStagger: 0.06,
+    refreshDelay: 400, // ms to wait for a row to finish opening before measuring the page again
   }),
   packages: Object.freeze({
     riseOffset: 56, // px the cards rise from (desktop)
@@ -55,6 +56,41 @@ export const MOTION = Object.freeze({
   }),
   faq: Object.freeze({
     refreshDelay: 400, // ms to wait for a row to finish opening before measuring the page again
+  }),
+
+  // Loader (js/core/loader.js). First visit of a session only. Total about 1.25 s on desktop and
+  // 1.0 s on a phone (docs/01 asks for 1.2 s at most; docs/04 for a mark that draws in about 0.9 s).
+  loader: Object.freeze({
+    draw: 0.75, // seconds the mark takes to draw and fill (desktop)
+    drawMobile: 0.55, // same on a phone
+    hold: 0.05, // seconds the finished mark rests before the curtain moves
+    curtain: 0.45, // seconds the curtain takes to slide up (desktop)
+    curtainMobile: 0.4,
+    gateAt: 0.4, // share of the curtain move at which the hero headline may start
+    logoRise: 10, // px the finished logo rises from while it fades in
+    markLift: 28, // px the mark rises as the curtain leaves
+    failsafe: 3000, // ms after which the hero stops waiting for the loader
+  }),
+
+  // Section folds (js/desktop/fold.js). Desktop only; phones fade and rise instead.
+  fold: Object.freeze({
+    scale: 0.96, // size the section underneath shrinks to
+    dim: 0.55, // opacity of the dark layer over the section underneath at the end of the fold
+    contentOpacity: 0.4, // hero text fades to this while the About section covers it
+  }),
+
+  // Custom cursor and magnetic button (desktop, fine pointer, no reduced motion)
+  cursor: Object.freeze({
+    ringDuration: 0.35, // seconds the ring takes to catch up with the dot
+    linkScale: 1.6, // ring size over links and buttons
+    discScale: 2.2, // ring size when it becomes a labelled disc (showcase)
+    dotFade: 0.2, // seconds for dot and ring state changes
+    labels: Object.freeze({ view: 'View', drag: 'Drag' }),
+  }),
+  magnetic: Object.freeze({
+    max: 8, // px the button may be pulled toward the pointer
+    reach: 56, // px around the button inside which it starts to follow
+    follow: 0.18, // share of the remaining distance covered per frame at 60 fps
   }),
 
   // Mobile menu sheet and action bar
