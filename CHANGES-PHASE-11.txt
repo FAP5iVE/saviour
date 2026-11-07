@@ -1,0 +1,13 @@
+Phase 11 (team photos, founder bio, live address), Sat 7 Nov 2026.
+Unzip over your copy, keeping the paths. Delete these old files if they are still there:
+  assets/img/team-charity-400.avif, assets/img/team-charity-400.webp,
+  assets/img/team-saviour-800.avif, assets/img/team-saviour-800.webp
+
+TEAM:     Real photos for Saviour Kumalawi (red) and Bettie Masamba (black blazer, replaces Charity Phiri).
+BIO:      Saviour's short bio under "Founder", in plain words, three sentences.
+ADDRESS:  https://saviourdigitalsolutions.netlify.app/ is filled in: canonical, share tags, business data,
+          privacy page, sitemap.xml, robots.txt.
+SHARE:    The preview image did not show because the share tags still held a placeholder address. Fixed.
+          WhatsApp and Facebook keep old previews: refresh yours at developers.facebook.com/tools/debug
+          (paste the link, press Scrape Again), or share the link with ?v=2 on the end.
+CHANGED:  index.html, privacy.html, sitemap.xml, robots.txt, assets/img/team-* , docs/HANDOFF.md

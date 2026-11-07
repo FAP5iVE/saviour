@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Replace REPLACE-WITH-DOMAIN with the real domain before launch.
+<!-- The real domain is filled in (scripts/launch-fill.mjs).
      A single-page site needs only the home URL and the privacy page. Cloudflare Pages and Netlify
      serve privacy.html at /privacy, so that is the address listed. 404.html is not listed. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://REPLACE-WITH-DOMAIN/</loc>
+    <loc>https://saviourdigitalsolutions.netlify.app/</loc>
   </url>
   <url>
-    <loc>https://REPLACE-WITH-DOMAIN/privacy</loc>
+    <loc>https://saviourdigitalsolutions.netlify.app/privacy</loc>
   </url>
 </urlset>

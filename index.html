@@ -12,17 +12,17 @@
     />
     <meta name="theme-color" content="#FAF9F6" />
 
-    <!-- Icons and share image. Replace REPLACE-WITH-DOMAIN with the real domain before launch.
+    <!-- Icons and share image. The real domain is filled in (scripts/launch-fill.mjs).
          It appears in the canonical link, og:url, og:image, twitter:image and the business data
          (JSON-LD) below, and in sitemap.xml. These addresses must be absolute. -->
-    <link rel="canonical" href="https://REPLACE-WITH-DOMAIN/" />
+    <link rel="canonical" href="https://saviourdigitalsolutions.netlify.app/" />
     <link rel="icon" href="assets/img/favicon.ico" sizes="32x32" />
     <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png" />
 
     <meta property="og:type" content="website" />
     <meta property="og:site_name" content="Saviour Digital Solutions" />
-    <meta property="og:url" content="https://REPLACE-WITH-DOMAIN/" />
+    <meta property="og:url" content="https://saviourdigitalsolutions.netlify.app/" />
     <meta
       property="og:title"
       content="Saviour Digital Solutions | Web solutions for small businesses in Blantyre, Malawi"
@@ -31,13 +31,13 @@
       property="og:description"
       content="Websites, data collection and digital marketing for small businesses and new entrepreneurs in Blantyre, Malawi. Request a quote."
     />
-    <meta property="og:image" content="https://REPLACE-WITH-DOMAIN/assets/img/og-image.jpg" />
+    <meta property="og:image" content="https://saviourdigitalsolutions.netlify.app/assets/img/og-image.jpg" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:alt" content="Saviour Digital Solutions logo" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:image" content="https://REPLACE-WITH-DOMAIN/assets/img/og-image.jpg" />
+    <meta name="twitter:image" content="https://saviourdigitalsolutions.netlify.app/assets/img/og-image.jpg" />
 
     <!-- Business data for search engines (schema.org). Only facts already on the page: name, phone,
          email, town and country. Add "sameAs" (real social profiles only), a street address and
@@ -47,11 +47,11 @@
       {
         "@context": "https://schema.org",
         "@type": "ProfessionalService",
-        "@id": "https://REPLACE-WITH-DOMAIN/#business",
+        "@id": "https://saviourdigitalsolutions.netlify.app/#business",
         "name": "Saviour Digital Solutions",
-        "url": "https://REPLACE-WITH-DOMAIN/",
-        "logo": "https://REPLACE-WITH-DOMAIN/assets/img/logo.svg",
-        "image": "https://REPLACE-WITH-DOMAIN/assets/img/og-image.jpg",
+        "url": "https://saviourdigitalsolutions.netlify.app/",
+        "logo": "https://saviourdigitalsolutions.netlify.app/assets/img/logo.svg",
+        "image": "https://saviourdigitalsolutions.netlify.app/assets/img/og-image.jpg",
         "description": "Websites, data collection and digital marketing for small businesses and new entrepreneurs in Blantyre, Malawi. Request a quote.",
         "telephone": "+265886023482",
         "email": "saviourkumalawi@gmail.com",
@@ -332,12 +332,12 @@
                 <picture class="sv-team__photo">
                   <source
                     type="image/avif"
-                    srcset="assets/img/team-saviour-400.avif 400w, assets/img/team-saviour-800.avif 800w"
+                    srcset="assets/img/team-saviour-400.avif 400w, assets/img/team-saviour-768.avif 768w"
                     sizes="(min-width: 1024px) 18vw, (min-width: 768px) 28vw, 7rem"
                   />
                   <img
                     src="assets/img/team-saviour-400.webp"
-                    srcset="assets/img/team-saviour-400.webp 400w, assets/img/team-saviour-800.webp 800w"
+                    srcset="assets/img/team-saviour-400.webp 400w, assets/img/team-saviour-768.webp 768w"
                     sizes="(min-width: 1024px) 18vw, (min-width: 768px) 28vw, 7rem"
                     alt="Saviour Kumalawi, founder"
                     width="400"
@@ -349,7 +349,12 @@
                 <div class="sv-team__text">
                   <p class="sv-team__name">Saviour Kumalawi</p>
                   <p class="sv-team__role">Founder</p>
-                  <p class="sv-team__does">Data collection and digital marketing</p>
+                  <p class="sv-team__does">
+                    Banking and Finance student who is building her own business, Saviour Digital
+                    Solutions. She is interested in website development, data collection and
+                    digital marketing, and in simple ways to help small businesses get noticed. She
+                    is starting with owners here in Blantyre.
+                  </p>
                 </div>
               </li>
               <li class="sv-team__person" data-reveal data-team-person>
@@ -383,14 +388,14 @@
                 <picture class="sv-team__photo">
                   <source
                     type="image/avif"
-                    srcset="assets/img/team-charity-400.avif 400w"
+                    srcset="assets/img/team-bettie-400.avif 400w"
                     sizes="(min-width: 1024px) 18vw, (min-width: 768px) 28vw, 7rem"
                   />
                   <img
-                    src="assets/img/team-charity-400.webp"
-                    srcset="assets/img/team-charity-400.webp 400w"
+                    src="assets/img/team-bettie-400.webp"
+                    srcset="assets/img/team-bettie-400.webp 400w"
                     sizes="(min-width: 1024px) 18vw, (min-width: 768px) 28vw, 7rem"
-                    alt="Charity Phiri, digital marketer, data collector and content creator"
+                    alt="Bettie Masamba, digital marketer, data collector and content creator"
                     width="400"
                     height="500"
                     loading="lazy"
@@ -398,9 +403,11 @@
                   />
                 </picture>
                 <div class="sv-team__text">
-                  <p class="sv-team__name">Charity Phiri</p>
+                  <p class="sv-team__name">Bettie Masamba</p>
                   <p class="sv-team__role">Digital marketing and content creation</p>
-                  <p class="sv-team__does">Also data collection</p>
+                  <p class="sv-team__does">
+                    Digital marketer and content creator who also helps with data collection.
+                  </p>
                 </div>
               </li>
             </ul>
