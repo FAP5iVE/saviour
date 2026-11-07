@@ -86,6 +86,23 @@
   --cursor-line: 1.5px;
   --cursor-label: 0.8125rem;
 
+  /* Section rail wheel (desktop, built by js/desktop/section-rail.js): a vertical scale on a drum.
+     --rail-r is half the height. The ticks take the page's colour (currentColor); only the needle
+     and the current section's tick use the accent. */
+  --rail-w: 4.5rem;
+  --rail-h: 20rem;
+  --rail-r: calc(var(--rail-h) / 2);
+  --rail-perspective: 48rem;
+  --rail-tick-box: 1.2rem;
+  --rail-accent: var(--orange);
+
+  /* Showcase scroll bar (desktop): a slim track with a draggable blue thumb. */
+  --bar-h: 0.5rem;
+  --bar-hit: 2rem;
+  --bar-track: var(--rule);
+  --bar-thumb: var(--blue);
+  --bar-thumb-active: var(--orange);
+
   /* Hero: flat blue-deep veil over the poster or video (no gradient) */
   --veil: var(--blue-deep);
   --veil-opacity: 0.62;

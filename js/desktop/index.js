@@ -23,7 +23,7 @@ import { initPackagesRise } from './packages-rise.js';
 import { initScrubText } from './scrub-text.js';
 import { initSectionRail } from './section-rail.js';
 import { initServicesHover } from './services-hover.js';
-import { initShowcaseHorizontal } from './showcase-horizontal.js';
+import { initShowcaseBar } from './showcase-bar.js';
 import { initSmoothScroll } from './smooth-scroll.js';
 import { initTeamReveal } from './team-reveal.js';
 
@@ -69,10 +69,16 @@ export function init() {
   // the ordinary cursor. To turn it back on, import initCursor and add it to this push.
   cleanups.push(initMagnetic());
 
-  // Showcase, why and FAQ (phase 4). The pinned showcase goes after the sections above it, so
-  // its pin spacing is counted in the right order. With reduced motion the showcase stays a
-  // plain sideways scroll row and the statements are simply visible.
-  if (!reduced) cleanups.push(initShowcaseHorizontal(), initWhyReveal());
+  // Showcase scroll bar (phase 10) and the "Why choose us" statements. The showcase no longer pins:
+  // the page scrolls straight through it and a custom bar moves the sideways row. The bar is direct
+  // manipulation, not an animation, so it also runs with reduced motion (it then moves instantly).
+  // A problem in the showcase must never take the rest of the page down with it.
+  try {
+    cleanups.push(initShowcaseBar());
+  } catch (error) {
+    console.error('Saviour: the showcase wheel failed, the row stays a plain scroll row.', error);
+  }
+  if (!reduced) cleanups.push(initWhyReveal());
 
   // Footer wordmark drift. Last of the scroll triggers, so it measures after every pin above it.
   if (!reduced) cleanups.push(initFooterDrift());

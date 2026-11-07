@@ -50,10 +50,12 @@ export const MOTION = Object.freeze({
     drift: 28, // yPercent the wordmark starts below its place
   }),
 
-  // Showcase, why and FAQ (phase 4)
+  // Showcase scroll bar (phase 10), why and FAQ (phase 4)
   showcase: Object.freeze({
-    scrub: 1, // seconds the horizontal track takes to catch up with the scroll (desktop pin)
-    parallax: 10, // px the mini-site inside a panel drifts either way (desktop pin). Keep it below the frame's side padding.
+    settle: 0.55, // seconds the row takes to glide onto a panel after a drag, a key or a swipe
+    idle: 160, // ms of stillness after a sideways swipe before the row settles on a panel
+    swipeMin: 60, // px of sideways swipe that counts as "go to the next panel" rather than a wobble
+    flick: 180, // ms of speed carried on after the pointer is released, for a flick
   }),
   why: Object.freeze({
     riseOffset: 20, // px the proof line rises from

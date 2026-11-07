@@ -281,19 +281,18 @@ html.lenis body {
   grid-column: 7 / -1;
 }
 
-/* === SECTION: showcase (phase 4) === */
-/* Without the pin (reduced motion, scripts off) this is a sideways scroll row, which still works.
-   js/desktop/showcase-horizontal.js adds data-pinned: the section then fills the screen, stays
-   fixed while you scroll, and the track slides sideways. The row stays inside the section's side
-   padding, so panels never slide under the section rail. */
+/* === SECTION: showcase (phase 4, scroll bar added in phase 10) === */
+/* No pin: the section is as tall as its content and the page scrolls straight through it. The
+   panels sit in a sideways row. Without JavaScript that row is a plain scroll area (scrollbar,
+   snap points). js/desktop/showcase-bar.js adds data-bar: the scrollbar and snapping give way
+   to a custom bar under the row, which moves it. The row stays inside the section's side padding,
+   so panels never slide under the section rail. */
 .sv-showcase {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
-  grid-template-rows: auto minmax(0, 1fr) auto;
   row-gap: var(--space-4);
-  min-height: 100svh;
   padding-top: calc(var(--header-h) + var(--space-4));
-  padding-bottom: var(--space-4);
+  padding-bottom: var(--space-5);
 }
 
 .sv-showcase__head {
@@ -305,19 +304,20 @@ html.lenis body {
 
 .sv-showcase__head .sv-section__title {
   grid-column: 1 / span 6;
+  grid-row: 1 / span 2;
 }
 
 .sv-showcase__lead {
   grid-column: 8 / -1;
+  grid-row: 1;
 }
 
 .sv-showcase__viewport {
-  align-self: center;
   padding-bottom: var(--space-2);
 }
 
 .sv-showcase__track {
-  --bleed: 1rem; /* extra room inside each frame so the small parallax never shows an edge */
+  --bleed: 0px; /* the mini-sites no longer drift, so they need no spare room inside the frame */
   align-items: center;
   gap: var(--space-4);
 }
@@ -342,20 +342,110 @@ html.lenis body {
   display: none;
 }
 
-.sv-showcase[data-pinned] .sv-showcase__viewport {
+/* With the scroll bar (js/desktop/showcase-bar.js adds data-bar): the plain scrollbar and snapping
+   give way to a custom bar under the row, and the vertical axis is switched off so a mouse wheel
+   over the row always scrolls the page. */
+.sv-showcase[data-bar] .sv-showcase__viewport {
   padding-bottom: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
   scroll-snap-type: none;
-  overflow: hidden;
-  overflow: clip; /* clip, not hidden: the browser can never scroll it to reveal a focused link */
+  scrollbar-width: none;
 }
 
-.sv-showcase[data-pinned] .sv-showcase__track {
-  will-change: transform;
+.sv-showcase[data-bar] .sv-showcase__viewport::-webkit-scrollbar {
+  display: none;
 }
 
-.sv-showcase[data-pinned] .sv-showcase__progress {
-  display: block;
+.sv-showcase[data-bar] .sv-showcase__progress {
+  display: none; /* the bar replaces the thin progress line */
 }
+
+.sv-bar-row {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.sv-bar__count {
+  flex: none;
+  font-family: var(--font-display);
+  font-size: var(--text-h3);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+  color: var(--text-soft);
+}
+
+.sv-bar__count span {
+  color: var(--text);
+}
+
+/* The bar: a slim track with a blue thumb as wide as the share of the row you can see. Drag the
+   thumb, click the track to jump to a project, or use the arrow keys. The tall invisible area
+   around the track is only there to make it easy to grab. */
+.sv-bar {
+  position: relative;
+  flex: 1 1 auto;
+  min-width: 0;
+  height: var(--bar-hit);
+  cursor: pointer;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.sv-bar:focus-visible {
+  outline: var(--focus-width) solid var(--focus);
+  outline-offset: 0.2rem;
+}
+
+.sv-bar__track {
+  position: absolute;
+  top: 50%;
+  right: 0;
+  left: 0;
+  height: var(--bar-h);
+  margin-top: calc(var(--bar-h) / -2);
+  border-radius: var(--bar-h);
+  background: var(--bar-track);
+}
+
+/* One small notch on the track for each project, so you can see where the stops are. */
+.sv-bar__notch {
+  position: absolute;
+  top: 50%;
+  width: 2px;
+  height: calc(var(--bar-h) + 0.5rem);
+  margin-top: calc((var(--bar-h) + 0.5rem) / -2);
+  margin-left: -1px;
+  background: var(--text-soft);
+  opacity: 0.45;
+}
+
+.sv-bar__thumb {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  height: var(--bar-h);
+  margin-top: calc(var(--bar-h) / -2);
+  border-radius: var(--bar-h);
+  background: var(--bar-thumb);
+  cursor: grab;
+  transition: background-color var(--t-fade) var(--ease-out);
+}
+
+/* A wider grab area than the thumb looks. */
+.sv-bar__thumb::before {
+  content: '';
+  position: absolute;
+  inset: calc((var(--bar-hit) - var(--bar-h)) / -2) 0;
+}
+
+.sv-bar[data-dragging] .sv-bar__thumb {
+  cursor: grabbing;
+  background: var(--bar-thumb-active);
+}
+
 
 /* === SECTION: why (phase 4) === */
 .sv-why {
@@ -515,15 +605,17 @@ html.sv-cursor-on:not(.sv-cursor-native) * {
 }
 
 /* === SECTION: section rail (built by js/desktop/section-rail.js) === */
+/* A vertical wheel with no background: ticks drawn in the page's own colour (ink on a light
+   section, white on a dark one) on a drum seen from the side. The ticks stand round a horizontal
+   axis in 3D, so they bunch up, shrink and fade toward the top and bottom, and the drum turns as
+   the page scrolls. The orange needle in the middle is fixed. */
 .sv-rail {
   position: fixed;
   top: 50%;
   right: var(--space-3);
   z-index: var(--z-rail);
-  display: flex;
-  flex-direction: row-reverse;
-  align-items: stretch;
-  gap: var(--space-2);
+  width: var(--rail-w);
+  height: var(--rail-h);
   color: var(--ink);
   pointer-events: none;
   transform: translateY(-50%);
@@ -534,71 +626,97 @@ html.sv-cursor-on:not(.sv-cursor-native) * {
   color: var(--white);
 }
 
-.sv-rail__track {
-  position: relative;
-  width: 2px;
-}
-
-.sv-rail__track::before,
-.sv-rail__fill {
-  content: '';
+/* The lens holds the perspective and fades the drum out at both ends. The fade is a mask, not a
+   coloured overlay, so it works on any page colour. */
+.sv-rail__lens {
   position: absolute;
   inset: 0;
-  background: currentColor;
+  perspective: var(--rail-perspective);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 28%, black 72%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0%, black 28%, black 72%, transparent 100%);
 }
 
-.sv-rail__track::before {
-  opacity: 0.25;
-}
-
-.sv-rail__fill {
-  transform: scaleY(0);
-  transform-origin: top;
-}
-
-.sv-rail__list {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: var(--space-2);
-}
-
-.sv-rail__item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-1);
-  font-size: var(--text-small);
-  font-variant-numeric: tabular-nums;
-  line-height: 1;
-}
-
-.sv-rail__num {
-  opacity: 0;
-  transform: translateX(0.5rem);
-  transition:
-    opacity var(--t-fade) var(--ease-out),
-    transform var(--t-fade) var(--ease-out);
+.sv-rail__drum {
+  position: absolute;
+  inset: 0;
+  transform-style: preserve-3d;
+  transform: translateZ(calc(var(--rail-r) * -1)) rotateX(var(--rail-angle, 0rad));
+  will-change: transform;
 }
 
 .sv-rail__tick {
-  width: var(--space-2);
+  position: absolute;
+  top: calc(50% - var(--rail-tick-box) / 2);
+  right: 0;
+  left: 0;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.4rem;
+  height: var(--rail-tick-box);
+  backface-visibility: hidden;
+  transform: rotateX(var(--a, 0rad)) translateZ(var(--rail-r));
+}
+
+.sv-rail__tick i {
+  display: block;
+  width: 0.5rem;
   height: 2px;
   background: currentColor;
+  opacity: 0.4;
+  transition: background-color var(--t-fade) var(--ease-out);
+}
+
+.sv-rail__tick[data-kind='mid'] i {
+  width: 0.8rem;
+  opacity: 0.55;
+}
+
+.sv-rail__tick[data-kind='major'] i {
+  width: 1.3rem;
+  opacity: 0.9;
+}
+
+.sv-rail__tick b {
+  font-size: var(--text-small);
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
   opacity: 0.5;
-  transform-origin: right;
-  transition:
-    opacity var(--t-fade) var(--ease-out),
-    transform var(--t-fade) var(--ease-out);
+  transition: opacity var(--t-fade) var(--ease-out);
 }
 
-.sv-rail__item[data-active] .sv-rail__num {
+/* The section you are in: its tick turns orange and its number comes up to full strength. */
+.sv-rail__tick[data-active] i {
+  background: var(--rail-accent);
   opacity: 1;
-  transform: none;
 }
 
-.sv-rail__item[data-active] .sv-rail__tick {
+.sv-rail__tick[data-active] b {
   opacity: 1;
-  transform: scaleX(1.8);
+}
+
+/* The needle: a fixed orange line with a round head, standing over the middle of the scale. */
+.sv-rail__needle {
+  position: absolute;
+  top: 50%;
+  right: -0.3rem;
+  width: 1.9rem;
+  height: 2px;
+  margin-top: -1px;
+  background: var(--rail-accent);
+}
+
+.sv-rail__needle::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 0;
+  width: 0.55rem;
+  height: 0.55rem;
+  margin-top: -0.275rem;
+  border-radius: 50%;
+  background: var(--rail-accent);
 }
 
 /* === SECTION: action bar (phones only) === */

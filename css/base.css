@@ -780,7 +780,7 @@ a {
 }
 
 /* === Shared components: showcase, why, FAQ (phase 4, Lane D) ===
-   Look and structure that are the same in both modes. Page-level layout (the pin on desktop, the
+   Look and structure that are the same in both modes. Page-level layout (the wheel on desktop, the
    swipe row on phones, columns) lives in mobile.css and desktop.css. */
 
 /* --- Showcase: media panels, not cards --- */
@@ -790,14 +790,15 @@ a {
 }
 
 /* The default is a plain sideways scroll row with snap points. That is what you get with no
-   JavaScript, with reduced motion and on every phone. On desktop, js/desktop/showcase-horizontal.js
-   turns it into a pinned track (data-pinned on the section). */
+   JavaScript and on every phone. On desktop, js/desktop/showcase-bar.js adds a custom scroll bar that
+   moves the row (data-bar on the section); there is no pinning. */
 .sv-showcase__viewport {
   min-width: 0; /* a wide track must never stretch the section (also needed when clipped) */
   overflow-x: auto;
   overscroll-behavior-x: contain;
   scroll-snap-type: x mandatory;
   scrollbar-width: thin;
+  scrollbar-color: var(--blue) var(--rule); /* the plain row (no JavaScript) still wears the brand blue */
 }
 
 .sv-showcase__track {
@@ -1500,7 +1501,7 @@ a {
   background: var(--orange);
 }
 
-/* Progress line and dots: the line is shown by the desktop pin, the dots by the phone row. */
+/* Progress line and dots: the line is shown by the desktop wheel, the dots by the phone row. */
 .sv-showcase__progress {
   position: relative;
   height: 2px;

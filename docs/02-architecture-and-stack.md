@@ -47,7 +47,7 @@ saviour-site/
 │   │   ├── smooth-scroll.js    # Lenis + ScrollTrigger sync
 │   │   ├── cursor.js           # custom cursor (also guarded by pointer: fine)
 │   │   ├── fold.js             # the two "folding" section transitions
-│   │   ├── showcase-horizontal.js
+│   │   ├── showcase-bar.js            (showcase-horizontal.js and showcase-dial.js are pass-throughs, keep them)
 │   │   ├── scrub-text.js
 │   │   └── services-hover.js
 │   └── mobile/

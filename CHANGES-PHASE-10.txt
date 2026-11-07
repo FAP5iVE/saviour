@@ -1,0 +1,35 @@
+Phase 10 (showcase: no more scroll-lock; scroll bar; section rail is now a 3D wheel), Sat 7 Nov 2026.
+Unzip the WHOLE zip over your copy, keeping the paths (js, css and index files all changed together).
+Do NOT delete anything: showcase-horizontal.js and showcase-dial.js are now tiny pass-through files, so
+an older index.js that still imports either of them cannot break the page.
+
+FIXED:    On desktop the page used to stop at the Business showcase until you had scrolled all six
+          panels sideways, and on a short screen the pinned section was cut off at the bottom. The
+          section is not pinned any more: the page scrolls straight through it.
+SHOWCASE: The wheel is gone from the showcase. A custom scroll bar sits under the row instead: a slim
+          track with a blue thumb (orange while you drag it) and a notch for each project, plus a
+          01 / 06 counter. Drag the thumb, click the track to jump to a project, use the arrow keys
+          (Home and End too) when the bar has focus, or swipe sideways on a trackpad. The row settles
+          on a project after every move. Up and down mouse-wheel scrolling is never captured.
+RAIL:     The vertical rail on the right edge is now the 3D wheel: a scale of fine ticks with a tall
+          numbered tick for each of the 8 sections, drawn on a drum so it bunches up, shrinks and
+          fades toward the top and bottom (bulged). The drum turns as you scroll, and the section
+          you are in sits under a fixed orange needle with a round head. No background: the ticks
+          take the colour of the page behind (dark on light sections, white on dark ones).
+PHONES:   Unchanged (native swipe row with dots, no rail).
+
+NEW:      js/desktop/showcase-bar.js
+REWRITTEN: js/desktop/section-rail.js
+PASS-THROUGH (do not delete): js/desktop/showcase-horizontal.js, js/desktop/showcase-dial.js
+CHANGED:  js/desktop/index.js, js/core/motion-tokens.js (showcase block), css/tokens.css (--rail-*,
+          --bar-*), css/desktop.css (showcase block, section rail block), css/base.css (comments),
+          docs/00, 02, 04, 07, HANDOFF, AGENTS.md, SKILL.md and the copy in .claude/skills.
+
+IF THE RAIL STILL LOOKS LIKE A PLAIN NUMBERED LIST ("1. 01  2. 02 ..."): the old js/desktop/section-rail.js
+is still being used. Check, in this order:
+  1. Open js/desktop/section-rail.js in the editor and search for "drum". It must be found.
+     If not, the file was not overwritten: unzip the whole zip over the project again.
+  2. Stop the dev server (Ctrl+C) and start it again with  npm run dev  (new file serve.json turns off caching).
+  3. Hard refresh the page (Ctrl+Shift+R). In the VS Code browser, close the tab and open localhost:3000 again.
+  4. In the browser console, type  document.querySelector('.sv-rail__drum')  and press Enter. It must show an element.
+NEW:      serve.json (tells the local dev server not to cache files)

@@ -30,7 +30,7 @@ Planning pack, kept up to date as phases finish. Build status is in `07-HANDOVER
 | Desktop and mobile as separate modules, my pick | One HTML file, separate `desktop` and `mobile` CSS and JS modules chosen live by `matchMedia`, so resizing reflows instantly |
 | Backend as JS, admin dashboard later | No database at launch. Form goes to email plus WhatsApp. A JS (Cloudflare Workers) + PostgreSQL plan is in file 05 |
 | Single long scroll, folding sections, bold hero with video loop, not split | Full-bleed bold hero with a video loop behind it, no split layout. Two "folding" section transitions, not more |
-| Custom cursor, horizontal scroll on desktop | Yes to both. Cursor is fine-pointer devices only. Horizontal showcase collapses to a swipe row on mobile |
+| Custom cursor, horizontal scroll on desktop | Yes to both. Cursor is fine-pointer devices only. The showcase is a sideways row moved by a 3D wheel on desktop (no pin) and a swipe row on mobile |
 | Pricing packages in kwacha, modern cards | Packages section with real card treatment (this is a valid card use). Quote-only, with a pre-filled quote request (locked 3 Nov) |
 | Services list as drafted, English only, payments listed | Nine services (hosting removed 4 Nov; digital marketing and data collection added), payment routes mentioned, English only |
 | Showcase: my choice. Why Choose Us: my best selection with instalments | Five labelled concept demos. Six differentiators with instalments in (each one marked "confirm true") |
