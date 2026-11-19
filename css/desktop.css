@@ -281,12 +281,7 @@ html.lenis body {
   grid-column: 7 / -1;
 }
 
-/* === SECTION: showcase (phase 4, scroll bar added in phase 10) === */
-/* No pin: the section is as tall as its content and the page scrolls straight through it. The
-   panels sit in a sideways row. Without JavaScript that row is a plain scroll area (scrollbar,
-   snap points). js/desktop/showcase-bar.js adds data-bar: the scrollbar and snapping give way
-   to a custom bar under the row, which moves it. The row stays inside the section's side padding,
-   so panels never slide under the section rail. */
+/* === SECTION: showcase  === */
 .sv-showcase {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
@@ -342,7 +337,7 @@ html.lenis body {
   display: none;
 }
 
-/* With the scroll bar (js/desktop/showcase-bar.js adds data-bar): the plain scrollbar and snapping
+/* With the scroll bar : the plain scrollbar and snapping
    give way to a custom bar under the row, and the vertical axis is switched off so a mouse wheel
    over the row always scrolls the page. */
 .sv-showcase[data-bar] .sv-showcase__viewport {
@@ -498,7 +493,7 @@ html.lenis body {
   grid-column: 6 / -1;
 }
 
-/* === SECTION: contact (phase 5) === */
+/* === SECTION: contact === */
 /* Same two-column rhythm as the FAQ: title and quick ways to reach us stay in view while the
    form scrolls. */
 .sv-contact {

@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Live address (filled in by scripts/launch-fill.mjs):
 Sitemap: https://saviourdigitalsolutions.netlify.app/sitemap.xml

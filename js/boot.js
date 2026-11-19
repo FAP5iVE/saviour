@@ -30,14 +30,11 @@ async function activate(mode) {
   window.dispatchEvent(new CustomEvent('sv:modechange', { detail: { mode } }));
 }
 
-// Changes are queued so a fast resize never runs two swaps at once.
 function request(mode) {
   queue = queue.then(() => activate(mode)).catch(fail);
   return queue;
 }
 
-// If scripts fail, drop the "js" class so every "hidden until animated" style turns off
-// and the plain page is fully visible.
 function fail(error) {
   console.error('Saviour: scripts failed, showing the static page.', error);
   root.classList.remove('js');

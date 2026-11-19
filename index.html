@@ -12,9 +12,6 @@
     />
     <meta name="theme-color" content="#FAF9F6" />
 
-    <!-- Icons and share image. The real domain is filled in (scripts/launch-fill.mjs).
-         It appears in the canonical link, og:url, og:image, twitter:image and the business data
-         (JSON-LD) below, and in sitemap.xml. These addresses must be absolute. -->
     <link rel="canonical" href="https://saviourdigitalsolutions.netlify.app/" />
     <link rel="icon" href="assets/img/favicon.ico" sizes="32x32" />
     <link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml" />
@@ -38,11 +35,6 @@
     <meta property="og:image:alt" content="Saviour Digital Solutions logo" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:image" content="https://saviourdigitalsolutions.netlify.app/assets/img/og-image.jpg" />
-
-    <!-- Business data for search engines (schema.org). Only facts already on the page: name, phone,
-         email, town and country. Add "sameAs" (real social profiles only), a street address and
-         "openingHours" (needs the days as well as the times) here when the owner supplies them. It is a data block, not a running script,
-         so the Content-Security-Policy does not need a hash for it. -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -64,11 +56,7 @@
       }
     </script>
 
-    <!-- The script below adds the "js" class, and the "sv-loading" class on the first visit of a
-         session (so the loader covers the page from the first paint and a returning visitor never
-         sees it flash). Reduced motion never gets the loader. It is the ONLY inline script that
-         runs on the site. Its hash is in _headers. If you edit it, run: npm run csp:check -->
-    <!-- prettier-ignore -->
+
     <script>document.documentElement.classList.add('js');try{if(!sessionStorage.getItem('sv-seen')){sessionStorage.setItem('sv-seen','1');if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('sv-loading');}}catch(e){}</script>
 
     <link
@@ -94,10 +82,7 @@
     <script type="module" src="js/boot.js"></script>
   </head>
   <body>
-    <!-- Loader: shown only when the "sv-loading" class is on <html> (first visit, no reduced
-         motion). js/core/loader.js draws the mark, lifts the curtain and removes this block.
-         The mark repeats assets/img/favicon.svg: two blue shapes drawn as outlines, then the
-         finished logo fades in over them. -->
+
     <div class="sv-loader" aria-hidden="true" data-loader>
       <div class="sv-loader__mark" data-loader-mark>
         <svg class="sv-loader__svg" viewBox="121 64 220 220" focusable="false" data-loader-svg>
@@ -170,7 +155,6 @@
     </header>
 
     <main id="main">
-      <!-- Section content is written from docs/03-content-and-copy.md. Starter has headings only. -->
 
       <section id="home" class="sv-hero" aria-labelledby="home-title" data-hero>
         <div class="sv-hero__media" aria-hidden="true" data-hero-media>
